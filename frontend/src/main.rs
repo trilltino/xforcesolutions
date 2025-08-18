@@ -1,16 +1,22 @@
-use crate::routes::Route;
 use yew::prelude::*;
 use yew_router::prelude::*;
+
 mod pages;
 mod routes;
-use crate::routes::switch;
+mod ui;
+
+use routes::{Route, switch};
+use ui::nav::Nav;
 
 #[function_component(App)]
 fn app() -> Html {
     html! {
-        <HashRouter>
-        <Switch<Route> render = {switch} />
-        </HashRouter>
+         <HashRouter>
+         <Nav/ >
+         <div style = {"padding-top: 0px;"}>
+         <Switch<Route> render = {switch} />
+         </div>
+         </HashRouter>
     }
 }
 

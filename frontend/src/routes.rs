@@ -1,4 +1,4 @@
-use crate::pages::{about::About, home::Home, projects::Projects, voters::Voters};
+use crate::pages::{about::About, home::Home, projects::Projects, voters::Voters,learn::Learn};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -13,8 +13,11 @@ pub enum Route {
     #[at("/voters")]
     Voters,
 
-    #[at("/[projects")]
+    #[at("/projects")]
     Projects,
+
+    #[at("/learn")]
+    Learn,
 
     #[not_found]
     #[at("/404")]
@@ -28,5 +31,6 @@ pub fn switch(routes: Route) -> Html {
         Route::Projects => html! {<Projects />},
         Route::NotFound => html! { <h1>{ "404" }</h1> },
         Route::About => html! {<About/>  },
+        Route::Learn => html! {<Learn/> },
     }
 }

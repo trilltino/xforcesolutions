@@ -25,7 +25,7 @@ pub fn about() -> Html {
     html! {
      <section>
      <h1>{"About"}</h1>
-     <pre>{ (*text).clone()}</pre>
+    { (*text).clone()}
      </section>
     }
 }
