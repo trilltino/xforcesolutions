@@ -5,7 +5,7 @@ use yew_router::prelude::*;
 #[function_component(Projects)]
 pub fn project_dashboard() -> Html {
     let navigator = use_navigator().unwrap();
-    let onclick = Callback::from(move |_| navigator.push(&Route::Home));
+    let onclick = Callback::from(move |_| navigator.push(&Route::SignUp));
     html! {
         <div>
             <h1>{ "projects-dashboard" } </h1>

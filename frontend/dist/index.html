@@ -1,113 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xfsolutions</title>
-
-  <!-- Google Fonts -->
-
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap CSS -->
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoYlKfuz1k2aB7xj6HbtjZJ6nU9vv5C7qE9D6VQnQao9" 
-    crossorigin="anonymous">
-
-  <style>
-    body {
-      font-family: 'Fira Sans', sans-serif;
-      margin: 0;
-      padding-top: 10;
-      font-size: 16px; /* base size */
-      line-height: 1.6; /* relaxed reading */
-      letter-spacing: 0.2px; /* subtle spacing */
-      color: #222; /* dark but not pure black */
-}
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Solutions</title>
+    <link rel="stylesheet" href="/style-8b3edf1d282056ff.css" integrity="sha384-OpjhG84jivmoAuC8H3ZCHhH9efTZOwL1biWCzWK1YWVr64kYMhSgG5WIkmo+UiHC"/>
     
-
-    /* Navbar styling */
-.navbar {
-  width: 100%;
-  box-sizing: border-box;
-  background: #000;
-  border-bottom: 1px solid #333;
-  display: flex;
-  align-items: center;
-  gap: 2rem;          /* space between brand and links */
-  padding: 4rem 2rem; /* increase for more vertical height */
-  margin: 0;
-}
-
-    .navbar-brand {
-      color: #ff0000 !important;
-      letter-spacing: 2px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-right: 2rem;
-      text-decoration: none;
-    }
-
-    .navbar-brand:hover {
-      color: #ff4d4d !important;
-    }
-
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
-  gap: 5rem; /* space between links */
-  margin-left: 75rem; /* space from logo */
-}
-
-
-    .nav-link {
-      color: #fff !important;
-      text-decoration: none;
-    }
-
-    .nav-link:hover {
-      color: #ff4d4d !important;
-    }
-  </style>
-<link rel="modulepreload" href="/frontend-fe2aed85d02776c5.js" crossorigin="anonymous" integrity="sha384-ARNhguUu70pzYAdrXJze5aj/TW6xbbaoDd1nhCEqPkcY45u4LXFL2IQ9EnQim7vI"><link rel="preload" href="/frontend-fe2aed85d02776c5_bg.wasm" crossorigin="anonymous" integrity="sha384-SDkHSVLn2uqiXHW1v3VIYkz8F8sAkdqvsQAtJebsLTF9Vlu23T7tbg0lCU1Jpj/A" as="fetch" type="application/wasm"></head>
-<body>
-
-  <nav class="navbar">
-    <a class="navbar-brand" href="#">
-      <img src="/static/logo.jpg" alt="Logo" height="36" />
-      Xfsolutions
-    </a>
-    <ul class="navbar-nav">
-      <li><a class="nav-link" href="#">Home</a></li>
-      <li><a class="nav-link" href="#">Projects</a></li>
-      <li><a class="nav-link" href="#">About</a></li>
-    </ul>
-  </nav>
-
-  <div id="root"></div>
-
-  <!-- Bootstrap JS -->
-  <script 
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-qmWlj1EnC9tFzMjE1Y5+4y1+Pj6lr7hUO/xDWzA5Uo7OqY0plh9ZXU3FMEWtUw3F" 
-    crossorigin="anonymous">
-  </script>
-
-  <!-- Yew app init -->
-  <script type="module">
-    import init from "./frontend.js";
-    init();
-  </script>
-
 <script type="module">
-import init, * as bindings from '/frontend-fe2aed85d02776c5.js';
-const wasm = await init({ module_or_path: '/frontend-fe2aed85d02776c5_bg.wasm' });
+import init, * as bindings from '/frontend-c83ad3838f210050.js';
+const wasm = await init({ module_or_path: '/frontend-c83ad3838f210050_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -115,7 +16,12 @@ window.wasmBindings = bindings;
 
 dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
-</script><script>"use strict";
+</script>
+    
+<link rel="modulepreload" href="/frontend-c83ad3838f210050.js" crossorigin="anonymous" integrity="sha384-gcV6dMyN0UwF0287SdQWvikWrvGRqleGnCzgH3NsK0JWHy09Bp4fG26l3iypJj5o"><link rel="preload" href="/frontend-c83ad3838f210050_bg.wasm" crossorigin="anonymous" integrity="sha384-4oiUVwT0IkF1scfSBJEChU1Gw+VCkcGvTQpJY9rMCh0k+vMU3Lh0hSzuAsCrzVJH" as="fetch" type="application/wasm"></head>
+<body>
+    <div id="app"></div>
+<script>"use strict";
 
 (function () {
 
@@ -246,4 +152,3 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 })()
 </script></body>
 </html>
-
