@@ -1,10 +1,9 @@
 use crate::routes::Route;
-use gloo_net::http::Request;
-use shared::{dto::{logindata::{AuthenticatedUser, Admin, ProjectOwner, Voter, Guest}, user::{SignUpRequest, SignUpResponse}}};
 use web_sys::SubmitEvent;
 use yew::prelude::*;
 use yew_router::prelude::*;
-use shared::dto::logindata::UserType;
+use shared::dto::auth::UserType;
+use crate::services::auth::AuthService;
 //{ProjectOwner, Admin, Voter, Guest};
 
 #[function_component(UserTypeSelector)]
@@ -75,6 +74,9 @@ pub struct SignUpProps {
       let display_name = use_state(String::new);
       let password = use_state(String::new);
       let address = use_state(String::new);
+      let loading = use_state(|| false);
+      let message = use_state(|| None::<String>);
+      let is_success = use_state(|| false);
 
       let on_email = {
           let email = email.clone();
@@ -115,6 +117,9 @@ pub struct SignUpProps {
                   let display_name = display_name.clone();
                   let password = password.clone();
                   let address = address.clone();
+                  let loading = loading.clone();
+                  let message = message.clone();
+                  let is_success = is_success.clone();
                   let user_type = user_type.clone();
 
                   Callback::from(move |e: SubmitEvent| {
@@ -125,66 +130,40 @@ pub struct SignUpProps {
                       let password_v = (*password).clone();
                       let address_v = (*address).clone();
                       let user_type = user_type.clone();
+                      let loading = loading.clone();
+                      let message = message.clone();
+                      let is_success = is_success.clone();
+
+                      // Start loading, clear previous message
+                      loading.set(true);
+                      message.set(None);
 
                       wasm_bindgen_futures::spawn_local(async move {
-                          let (req_json, endpoint) = match user_type {
-                              UserType::Guest => {
-                                  let req = Guest {
-                                      username: display_name_v,
-                                  };
-                                  (serde_json::to_value(&req).unwrap(), "/api/guest")
-                              }
-                              UserType::Voter => {
-                                  let req = Voter {
-                                      base: AuthenticatedUser {
-                                          username: display_name_v,
-                                          email: email_v,
-                                          password: password_v,
-                                          g_address: address_v,
-                                      }
-                                  };
-                                  (serde_json::to_value(&req).unwrap(), "/api/voter")
-                              }
-                              UserType::ProjectOwner => {
-                                  let req = ProjectOwner {
-                                      base: AuthenticatedUser {
-                                          username: display_name_v,
-                                          email: email_v,
-                                          password: password_v,
-                                          g_address: address_v,
-                                      },
-                                      project_type: "".to_string(),
-                                  };
-                                  (serde_json::to_value(&req).unwrap(), "/api/project-owner")
-                              }
-                              UserType::Admin => {
-                                  let req = Admin {
-                                      base: AuthenticatedUser {
-                                          username: display_name_v,
-                                          email: email_v,
-                                          password: password_v,
-                                          g_address: address_v,
-                                      },
-                                      admin_type: "".to_string(),
-                                  };
-                                  (serde_json::to_value(&req).unwrap(), "/api/admin")
-                              }
-                          };
+                          let email_opt = if email_v.is_empty() { None } else { Some(email_v) };
+                          let password_opt = if password_v.is_empty() { None } else { Some(password_v) };
+                          let address_opt = if address_v.is_empty() { None } else { Some(address_v) };
 
-                          let resp = Request::post(endpoint)
-                              .header("content-type", "application/json")
-                              .json(&req_json)
-                              .unwrap()
-                              .send()
-                              .await
-                              .unwrap()
-                              .json::<serde_json::Value>()
-                              .await
-                              .unwrap();
-
-                          web_sys::console::log_1(
-                              &format!("User created: {:?}", resp).into()
-                          );
+                          match AuthService::register_user(user_type, display_name_v, email_opt, password_opt, address_opt).await {
+                              Ok(response) => {
+                                  // ✅ Success - show user feedback
+                                  message.set(Some("Account created successfully! 🎉".to_string()));
+                                  is_success.set(true);
+                                  web_sys::console::log_1(
+                                      &format!("User created successfully: {}", response).into()
+                                  );
+                              }
+                              Err(error) => {
+                                  // ❌ Error - show user feedback  
+                                  message.set(Some(format!("Failed to create account: {}", error)));
+                                  is_success.set(false);
+                                  web_sys::console::log_1(
+                                      &format!("Error creating user: {}", error).into()
+                                  );
+                              }
+                          }
+                          
+                          // Stop loading
+                          loading.set(false);
                       });
                   })
               };
@@ -192,6 +171,23 @@ pub struct SignUpProps {
               html! {
                   <form onsubmit={on_submit}>
                       <h2>{format!("Sign Up as {}", user_type)}</h2>
+                      
+                      // Show success/error message
+                      {
+                          if let Some(msg) = (*message).clone() {
+                              html! {
+                                  <div style={if *is_success { 
+                                      "padding: 1rem; margin-bottom: 1rem; border-radius: 4px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;" 
+                                  } else { 
+                                      "padding: 1rem; margin-bottom: 1rem; border-radius: 4px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" 
+                                  }}>
+                                      {msg}
+                                  </div>
+                              }
+                          } else {
+                              html! {}
+                          }
+                      }
 
                       <input
                           type="text"
@@ -222,7 +218,20 @@ pub struct SignUpProps {
                               />
                           </>
                       }
-                      <button type="submit">{"Sign Up"}</button>
+                      <button type="submit" disabled={*loading}>
+                          {
+                              if *loading {
+                                  html! {
+                                      <>
+                                          <span style="display: inline-block; width: 16px; height: 16px; border: 2px solid #f3f3f3; border-top: 2px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px;"></span>
+                                          {"Creating Account..."}
+                                      </>
+                                  }
+                              } else {
+                                  html! { "Sign Up" }
+                              }
+                          }
+                      </button>
                   </form>
               }
           }

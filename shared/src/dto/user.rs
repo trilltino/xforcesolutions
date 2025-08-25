@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use crate::dto::logindata::UserType;
+use crate::dto::auth::UserType;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SignUpRequest {
