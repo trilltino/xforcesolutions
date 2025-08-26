@@ -8,13 +8,13 @@ impl ApiClient {
         let response = Request::post(endpoint)
             .header("content-type", "application/json")
             .json(&data)
-            .map_err(|e| format!("Request error: {}", e))?
+            .map_err(|e| format!("Request error: {e}"))?
             .send()
             .await
-            .map_err(|e| format!("Network error: {}", e))?;
+            .map_err(|e| format!("Network error: {e}", ))?;
 
         if response.ok() {
-            response.text().await.map_err(|e| format!("Response parse error: {}", e))
+            response.text().await.map_err(|e| format!("Response parse error: {e}",))
         } else {
             Err(format!("HTTP error: {}", response.status()))
         }

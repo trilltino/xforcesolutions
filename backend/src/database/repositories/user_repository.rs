@@ -22,21 +22,20 @@ impl UserRepository {
             UserType::Admin => "Admin",
         };
 
-        let user = sqlx::query_as!(
-            User,
+        let user = sqlx::query_as::<_, User>(
             r#"
             INSERT INTO users (email, display_name, password_hash, user_type, g_address, project_type, admin_type)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at
             "#,
-            email,
-            display_name,
-            password_hash,
-            user_type_str,
-            g_address,
-            project_type,
-            admin_type
         )
+        .bind(email)
+        .bind(display_name)
+        .bind(password_hash)
+        .bind(user_type_str)
+        .bind(g_address)
+        .bind(project_type)
+        .bind(admin_type)
         .fetch_one(pool)
         .await?;
 
@@ -44,11 +43,10 @@ impl UserRepository {
     }
 
     pub async fn get_user_by_id(pool: &PgPool, user_id: i32) -> Result<Option<User>, sqlx::Error> {
-        let user = sqlx::query_as!(
-            User,
-            "SELECT id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at FROM users WHERE id = $1",
-            user_id
+        let user = sqlx::query_as::<_, User>(
+            "SELECT id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at FROM users WHERE id = $1"
         )
+        .bind(user_id)
         .fetch_optional(pool)
         .await?;
 
@@ -56,8 +54,7 @@ impl UserRepository {
     }
 
     pub async fn get_all_users(pool: &PgPool) -> Result<Vec<User>, sqlx::Error> {
-        let users = sqlx::query_as!(
-            User,
+        let users = sqlx::query_as::<_, User>(
             "SELECT id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at FROM users"
         )
         .fetch_all(pool)

@@ -1,7 +1,8 @@
 use axum::{routing::{get, post}, Router};
 use crate::handlers::{health, users, projects, auth};
+use crate::database::connection::DbPool;
 
-pub fn create_api_routes() -> Router {
+pub fn create_api_routes() -> Router<DbPool> {
     Router::new()
         .route("/health", get(health))
         .route("/voters", get(users::list_voters))

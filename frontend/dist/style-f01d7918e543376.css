@@ -125,6 +125,17 @@ form button:hover {
     background-color: #900;
 }
 
+form button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+/* Loading Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Headings */
 h2 {
     text-align: center;

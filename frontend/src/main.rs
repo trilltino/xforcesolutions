@@ -5,7 +5,7 @@ mod pages;
 mod routes;
 mod ui;
 mod services;
-mod components;
+
 
 
 use routes::{Route, switch};
