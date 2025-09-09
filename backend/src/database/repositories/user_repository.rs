@@ -1,6 +1,6 @@
-use sqlx::PgPool;
 use crate::database::models::user::User;
 use shared::dto::auth::UserType;
+use sqlx::PgPool;
 
 pub struct UserRepository;
 
@@ -40,26 +40,5 @@ impl UserRepository {
         .await?;
 
         Ok(user)
-    }
-
-    pub async fn get_user_by_id(pool: &PgPool, user_id: i32) -> Result<Option<User>, sqlx::Error> {
-        let user = sqlx::query_as::<_, User>(
-            "SELECT id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at FROM users WHERE id = $1"
-        )
-        .bind(user_id)
-        .fetch_optional(pool)
-        .await?;
-
-        Ok(user)
-    }
-
-    pub async fn get_all_users(pool: &PgPool) -> Result<Vec<User>, sqlx::Error> {
-        let users = sqlx::query_as::<_, User>(
-            "SELECT id, email, display_name, password_hash, user_type, g_address, project_type, admin_type, created_at FROM users"
-        )
-        .fetch_all(pool)
-        .await?;
-
-        Ok(users)
     }
 }
