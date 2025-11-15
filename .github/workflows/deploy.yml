@@ -91,6 +91,17 @@ jobs:
             echo "=== Copying images ==="
             cp -v frontend/public/images/* target/site/images/ 2>&1 | head -20
             echo ""
+            echo "=== Explicitly checking and copying tino.webp ==="
+            if [ -f frontend/public/images/tino.webp ]; then
+              echo "✓ tino.webp found in source, copying explicitly..."
+              cp -v frontend/public/images/tino.webp target/site/images/tino.webp
+              ls -lah target/site/images/tino.webp || echo "Copy failed!"
+            else
+              echo "✗✗✗ tino.webp NOT IN SOURCE ✗✗✗"
+              echo "Listing all files in frontend/public/images:"
+              ls -la frontend/public/images/ | grep -i tino || echo "No tino files"
+            fi
+            echo ""
             echo "=== Verifying copied files ==="
             echo "Contents of target/site/images:"
             ls -lah target/site/images/ | head -20
@@ -135,6 +146,12 @@ jobs:
             mkdir -p target/site/public
             cp -r frontend/public/* target/site/public/ 2>/dev/null || true
             echo "Copied public assets to target/site/public/"
+            echo "=== Verifying tino.webp in public/images ==="
+            if [ -f target/site/public/images/tino.webp ]; then
+              echo "✓ tino.webp exists in target/site/public/images/"
+            else
+              echo "✗ tino.webp missing from target/site/public/images/"
+            fi
           fi
 
       - name: Create .nojekyll file
