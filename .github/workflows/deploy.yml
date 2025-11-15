@@ -89,17 +89,25 @@ jobs:
             echo "✓ Created target/site/images"
             echo ""
             echo "=== Copying images ==="
-            cp -v frontend/public/images/* target/site/images/ 2>&1 | head -20
+            echo "Listing ALL files in source before copy:"
+            ls -lah frontend/public/images/ | head -30
             echo ""
-            echo "=== Explicitly checking and copying tino.webp ==="
+            echo "Copying all images:"
+            cp -v frontend/public/images/* target/site/images/ 2>&1
+            echo ""
+            echo "=== EXPLICITLY FORCING tino.webp copy ==="
             if [ -f frontend/public/images/tino.webp ]; then
-              echo "✓ tino.webp found in source, copying explicitly..."
-              cp -v frontend/public/images/tino.webp target/site/images/tino.webp
-              ls -lah target/site/images/tino.webp || echo "Copy failed!"
+              echo "✓✓✓ tino.webp EXISTS IN SOURCE ✓✓✓"
+              cp -vf frontend/public/images/tino.webp target/site/images/tino.webp
+              echo "Verifying copy:"
+              ls -lah target/site/images/tino.webp
+              file target/site/images/tino.webp || echo "file command not available"
             else
               echo "✗✗✗ tino.webp NOT IN SOURCE ✗✗✗"
-              echo "Listing all files in frontend/public/images:"
-              ls -la frontend/public/images/ | grep -i tino || echo "No tino files"
+              echo "Full listing of frontend/public/images:"
+              ls -la frontend/public/images/
+              echo "Checking for case variations:"
+              find frontend/public/images -iname "*tino*" || echo "No tino files found"
             fi
             echo ""
             echo "=== Verifying copied files ==="
@@ -142,18 +150,20 @@ jobs:
           fi
           echo ""
           echo ""
-          echo "=== CRITICAL: Ensuring tino.webp is in BOTH locations ==="
-          if [ -f target/site/images/tino.webp ]; then
-            echo "✓ tino.webp exists in target/site/images/"
-            # Also copy to public/images for redundancy
-            mkdir -p target/site/public/images
-            cp -v target/site/images/tino.webp target/site/public/images/tino.webp || true
-          else
-            echo "✗✗✗ tino.webp STILL MISSING from target/site/images/ ✗✗✗"
-            echo "Attempting direct copy from source:"
-            if [ -f frontend/public/images/tino.webp ]; then
-              cp -v frontend/public/images/tino.webp target/site/images/tino.webp
-              cp -v frontend/public/images/tino.webp target/site/public/images/tino.webp 2>/dev/null || true
+          echo "=== CRITICAL: Copying ALL images to public/images (where they actually get served) ==="
+          mkdir -p target/site/public/images
+          if [ -d frontend/public/images ]; then
+            echo "Copying ALL images from source to target/site/public/images:"
+            cp -v frontend/public/images/* target/site/public/images/ 2>&1 | head -30
+            echo ""
+            echo "=== VERIFYING tino.webp in public/images ==="
+            if [ -f target/site/public/images/tino.webp ]; then
+              echo "✓✓✓ tino.webp EXISTS in target/site/public/images/ ✓✓✓"
+              ls -lah target/site/public/images/tino.webp
+            else
+              echo "✗✗✗ tino.webp MISSING from public/images ✗✗✗"
+              echo "Files in public/images:"
+              ls -lah target/site/public/images/ | head -20
             fi
           fi
           echo ""
