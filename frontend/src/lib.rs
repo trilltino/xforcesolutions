@@ -10,10 +10,8 @@ mod pages;
 
 use components::navbar::Navbar;
 use pages::{
-    about::About,
     architecture::Architecture,
     contact::Contact,
-    home::Home,
     projects::Projects,
     proposal::Proposal,
     roadmap::Roadmap,
@@ -40,8 +38,7 @@ pub fn App() -> impl IntoView {
                 <Navbar/>
                 <main class="container mx-auto px-4 py-8">
                     <Routes fallback=|| "Page not found.">
-                        <Route path=StaticSegment("") view=Home/>
-                        <Route path=StaticSegment("about") view=About/>
+                        <Route path=StaticSegment("") view=Projects/>
                         <Route path=StaticSegment("projects") view=Projects/>
                         <Route path=StaticSegment("contact") view=Contact/>
                         <Route path=StaticSegment("proposal") view=Proposal/>

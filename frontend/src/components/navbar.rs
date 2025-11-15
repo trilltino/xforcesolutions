@@ -25,21 +25,15 @@ pub fn Navbar() -> impl IntoView {
         <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-red-900 shadow-lg">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
-                    // Logo/Brand with icon
-                    <div class="flex-shrink-0">
-                        <A href="/" attr:class="flex items-center space-x-2 text-2xl font-bold text-white hover:text-primary-400 transition-all duration-200 group">
-                            <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                                <span class="text-white font-black text-lg font-nav">"XF"</span>
-                            </div>
-                            <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent font-nav">
-                                "XFSolutions"
-                            </span>
+                    // Logo/Brand
+                    <div class="flex-shrink-0 -ml-4">
+                        <A href="/" attr:class="flex items-center text-2xl font-bold text-white hover:text-primary-400 transition-all duration-200 group" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">
+                            "XFSolutions"
                         </A>
                     </div>
 
                     // Desktop Navigation Links
                     <div class="hidden md:flex items-center space-x-1">
-                        <NavLink href="/about" label="About"/>
                         <NavLink href="/projects" label="Projects"/>
                         
                         // XF Terminal Dropdown
@@ -119,7 +113,6 @@ pub fn Navbar() -> impl IntoView {
                     view! {
                         <div class="md:hidden pb-4 border-t border-red-900 mt-2 animate-fade-in">
                             <div class="flex flex-col space-y-2 pt-4">
-                                <MobileNavLink href="/about" label="About" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 <MobileNavLink href="/projects" label="Projects" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 
                                 // XF Terminal Mobile Dropdown
