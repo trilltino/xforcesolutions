@@ -307,17 +307,17 @@ pub fn Contact() -> impl IntoView {
                             <SocialLink
                                 href="https://calendly.com/isicheivalentine/30min"
                                 alt="Schedule a meeting"
-                                image_url="/images/calendly.svg"
+                                image_url="./images/calendly.svg"
                             />
                             <SocialLink
                                 href="https://www.linkedin.com/in/valentine-i-b0619b2b6/"
                                 alt="LinkedIn"
-                                image_url="/images/linkedin.svg"
+                                image_url="./images/linkedin.svg"
                             />
                             <SocialLink
                                 href="https://x.com/StellarEuropa"
                                 alt="X (Twitter)"
-                                image_url="/images/x.svg"
+                                image_url="./images/x.svg"
                             />
                         </div>
                     </div>

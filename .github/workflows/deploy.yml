@@ -73,6 +73,10 @@ jobs:
 
       - name: Copy static assets
         run: |
+          if [ -d frontend/public/images ]; then
+            mkdir -p target/site/images
+            cp -r frontend/public/images/* target/site/images/ 2>/dev/null || true
+          fi
           if [ -d frontend/public ]; then
             cp -r frontend/public/* target/site/public/ 2>/dev/null || true
           fi
