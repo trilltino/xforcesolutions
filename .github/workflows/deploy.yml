@@ -152,6 +152,23 @@ jobs:
             else
               echo "✗ tino.webp missing from target/site/public/images/"
             fi
+            echo "=== Verifying docs directory ==="
+            if [ -d target/site/public/docs ]; then
+              echo "✓ docs directory exists"
+              ls -lah target/site/public/docs/ | head -10
+            else
+              echo "⚠ docs directory not found (optional)"
+            fi
+          fi
+          echo ""
+          echo "=== Copying docs to target/site/docs ==="
+          if [ -d frontend/public/docs ]; then
+            mkdir -p target/site/docs
+            cp -r frontend/public/docs/* target/site/docs/ 2>/dev/null || true
+            echo "✓ Copied docs to target/site/docs/"
+            ls -lah target/site/docs/ | head -10
+          else
+            echo "⚠ frontend/public/docs directory not found"
           fi
 
       - name: Create .nojekyll file

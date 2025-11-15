@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - How They Connect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">The Big Picture</a></li>
+                <li><a href="terminal.html">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html">News Service</a></li>
+                <li><a href="integrations.html" class="active">How They Connect</a></li>
+                <li><a href="data-flows.html">What Happens When</a></li>
+                <li><a href="tech-stack.html">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="integrations">
+            <h2>How Everything Connects</h2>
+            <p class="section-intro">
+                Now let's talk about how these three projects actually talk to each other. Understanding these connections 
+                helps you see how the whole system works together seamlessly.
+            </p>
+
+            <div class="integration-point">
+                <h4>🔗 Terminal ↔ Contracts: Using the Library</h4>
+                <p>
+                    <strong>How they connect:</strong> The terminal includes the contracts client library directly in its code. 
+                    It's like having a toolbox built right into the terminal - when you need to interact with the smart contract, 
+                    the tools are already there.
+                </p>
+                <p>
+                    <strong>What this means:</strong> When you click "execute batch swap" in the terminal, it uses code from the 
+                    contracts library to build the transaction. The library knows exactly how to talk to the smart contract because 
+                    it was designed specifically for it.
+                </p>
+                <ul>
+                    <li><strong>Type of connection:</strong> Code library (compiled into the terminal)</li>
+                    <li><strong>When it happens:</strong> When you build/compile the terminal</li>
+                    <li><strong>Why it's good:</strong> Super fast, no network calls needed, type-safe (catches errors before running)</li>
+                </ul>
+            </div>
+
+            <div class="integration-point">
+                <h4>🌐 Terminal ↔ News Service: HTTP Requests</h4>
+                <p>
+                    <strong>How they connect:</strong> The terminal makes HTTP requests (like visiting a website) to the news service. 
+                    It's like asking a friend "what's the latest news?" and they tell you.
+                </p>
+                <p>
+                    <strong>What this means:</strong> When you open your terminal, it sends a request to the news service asking for 
+                    the latest articles. The news service responds with a list of articles, and your terminal displays them. 
+                    This happens over the network, so both services can run on different computers.
+                </p>
+                <ul>
+                    <li><strong>Type of connection:</strong> HTTP REST API (like a website API)</li>
+                    <li><strong>When it happens:</strong> When you use the terminal (runtime)</li>
+                    <li><strong>Where it connects:</strong> News service runs on port 3003</li>
+                    <li><strong>Why it's good:</strong> Flexible - news service can be on a different computer, easy to update independently</li>
+                </ul>
+            </div>
+
+            <div class="integration-point">
+                <h4>⛓️ Terminal ↔ Solana Blockchain: Direct Communication</h4>
+                <p>
+                    <strong>How they connect:</strong> The terminal talks directly to the Solana blockchain using RPC (Remote Procedure Call) 
+                    endpoints. Think of it like making a phone call to Solana - you ask questions and get answers.
+                </p>
+                <p>
+                    <strong>What this means:</strong> When you want to check your balance, submit a transaction, or query account data, 
+                    the terminal sends a request to a Solana RPC node (like Helius or a public endpoint). The node processes your request 
+                    and sends back the answer.
+                </p>
+                <ul>
+                    <li><strong>Type of connection:</strong> RPC calls (like API calls but for blockchain)</li>
+                    <li><strong>When it happens:</strong> Every time you interact with the blockchain</li>
+                    <li><strong>What it does:</strong> Submits transactions, queries balances, gets account info</li>
+                    <li><strong>Why it's good:</strong> Direct connection means fast responses, you're talking to the source</li>
+                </ul>
+            </div>
+
+            <div class="integration-point">
+                <h4>🚀 Contracts ↔ Solana Blockchain: Deployed Program</h4>
+                <p>
+                    <strong>How they connect:</strong> The smart contract is actually deployed (uploaded) to the Solana blockchain. 
+                    It's like publishing a book - once it's on the blockchain, anyone can use it, and it stays there forever.
+                </p>
+                <p>
+                    <strong>What this means:</strong> The batch swap router program lives on Solana at a specific address (the Program ID). 
+                    When you send a transaction that calls this program, Solana validators execute it. The program has its own account 
+                    on the blockchain where it stores data.
+                </p>
+                <ul>
+                    <li><strong>Type of connection:</strong> Deployed program (lives on blockchain)</li>
+                    <li><strong>Program ID:</strong> HS63bw1V1qTM5uWf92q3uaFdqogrc4SN9qUJSR8aqBMx</li>
+                    <li><strong>What it does:</strong> Executes batch swaps when called by transactions</li>
+                    <li><strong>Why it's good:</strong> Immutable (can't be changed), transparent, trustless</li>
+                </ul>
+            </div>
+
+            <div class="integration-point">
+                <h4>🔄 Terminal ↔ Jupiter: Price Finding Service</h4>
+                <p>
+                    <strong>How they connect:</strong> The terminal asks Jupiter (a DEX aggregator) for the best swap prices. 
+                    Jupiter checks all the different exchanges on Solana and tells you which one has the best deal.
+                </p>
+                <p>
+                    <strong>What this means:</strong> When you want to swap tokens, the terminal doesn't just pick a random exchange. 
+                    It asks Jupiter "where can I get the best price for this swap?" and Jupiter responds with the optimal route, 
+                    which might involve multiple exchanges to get you the best deal.
+                </p>
+                <ul>
+                    <li><strong>Type of connection:</strong> HTTP API calls</li>
+                    <li><strong>What Jupiter does:</strong> Finds best prices across all Solana DEXs</li>
+                    <li><strong>Why it's good:</strong> You always get the best price, saves you money automatically</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - Technologies Used</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">The Big Picture</a></li>
+                <li><a href="terminal.html">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html">News Service</a></li>
+                <li><a href="integrations.html">How They Connect</a></li>
+                <li><a href="data-flows.html">What Happens When</a></li>
+                <li><a href="tech-stack.html" class="active">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="tech-stack">
+            <h2>Technologies Used</h2>
+            <p class="section-intro">
+                Here's a simple breakdown of all the technologies we use and why we chose them. Don't worry if you don't know 
+                what some of these are - the important thing is understanding what each project uses.
+            </p>
+
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>XForce Terminal</h4>
+                    <ul>
+                        <li><strong>Rust</strong> - The programming language (super fast and safe)</li>
+                        <li><strong>egui</strong> - Makes the desktop interface</li>
+                        <li><strong>Axum</strong> - The web server framework</li>
+                        <li><strong>Leptos</strong> - For the web wallet (compiles to web code)</li>
+                        <li><strong>SQLite</strong> - Local database (stores your data)</li>
+                        <li><strong>Tokio</strong> - Handles async operations (doing multiple things at once)</li>
+                        <li><strong>Solana SDK</strong> - Talks to the Solana blockchain</li>
+                        <li><strong>JWT</strong> - For secure login</li>
+                        <li><strong>Braid Protocol</strong> - For messaging (CRDT-based)</li>
+                        <li><strong>rust-genai</strong> - AI assistant in the terminal</li>
+                    </ul>
+                </div>
+
+                <div class="tech-item">
+                    <h4>Smart Contracts</h4>
+                    <ul>
+                        <li><strong>Rust</strong> - Same language as terminal (consistency!)</li>
+                        <li><strong>Anchor</strong> - Framework for building Solana programs</li>
+                        <li><strong>Solana Program Framework</strong> - The base layer</li>
+                        <li><strong>anchor-client</strong> - Library for interacting with contracts</li>
+                    </ul>
+                </div>
+
+                <div class="tech-item">
+                    <h4>News Service</h4>
+                    <ul>
+                        <li><strong>Rust + Axum</strong> - Fast API server</li>
+                        <li><strong>PostgreSQL</strong> - Powerful database</li>
+                        <li><strong>Python</strong> - For the scraper (great for web scraping)</li>
+                        <li><strong>Polars</strong> - Super fast data processing</li>
+                        <li><strong>Leptos</strong> - Web frontend for browsing news</li>
+                    </ul>
+                </div>
+
+                <div class="tech-item">
+                    <h4>External Services</h4>
+                    <ul>
+                        <li><strong>Jupiter</strong> - Finds best swap prices</li>
+                        <li><strong>Pyth</strong> - Provides price oracle data</li>
+                        <li><strong>Solana RPC</strong> - Helius or public endpoints</li>
+                        <li><strong>News APIs</strong> - NewsAPI, CryptoCompare, RSS feeds</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="plain-english">
+                <h4>💡 Why Rust?</h4>
+                <p>
+                    Almost everything is written in Rust because it's incredibly fast (as fast as C++), memory-safe (catches bugs 
+                    before they happen), and perfect for systems programming. When you're dealing with money and blockchain transactions, 
+                    you want a language that won't let you make mistakes. Rust's compiler is like a very strict teacher that catches 
+                    errors before your code even runs.
+                </p>
+            </div>
+
+            <h3>Development Tools</h3>
+            <p>
+                To build and work with these projects, we use:
+            </p>
+            <ul>
+                <li><strong>Cargo</strong> - Rust's build system and package manager (like npm for JavaScript or pip for Python)</li>
+                <li><strong>Git</strong> - Version control (tracks all changes to the code)</li>
+                <li><strong>Anchor</strong> - Specialized tools for Solana program development</li>
+                <li><strong>SQLx</strong> - Database toolkit that checks your SQL queries at compile time</li>
+            </ul>
+
+            <h3>Where Everything Lives</h3>
+            <p class="section-intro">
+                If you want to explore the code yourself, here's where to find everything. Don't worry if this looks technical - 
+                it's just a map of the file structure.
+            </p>
+
+            <h3>XForce Terminal Files</h3>
+            <pre style="background: #ffffff; padding: 25px; border-radius: 8px; overflow-x: auto; font-size: 0.95em; line-height: 1.8; border-left: 4px solid #dc2626; border: 2px solid #fee2e2;">
+xforce-terminal/
+├── terminal/              ← The desktop app you see
+│   ├── src/main.rs       ← Where the app starts
+│   ├── src/app/          ← App logic and state
+│   ├── src/ui/           ← All the visual components
+│   └── src/services/     ← Talks to backend and blockchain
+├── backend/               ← The server that does the work
+│   └── src/main.rs       ← Server starts here
+├── wallet-web/            ← Browser wallet helper
+│   └── src/main.rs       ← Web app entry point
+├── crates/libs/           ← Reusable code libraries
+│   ├── lib-solana/       ← Blockchain stuff
+│   ├── lib-core/         ← Data models
+│   ├── lib-web/          ← Web server code
+│   ├── lib-auth/         ← Login and security
+│   └── lib-utils/        ← Helper functions
+├── shared/                ← Code shared between parts
+└── migrations/            ← Database setup files
+            </pre>
+
+            <h3>Smart Contracts Files</h3>
+            <pre style="background: #ffffff; padding: 25px; border-radius: 8px; overflow-x: auto; font-size: 0.95em; line-height: 1.8; border-left: 4px solid #991b1b; border: 2px solid #fee2e2;">
+xforce-terminal-contracts/
+├── programs/
+│   └── batch-swap-router/  ← The smart contract program
+│       └── src/lib.rs      ← Contract code starts here
+├── client/                 ← Library for using the contract
+│   └── src/lib.rs         ← Easy-to-use functions
+├── tests/                  ← Tests to make sure it works
+└── idl/                    ← Interface definitions
+            </pre>
+
+            <h3>News Service Files</h3>
+            <pre style="background: #ffffff; padding: 25px; border-radius: 8px; overflow-x: auto; font-size: 0.95em; line-height: 1.8; border-left: 4px solid #b91c1c; border: 2px solid #fee2e2;">
+xforce-crypto-info/
+├── news-service/           ← The API server
+│   ├── src/main.rs        ← Server starts here
+│   ├── src/handlers/      ← Handles API requests
+│   ├── src/database/      ← Database code
+│   └── migrations/           ← Database setup
+├── news-scraper/           ← The Python scraper
+│   ├── main.py            ← Scraper starts here
+│   ├── scrapers/          ← Code that reads websites
+│   ├── processors/        ← Cleans up the data
+│   └── writers/           ← Saves to database
+└── ref/                    ← Reference code (examples)
+            </pre>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

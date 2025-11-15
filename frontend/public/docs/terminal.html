@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - Trading Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">The Big Picture</a></li>
+                <li><a href="terminal.html" class="active">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html">News Service</a></li>
+                <li><a href="integrations.html">How They Connect</a></li>
+                <li><a href="data-flows.html">What Happens When</a></li>
+                <li><a href="tech-stack.html">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="terminal">
+            <h2>The Trading Terminal</h2>
+            <p class="section-intro">
+                The terminal is the heart of the system - it's what you interact with. Think of it as having three main parts: 
+                the beautiful desktop app you see, the backend server that does the heavy lifting, and a web helper for connecting wallets.
+            </p>
+
+            <div class="why-matters">
+                <h4>🎯 Why This Matters</h4>
+                <p>
+                    Most trading tools are web-based, which means they're slower and less secure. By building a native desktop app, 
+                    we get Bloomberg-terminal-level performance. Your private keys never leave your computer, and everything happens 
+                    instantly. Plus, the modular design means other developers can reuse our code to build their own tools.
+                </p>
+            </div>
+            
+            <div class="diagram-container">
+                <svg class="diagram" viewBox="0 0 1700 1300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Desktop GUI - Top center, prominent -->
+                    <rect x="550" y="80" width="600" height="320" class="component-box terminal-color" />
+                    <text x="850" y="150" class="component-text" font-size="40" font-weight="bold">Desktop App</text>
+                    <text x="850" y="200" class="component-text" font-size="24">What You See</text>
+                    <text x="850" y="245" class="component-text" font-size="22">Bloomberg-Style Interface</text>
+                    <text x="850" y="290" class="component-text" font-size="22">Real-Time Price Updates</text>
+                    <text x="850" y="335" class="component-text" font-size="22">Charts & Trading</text>
+                    <text x="850" y="380" class="component-text" font-size="22">Portfolio Management</text>
+
+                    <!-- Backend API - Left -->
+                    <rect x="80" y="480" width="480" height="300" class="component-box terminal-color" />
+                    <text x="320" y="560" class="component-text" font-size="36" font-weight="bold">Backend Server</text>
+                    <text x="320" y="610" class="component-text" font-size="24">Does the Heavy Lifting</text>
+                    <text x="320" y="655" class="component-text" font-size="22">Handles API Requests</text>
+                    <text x="320" y="700" class="component-text" font-size="22">Talks to Blockchain</text>
+                    <text x="320" y="745" class="component-text" font-size="22">Port 3001</text>
+                    <text x="320" y="790" class="component-text" font-size="22">Axum Web Framework</text>
+
+                    <!-- Web Wallet - Right -->
+                    <rect x="1140" y="480" width="480" height="300" class="component-box terminal-color" />
+                    <text x="1380" y="560" class="component-text" font-size="36" font-weight="bold">Web Wallet</text>
+                    <text x="1380" y="610" class="component-text" font-size="24">Browser Helper</text>
+                    <text x="1380" y="655" class="component-text" font-size="22">Connects Wallets</text>
+                    <text x="1380" y="700" class="component-text" font-size="22">Phantom, Solflare</text>
+                    <text x="1380" y="745" class="component-text" font-size="22">Backpack Support</text>
+                    <text x="1380" y="790" class="component-text" font-size="22">Leptos Web App</text>
+
+                    <!-- Libraries Row -->
+                    <rect x="80" y="880" width="360" height="240" class="component-box terminal-color" />
+                    <text x="260" y="950" class="component-text" font-size="32" font-weight="bold">lib-solana</text>
+                    <text x="260" y="1000" class="component-text" font-size="22">Blockchain Stuff</text>
+                    <text x="260" y="1045" class="component-text" font-size="22">Jupiter, Pyth</text>
+                    <text x="260" y="1090" class="component-text" font-size="22">Contract Helpers</text>
+                    <text x="260" y="1135" class="component-text" font-size="22">RPC Communication</text>
+
+                    <rect x="480" y="880" width="360" height="240" class="component-box terminal-color" />
+                    <text x="660" y="950" class="component-text" font-size="32" font-weight="bold">lib-core</text>
+                    <text x="660" y="1000" class="component-text" font-size="22">Data Models</text>
+                    <text x="660" y="1045" class="component-text" font-size="22">User Accounts</text>
+                    <text x="660" y="1090" class="component-text" font-size="22">Database Helpers</text>
+                    <text x="660" y="1135" class="component-text" font-size="22">Repository Pattern</text>
+
+                    <rect x="880" y="880" width="360" height="240" class="component-box terminal-color" />
+                    <text x="1060" y="950" class="component-text" font-size="32" font-weight="bold">lib-web</text>
+                    <text x="1060" y="1000" class="component-text" font-size="22">Web Server</text>
+                    <text x="1060" y="1045" class="component-text" font-size="22">API Handlers</text>
+                    <text x="1060" y="1090" class="component-text" font-size="22">Chat System</text>
+                    <text x="1060" y="1135" class="component-text" font-size="22">Braid Protocol</text>
+
+                    <rect x="1280" y="880" width="340" height="240" class="component-box terminal-color" />
+                    <text x="1450" y="950" class="component-text" font-size="32" font-weight="bold">lib-auth</text>
+                    <text x="1450" y="1000" class="component-text" font-size="22">Login & Security</text>
+                    <text x="1450" y="1045" class="component-text" font-size="22">Password Protection</text>
+                    <text x="1450" y="1090" class="component-text" font-size="22">Session Management</text>
+                    <text x="1450" y="1135" class="component-text" font-size="22">JWT Tokens</text>
+
+                    <!-- Database -->
+                    <rect x="650" y="1200" width="480" height="100" class="component-box terminal-color" />
+                    <text x="890" y="1250" class="component-text" font-size="32" font-weight="bold">Local Database</text>
+                    <text x="890" y="1295" class="component-text" font-size="24">Stores Your Data (SQLite)</text>
+
+                    <!-- Connections -->
+                    <!-- Desktop App to Backend Server - diagonal with gap -->
+                    <line x1="850" y1="400" x2="850" y2="440" class="arrow" />
+                    <line x1="850" y1="440" x2="320" y2="480" class="arrow" />
+                    <rect x="550" y="410" width="140" height="40" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="620" y="435" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Sends Requests</text>
+                    
+                    <!-- Desktop App to Web Wallet - diagonal with gap -->
+                    <line x1="850" y1="400" x2="850" y2="440" class="arrow" />
+                    <line x1="850" y1="440" x2="1380" y2="480" class="arrow" />
+                    <rect x="1050" y="410" width="120" height="40" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="1110" y="435" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Uses Helper</text>
+                    
+                    <!-- Backend to Libraries - vertical arrows with gaps -->
+                    <line x1="320" y1="780" x2="320" y2="850" class="arrow" />
+                    <line x1="320" y1="850" x2="260" y2="880" class="arrow" />
+                    <line x1="320" y1="850" x2="660" y2="880" class="arrow" />
+                    <line x1="320" y1="850" x2="1060" y2="880" class="arrow" />
+                    
+                    <!-- Web Wallet to lib-auth - vertical arrow with gap -->
+                    <line x1="1380" y1="780" x2="1380" y2="850" class="arrow" />
+                    <line x1="1380" y1="850" x2="1450" y2="880" class="arrow" />
+                    
+                    <!-- lib-web to Database - vertical arrow with gap -->
+                    <line x1="1060" y1="1120" x2="1060" y2="1160" class="arrow" />
+                    <line x1="1060" y1="1160" x2="890" y2="1200" class="arrow" />
+                </svg>
+            </div>
+
+            <h3>The Three Main Parts</h3>
+            
+            <h4>1. Desktop App (What You See)</h4>
+            <p>
+                This is the beautiful Bloomberg-style interface that runs on your computer. It shows you real-time prices, 
+                lets you make trades, displays charts, and keeps track of your portfolio. It's built with Rust for maximum 
+                speed and security.
+            </p>
+            <ul>
+                <li><strong>What it does:</strong> Shows you everything in a professional trading interface</li>
+                <li><strong>Why it's special:</strong> Native desktop app means it's super fast - updates happen in less than 50 milliseconds</li>
+                <li><strong>Where it lives:</strong> <span class="code-ref">terminal/</span> folder</li>
+            </ul>
+
+            <h4>2. Backend Server (The Worker)</h4>
+            <p>
+                This is the server that runs in the background. When you click "swap tokens" in the desktop app, it's the backend 
+                that talks to Jupiter to find the best price, builds the transaction, and sends it to Solana. It also stores 
+                your trading history and handles authentication.
+            </p>
+            <ul>
+                <li><strong>What it does:</strong> Handles all the complex work behind the scenes</li>
+                <li><strong>Why it's special:</strong> Built with Axum (a super fast Rust web framework) - can handle thousands of requests per second</li>
+                <li><strong>Where it lives:</strong> <span class="code-ref">backend/</span> folder, runs on port 3001</li>
+            </ul>
+
+            <h4>3. Web Wallet Helper (Browser Tool)</h4>
+            <p>
+                This is a small web app that helps you connect popular wallets like Phantom, Solflare, or Backpack. It runs in 
+                your browser and makes it easy to link your existing wallet to the terminal.
+            </p>
+            <ul>
+                <li><strong>What it does:</strong> Makes wallet connection simple and secure</li>
+                <li><strong>Why it's special:</strong> Works with all major Solana wallets</li>
+                <li><strong>Where it lives:</strong> <span class="code-ref">wallet-web/</span> folder</li>
+            </ul>
+
+            <h3>The Helper Libraries</h3>
+            <p>
+                These are reusable code packages that make everything work. Think of them as toolboxes - each one has specific 
+                tools for specific jobs.
+            </p>
+            <table>
+                <tr>
+                    <th>Library</th>
+                    <th>What It Does</th>
+                    <th>Why You Care</th>
+                </tr>
+                <tr>
+                    <td><span class="code-ref">lib-solana</span></td>
+                    <td>Handles all blockchain communication</td>
+                    <td>Talks to Solana, gets prices from Jupiter, executes swaps</td>
+                </tr>
+                <tr>
+                    <td><span class="code-ref">lib-core</span></td>
+                    <td>Manages your data</td>
+                    <td>Stores your account info, trading history, messages</td>
+                </tr>
+                <tr>
+                    <td><span class="code-ref">lib-web</span></td>
+                    <td>Handles web requests</td>
+                    <td>Processes API calls, manages chat, serves data</td>
+                </tr>
+                <tr>
+                    <td><span class="code-ref">lib-auth</span></td>
+                    <td>Keeps you secure</td>
+                    <td>Handles login, password protection, session management</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

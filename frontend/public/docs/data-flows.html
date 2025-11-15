@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - What Happens When</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">The Big Picture</a></li>
+                <li><a href="terminal.html">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html">News Service</a></li>
+                <li><a href="integrations.html">How They Connect</a></li>
+                <li><a href="data-flows.html" class="active">What Happens When</a></li>
+                <li><a href="tech-stack.html">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="data-flows">
+            <h2>What Happens When You Do Things</h2>
+            <p class="section-intro">
+                Let's walk through exactly what happens when you perform common actions. This shows you how all the pieces 
+                work together in real-time.
+            </p>
+
+            <h3>When You Execute a Swap</h3>
+            <p>
+                This is the most complex flow - let's see what happens step by step when you swap tokens:
+            </p>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <span class="big-number">1</span>
+                    <strong>You Click "Swap"</strong><br>
+                    In the desktop app, you select SOL and USDC, enter an amount, and click the swap button. 
+                    The app immediately shows you a loading indicator.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">2</span>
+                    <strong>App Asks Backend for Quote</strong><br>
+                    The desktop app sends a request to the backend server: "Hey, what would I get if I swap 1 SOL for USDC?" 
+                    The backend needs to find the best price.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">3</span>
+                    <strong>Backend Asks Jupiter</strong><br>
+                    The backend server asks Jupiter: "What's the best price for SOL → USDC?" Jupiter checks all the exchanges 
+                    (Raydium, Orca, etc.) and responds with the best route and expected output amount.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">4</span>
+                    <strong>Backend Builds Transaction</strong><br>
+                    The backend uses the contracts client library to build a transaction. It includes the Jupiter swap instructions 
+                    AND a call to our batch swap contract to track and validate everything.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">5</span>
+                    <strong>Transaction Sent to You</strong><br>
+                    The backend sends the unsigned transaction back to your desktop app. It's like a form that needs your signature 
+                    before it can be submitted.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">6</span>
+                    <strong>You Review and Approve</strong><br>
+                    The app shows you the details: "Swap 1 SOL for ~150 USDC, slippage 0.5%". You review it and click "Confirm". 
+                    This is your chance to make sure everything looks right.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">7</span>
+                    <strong>Transaction Gets Signed</strong><br>
+                    Your wallet signs the transaction using your private key. This happens 100% on your computer - your private key 
+                    never leaves your device. The signature proves you authorized this transaction.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">8</span>
+                    <strong>Signed Transaction Sent to Backend</strong><br>
+                    The signed transaction is sent back to the backend server. It's now ready to be submitted to Solana.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">9</span>
+                    <strong>Backend Submits to Solana</strong><br>
+                    The backend sends the transaction to a Solana RPC node. The node broadcasts it to the network, and validators 
+                    start processing it.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">10</span>
+                    <strong>Smart Contract Executes</strong><br>
+                    Solana validators execute the transaction. The batch swap contract validates everything, Jupiter executes the swap 
+                    on the best exchange, and your tokens are swapped. All of this happens in less than a second!
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">11</span>
+                    <strong>Success! Transaction Recorded</strong><br>
+                    The backend saves your swap to the local database so you can see it in your transaction history. The app updates 
+                    to show your new balances. You're done!
+                </div>
+            </div>
+
+            <div class="plain-english">
+                <h4>💡 In Plain English</h4>
+                <p>
+                    Think of it like ordering food delivery: You place an order (click swap), the restaurant checks what's available 
+                    (Jupiter finds best price), they prepare it (build transaction), you sign the receipt (sign transaction), they deliver 
+                    (submit to Solana), and you get your food (tokens swapped). The whole process takes seconds, not minutes!
+                </p>
+            </div>
+
+            <h3>When News Gets Updated</h3>
+            <p>
+                Here's what happens behind the scenes to keep your news feed fresh:
+            </p>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <span class="big-number">1</span>
+                    <strong>Scraper Wakes Up</strong><br>
+                    Every 15 minutes, the Python scraper automatically runs. It's like an alarm clock that goes off regularly.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">2</span>
+                    <strong>Visits News Websites</strong><br>
+                    The scraper visits CoinDesk, CoinTelegraph, RSS feeds, and news APIs. It reads all the latest articles, 
+                    like a robot browsing the web.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">3</span>
+                    <strong>Cleans and Processes</strong><br>
+                    Using Polars (super fast data tool), it removes duplicates, fixes formatting issues, and categorizes articles. 
+                    It's like organizing a messy pile of papers.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">4</span>
+                    <strong>Analyzes Sentiment</strong><br>
+                    Each article gets analyzed: is it positive (bullish), negative (bearish), or neutral? This helps you quickly 
+                    understand market sentiment.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">5</span>
+                    <strong>Saves to Database</strong><br>
+                    Everything gets stored in PostgreSQL - articles, sources, sentiment scores. The database can hold millions 
+                    of articles and search them instantly.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">6</span>
+                    <strong>Terminal Asks for News</strong><br>
+                    When you open your terminal or refresh the news section, it sends a request: "Give me the latest 20 articles."
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">7</span>
+                    <strong>API Server Responds</strong><br>
+                    The Rust API server quickly finds the latest articles, formats them nicely as JSON, and sends them back. 
+                    This happens in milliseconds.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">8</span>
+                    <strong>You See Fresh News</strong><br>
+                    Your terminal displays the news in a nice interface. You can read headlines, see sentiment, and click to 
+                    read full articles - all without leaving your trading terminal!
+                </div>
+            </div>
+
+            <h3>When You Use Batch Swaps</h3>
+            <p>
+                Batch swaps are special - they let you do multiple trades at once. Here's how that works:
+            </p>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <span class="big-number">1</span>
+                    <strong>You Plan Multiple Swaps</strong><br>
+                    You want to do: SOL → USDC → BONK → RAY. Instead of doing three separate transactions, you set up a batch swap.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">2</span>
+                    <strong>Terminal Uses Contracts Library</strong><br>
+                    The terminal uses the contracts client library to build a special transaction. This library knows how to talk 
+                    to the batch swap contract.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">3</span>
+                    <strong>Gets Quotes for Each Swap</strong><br>
+                    For each swap in your batch, the terminal asks Jupiter for the best price. It collects all the quotes.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">4</span>
+                    <strong>Builds Batch Transaction</strong><br>
+                    The library builds one transaction that includes all three swaps plus a call to the batch swap contract. 
+                    This is the magic - one transaction, multiple swaps!
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">5</span>
+                    <strong>You Sign Once</strong><br>
+                    You sign the single transaction (not three separate ones). This saves you time and money.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">6</span>
+                    <strong>Submitted to Solana</strong><br>
+                    The transaction goes to Solana. Validators see it's a batch swap and process all swaps together.
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">7</span>
+                    <strong>Contract Validates Everything</strong><br>
+                    The batch swap contract checks that all swaps are valid, amounts are correct, and slippage is acceptable. 
+                    If anything is wrong, the whole transaction fails (protecting you).
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">8</span>
+                    <strong>All Swaps Execute Together</strong><br>
+                    If validation passes, all three swaps execute atomically - they all succeed or all fail. No partial execution!
+                </div>
+                <div class="flow-step">
+                    <span class="big-number">9</span>
+                    <strong>You Saved Money!</strong><br>
+                    Instead of paying transaction fees three times, you paid once. You saved 66% on fees! Plus, all swaps happened 
+                    instantly, so you didn't risk price changes between swaps.
+                </div>
+            </div>
+
+            <div class="why-matters">
+                <h4>🎯 Why This Matters</h4>
+                <p>
+                    Batch swaps enable complex trading strategies that would be too expensive otherwise. Want to rebalance your 
+                    portfolio across 5 tokens? Without batch swaps, that's 4 transactions and 4x the fees. With batch swaps, 
+                    it's one transaction and one fee. This makes sophisticated trading accessible to everyone, not just people 
+                    with huge amounts of capital.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

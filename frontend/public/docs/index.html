@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - The Big Picture</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">The Big Picture</a></li>
+                <li><a href="terminal.html">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html">News Service</a></li>
+                <li><a href="integrations.html">How They Connect</a></li>
+                <li><a href="data-flows.html">What Happens When</a></li>
+                <li><a href="tech-stack.html">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="overview">
+            <h2>The Big Picture</h2>
+            <p class="section-intro">
+                XForce Terminal is actually three separate projects that work together to create a complete trading platform. 
+                Think of it like a restaurant: you have the dining room (the terminal), the kitchen (the contracts), and the 
+                news feed (crypto info) - they all need to work together to give you a great experience.
+            </p>
+            
+            <div class="plain-english">
+                <h4>💡 In Plain English</h4>
+                <p>
+                    The <strong>Trading Terminal</strong> is what you see and use - it's the desktop app where you trade. 
+                    The <strong>Smart Contracts</strong> are special programs on the Solana blockchain that help execute 
+                    multiple trades at once to save you money. The <strong>News Service</strong> collects crypto news from 
+                    around the web and feeds it to your terminal so you can stay informed while trading.
+                </p>
+            </div>
+
+            <div class="diagram-container">
+                <svg class="diagram" viewBox="0 0 1800 1200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="18" markerHeight="18" refX="15" refY="6" orient="auto">
+                            <polygon points="0 0, 18 6, 0 12" fill="#dc2626" />
+                        </marker>
+                    </defs>
+
+                    <!-- XForce Terminal - Larger with more space -->
+                    <rect x="80" y="80" width="500" height="380" class="component-box terminal-color" />
+                    <text x="330" y="140" class="component-text" font-size="40" font-weight="bold">XForce Terminal</text>
+                    <text x="330" y="190" class="component-text" font-size="24">The Main App</text>
+                    <text x="330" y="240" class="component-text" font-size="22">Desktop Trading Interface</text>
+                    <text x="330" y="290" class="component-text" font-size="22">Backend Server (Port 3001)</text>
+                    <text x="330" y="340" class="component-text" font-size="22">Web Wallet Helper</text>
+                    <text x="330" y="390" class="component-text" font-size="22">Stores Your Data Locally</text>
+                    <text x="330" y="440" class="component-text" font-size="22">All in One Package</text>
+
+                    <!-- XForce Terminal Contracts -->
+                    <rect x="700" y="80" width="500" height="380" class="component-box contracts-color" />
+                    <text x="950" y="140" class="component-text" font-size="40" font-weight="bold">Smart Contracts</text>
+                    <text x="950" y="190" class="component-text" font-size="24">Batch Swap Router</text>
+                    <text x="950" y="240" class="component-text" font-size="22">Lives on Solana Blockchain</text>
+                    <text x="950" y="290" class="component-text" font-size="22">Saves Money on Fees</text>
+                    <text x="950" y="340" class="component-text" font-size="22">Executes Multiple Swaps</text>
+                    <text x="950" y="390" class="component-text" font-size="22">All at Once</text>
+                    <text x="950" y="440" class="component-text" font-size="22">Atomic Execution</text>
+
+                    <!-- XForce Crypto Info -->
+                    <rect x="1320" y="80" width="450" height="380" class="component-box crypto-info-color" />
+                    <text x="1545" y="140" class="component-text" font-size="38" font-weight="bold">News Service</text>
+                    <text x="1545" y="190" class="component-text" font-size="24">Crypto Info Feed</text>
+                    <text x="1545" y="240" class="component-text" font-size="22">Collects News Articles</text>
+                    <text x="1545" y="290" class="component-text" font-size="22">Analyzes Sentiment</text>
+                    <text x="1545" y="340" class="component-text" font-size="22">Serves to Terminal</text>
+                    <text x="1545" y="390" class="component-text" font-size="22">Port 3003</text>
+                    <text x="1545" y="440" class="component-text" font-size="22">Real-Time Updates</text>
+
+                    <!-- Solana Blockchain - More prominent -->
+                    <rect x="550" y="600" width="800" height="320" class="component-box solana-color" />
+                    <text x="950" y="680" class="component-text" font-size="42" fill="#ffffff" font-weight="bold">Solana Blockchain</text>
+                    <text x="950" y="730" class="component-text" font-size="24" fill="#ffffff">Where Your Trades Happen</text>
+                    <text x="950" y="775" class="component-text" font-size="24" fill="#ffffff">Smart Contracts Live Here</text>
+                    <text x="950" y="820" class="component-text" font-size="24" fill="#ffffff">Transactions Get Processed</text>
+                    <text x="950" y="865" class="component-text" font-size="24" fill="#ffffff">Super Fast & Low Cost</text>
+                    <text x="950" y="910" class="component-text" font-size="24" fill="#ffffff">Immutable & Secure</text>
+
+                    <!-- Jupiter Aggregator -->
+                    <rect x="80" y="600" width="400" height="240" class="component-box jupiter-color" />
+                    <text x="280" y="670" class="component-text" font-size="32" font-weight="bold">Jupiter</text>
+                    <text x="280" y="720" class="component-text" font-size="24">Finds Best Prices</text>
+                    <text x="280" y="770" class="component-text" font-size="24">Routes Your Swaps</text>
+                    <text x="280" y="820" class="component-text" font-size="24">DEX Aggregator</text>
+
+                    <!-- Connections with better labels and more spacing -->
+                    <!-- Terminal to Contracts - horizontal arrow above boxes -->
+                    <line x1="580" y1="250" x2="700" y2="250" class="arrow" />
+                    <rect x="620" y="210" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="670" y="240" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Uses</text>
+                    <text x="670" y="265" class="arrow-label" font-size="18" fill="#dc2626">Library</text>
+
+                    <!-- Contracts to News Service - horizontal arrow above boxes -->
+                    <line x1="1200" y1="250" x2="1320" y2="250" class="arrow" />
+                    <rect x="1230" y="210" width="90" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="1275" y="240" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Gets</text>
+                    <text x="1275" y="265" class="arrow-label" font-size="18" fill="#dc2626">News</text>
+
+                    <!-- Contracts to Solana - vertical arrow with gap -->
+                    <line x1="950" y1="460" x2="950" y2="540" class="arrow" />
+                    <line x1="950" y1="540" x2="950" y2="600" class="arrow" />
+                    <rect x="920" y="480" width="90" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="965" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Runs</text>
+
+                    <!-- Terminal to Jupiter - diagonal arrow with gap -->
+                    <line x1="330" y1="460" x2="330" y2="540" class="arrow" />
+                    <line x1="330" y1="540" x2="280" y2="600" class="arrow" />
+                    <rect x="250" y="480" width="90" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="295" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Asks</text>
+
+                    <!-- Terminal to Solana - diagonal arrow with gap, avoiding Contracts box -->
+                    <line x1="330" y1="460" x2="330" y2="540" class="arrow" />
+                    <line x1="330" y1="540" x2="850" y2="600" class="arrow" />
+                    <rect x="500" y="480" width="100" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="550" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Sends</text>
+                </svg>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color terminal-color"></div>
+                    <span><strong>Trading Terminal</strong> - The main application you use</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color contracts-color"></div>
+                    <span><strong>Smart Contracts</strong> - Programs on Solana that save you money</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color crypto-info-color"></div>
+                    <span><strong>News Service</strong> - Collects and serves crypto news</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color solana-color"></div>
+                    <span><strong>Solana Blockchain</strong> - Where everything happens</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color jupiter-color"></div>
+                    <span><strong>Jupiter</strong> - Finds the best swap prices</span>
+                </div>
+            </div>
+
+            <h3>What Each Part Does</h3>
+            <ul>
+                <li><strong>XForce Terminal</strong> - This is the main app you download and use. It has a beautiful desktop interface (like Bloomberg terminals), a backend server that handles your requests, and a web wallet helper. It's where you see prices, make trades, and manage your portfolio.</li>
+                <li><strong>XForce Terminal Contracts</strong> - These are special programs that live on the Solana blockchain. Their main job is to let you do multiple trades in one transaction, which saves you a lot of money on fees. Instead of paying fees 5 times, you pay once!</li>
+                <li><strong>XForce Crypto Info</strong> - This is like a news aggregator. It constantly scrapes the web for crypto news, analyzes whether articles are positive or negative, and serves them to your terminal so you can make informed trading decisions.</li>
+            </ul>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

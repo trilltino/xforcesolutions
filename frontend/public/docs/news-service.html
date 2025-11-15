@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XForce Terminal - News Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>XForce Terminal Architecture</h1>
+        <p>How Everything Works Together - Explained Simply</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">The Big Picture</a></li>
+                <li><a href="terminal.html">Trading Terminal</a></li>
+                <li><a href="contracts.html">Smart Contracts</a></li>
+                <li><a href="news-service.html" class="active">News Service</a></li>
+                <li><a href="integrations.html">How They Connect</a></li>
+                <li><a href="data-flows.html">What Happens When</a></li>
+                <li><a href="tech-stack.html">Technologies Used</a></li>
+            </ul>
+        </nav>
+
+        <section id="crypto-info">
+            <h2>The News Service</h2>
+            <p class="section-intro">
+                The news service is like having a personal assistant that reads crypto news 24/7 and summarizes it for you. 
+                It scrapes articles from all over the web, figures out if they're positive or negative, and feeds them to your 
+                terminal so you can make informed trading decisions.
+            </p>
+
+            <div class="plain-english">
+                <h4>💡 In Plain English</h4>
+                <p>
+                    Imagine you're trading and want to know what's happening in crypto news. Instead of opening 10 different 
+                    websites, the news service does that for you. It reads articles from CoinDesk, CoinTelegraph, RSS feeds, 
+                    and more, figures out if each article is bullish or bearish, and shows you the most relevant news right 
+                    in your trading terminal.
+                </p>
+            </div>
+            
+            <div class="diagram-container">
+                <svg class="diagram" viewBox="0 0 1700 1000" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Python Scraper - Left -->
+                    <rect x="80" y="80" width="480" height="300" class="component-box crypto-info-color" />
+                    <text x="320" y="150" class="component-text" font-size="36" font-weight="bold">Python Scraper</text>
+                    <text x="320" y="200" class="component-text" font-size="24">Runs Every 15 Minutes</text>
+                    <text x="320" y="245" class="component-text" font-size="22">Reads News Websites</text>
+                    <text x="320" y="290" class="component-text" font-size="22">RSS Feeds & APIs</text>
+                    <text x="320" y="335" class="component-text" font-size="22">Cleans Up Data</text>
+                    <text x="320" y="380" class="component-text" font-size="22">Polars Processing</text>
+
+                    <!-- PostgreSQL - Center -->
+                    <rect x="600" y="80" width="480" height="300" class="component-box crypto-info-color" />
+                    <text x="840" y="150" class="component-text" font-size="36" font-weight="bold">PostgreSQL Database</text>
+                    <text x="840" y="200" class="component-text" font-size="24">Stores Everything</text>
+                    <text x="840" y="245" class="component-text" font-size="22">Articles, Sources</text>
+                    <text x="840" y="290" class="component-text" font-size="22">Sentiment Scores</text>
+                    <text x="840" y="335" class="component-text" font-size="22">Analytics Data</text>
+                    <text x="840" y="380" class="component-text" font-size="22">Fast Queries</text>
+
+                    <!-- Rust API Server - Right -->
+                    <rect x="1120" y="80" width="480" height="300" class="component-box crypto-info-color" />
+                    <text x="1360" y="150" class="component-text" font-size="36" font-weight="bold">Rust API Server</text>
+                    <text x="1360" y="200" class="component-text" font-size="24">Serves News to Terminal</text>
+                    <text x="1360" y="245" class="component-text" font-size="22">Port 3003</text>
+                    <text x="1360" y="290" class="component-text" font-size="22">REST API</text>
+                    <text x="1360" y="335" class="component-text" font-size="22">Fast & Reliable</text>
+                    <text x="1360" y="380" class="component-text" font-size="22">Axum Framework</text>
+
+                    <!-- Terminal Connection - Bottom -->
+                    <rect x="600" y="500" width="600" height="220" class="component-box terminal-color" />
+                    <text x="900" y="570" class="component-text" font-size="36" font-weight="bold">XForce Terminal</text>
+                    <text x="900" y="620" class="component-text" font-size="24">Gets News Feed</text>
+                    <text x="900" y="665" class="component-text" font-size="22">Displays in Interface</text>
+                    <text x="900" y="710" class="component-text" font-size="22">Helps You Trade Smarter</text>
+
+                    <!-- Connections -->
+                    <!-- Python Scraper to PostgreSQL - horizontal arrow between boxes -->
+                    <line x1="560" y1="230" x2="600" y2="230" class="arrow" />
+                    <rect x="570" y="200" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="620" y="225" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Saves</text>
+                    <text x="620" y="250" class="arrow-label" font-size="18" fill="#dc2626">Articles</text>
+
+                    <!-- PostgreSQL to Rust API - horizontal arrow between boxes -->
+                    <line x1="1080" y1="230" x2="1120" y2="230" class="arrow" />
+                    <rect x="1090" y="200" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="1140" y="225" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Reads</text>
+                    <text x="1140" y="250" class="arrow-label" font-size="18" fill="#dc2626">From DB</text>
+
+                    <!-- Rust API to Terminal - diagonal arrow with gap -->
+                    <line x1="1360" y1="380" x2="1360" y2="440" class="arrow" />
+                    <line x1="1360" y1="440" x2="900" y2="500" class="arrow" />
+                    <rect x="1100" y="400" width="100" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
+                    <text x="1150" y="428" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Serves</text>
+                </svg>
+            </div>
+
+            <h3>How News Gets to You</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <strong>Step 1: Scraper Runs</strong><br>
+                    Every 15 minutes, a Python script wakes up and visits crypto news websites. It reads RSS feeds, 
+                    calls news APIs, and collects articles from CoinDesk, CoinTelegraph, and other sources.
+                </div>
+                <div class="flow-step">
+                    <strong>Step 2: Data Gets Cleaned</strong><br>
+                    The scraper uses Polars (a super fast data processing tool) to clean up the articles - removes duplicates, 
+                    fixes formatting, and categorizes them (crypto, bitcoin, financial, etc.).
+                </div>
+                <div class="flow-step">
+                    <strong>Step 3: Sentiment Analysis</strong><br>
+                    Each article gets analyzed to determine if it's positive, negative, or neutral. This helps you quickly 
+                    see if news is bullish or bearish for the market.
+                </div>
+                <div class="flow-step">
+                    <strong>Step 4: Stored in Database</strong><br>
+                    Everything gets saved to a PostgreSQL database - articles, sources, sentiment scores, and analytics. 
+                    This database can hold millions of articles and search through them instantly.
+                </div>
+                <div class="flow-step">
+                    <strong>Step 5: Terminal Requests News</strong><br>
+                    When you open your terminal or refresh the news section, it sends a request: "Give me the latest 20 articles."
+                </div>
+                <div class="flow-step">
+                    <strong>Step 6: News Served to Terminal</strong><br>
+                    The Rust API server quickly finds the latest articles, formats them nicely as JSON, and sends them back to your terminal. 
+                    This happens in milliseconds.
+                </div>
+                <div class="flow-step">
+                    <strong>Step 7: You See It in Your Terminal</strong><br>
+                    The news appears in your trading interface, so you can see what's happening in crypto while you trade. 
+                    No need to switch between apps!
+                </div>
+            </div>
+
+            <h3>The Three Parts of the News Service</h3>
+            
+            <h4>1. Python Scraper (The Collector)</h4>
+            <p>
+                This is a Python script that runs continuously. It visits news websites, reads RSS feeds, calls APIs, 
+                and collects articles. It's like having a robot that reads crypto news 24/7 so you don't have to.
+            </p>
+            <ul>
+                <li><strong>What it does:</strong> Collects news from multiple sources automatically</li>
+                <li><strong>How often:</strong> Runs every 15 minutes (you can change this)</li>
+                <li><strong>Where it lives:</strong> <span class="code-ref">news-scraper/</span> folder</li>
+            </ul>
+
+            <h4>2. PostgreSQL Database (The Storage)</h4>
+            <p>
+                This is where all the news gets stored. It's a powerful database that can hold millions of articles and 
+                search through them in milliseconds. It also tracks analytics like which sources are most popular, what 
+                times of day news breaks, etc.
+            </p>
+            <ul>
+                <li><strong>What it stores:</strong> Articles, sources, sentiment scores, analytics</li>
+                <li><strong>Why PostgreSQL:</strong> Super fast, reliable, handles huge amounts of data</li>
+                <li><strong>Where it lives:</strong> Runs as a separate database server</li>
+            </ul>
+
+            <h4>3. Rust API Server (The Server)</h4>
+            <p>
+                This is a web server built with Rust that serves news to your terminal. When your terminal asks for news, 
+                this server quickly finds the relevant articles and sends them back. It's super fast because it's written in Rust.
+            </p>
+            <ul>
+                <li><strong>What it does:</strong> Serves news articles via REST API</li>
+                <li><strong>How fast:</strong> Can handle thousands of requests per second</li>
+                <li><strong>Where it lives:</strong> <span class="code-ref">news-service/</span> folder, runs on port 3003</li>
+            </ul>
+
+            <h3>What You Can Ask For</h3>
+            <p>
+                The news service has several endpoints (ways to ask for data) that your terminal can use:
+            </p>
+            <table>
+                <tr>
+                    <th>What You Ask For</th>
+                    <th>What You Get</th>
+                </tr>
+                <tr>
+                    <td><strong>Latest News</strong></td>
+                    <td>Get the most recent articles, sorted by date</td>
+                </tr>
+                <tr>
+                    <td><strong>News by Category</strong></td>
+                    <td>Filter by "crypto", "bitcoin", "financial", etc.</td>
+                </tr>
+                <tr>
+                    <td><strong>Search Articles</strong></td>
+                    <td>Search for specific topics or keywords</td>
+                </tr>
+                <tr>
+                    <td><strong>Sentiment Analysis</strong></td>
+                    <td>See if an article is positive, negative, or neutral</td>
+                </tr>
+                <tr>
+                    <td><strong>Free Sources</strong></td>
+                    <td>Get news from sources that don't require API keys</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;"><strong>XForce Terminal Architecture</strong></p>
+        <p>How Everything Works Together - Explained Simply</p>
+        <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Last Updated: 2025</p>
+    </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+
