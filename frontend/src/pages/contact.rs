@@ -99,7 +99,7 @@ pub fn Contact() -> impl IntoView {
         
         let headers = web_sys::Headers::new().unwrap();
         headers.set("Content-Type", "application/json").unwrap();
-        opts.set_headers(Some(&headers));
+        opts.set_headers(&JsValue::from(headers));
 
         // EmailJS expects form data, but we'll send as JSON
         let body = serde_json::json!({
@@ -114,7 +114,8 @@ pub fn Contact() -> impl IntoView {
             }
         });
 
-        opts.set_body(Some(&JsValue::from_str(&serde_json::to_string(&body).unwrap())));
+        let body_js = JsValue::from_str(&serde_json::to_string(&body).unwrap());
+        opts.set_body(&body_js);
 
         let request = web_sys::Request::new_with_str_and_init(&url, &opts).unwrap();
         
