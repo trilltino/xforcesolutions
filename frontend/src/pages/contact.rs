@@ -183,7 +183,7 @@ pub fn Contact() -> impl IntoView {
 
     view! {
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold mb-8 text-center font-heading reflective-header">"Contact Us"</h1>
+            <h1 class="text-4xl font-bold mb-8 text-center font-heading">"Contact Us"</h1>
 
             <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
                 "Get in touch with us to discuss your project"
@@ -191,7 +191,7 @@ pub fn Contact() -> impl IntoView {
 
             <div class="max-w-2xl mx-auto">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
-                    <h2 class="text-2xl font-bold mb-6 font-heading reflective-header">"Send us a message"</h2>
+                    <h2 class="text-2xl font-bold mb-6 font-heading">"Send us a message"</h2>
 
                     // Success/Error Message
                     {move || submit_status.get().map(|(success, msg)| {

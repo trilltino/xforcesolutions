@@ -42,7 +42,8 @@ pub fn App() -> impl IntoView {
                 <Navbar/>
                 <main class="container mx-auto px-4 py-8">
                     <Routes fallback=|| "Page not found.">
-                        <Route path=StaticSegment("") view=Home/>
+                        <Route path=StaticSegment("") view=About/>
+                        <Route path=StaticSegment("home") view=Home/>
                         <Route path=StaticSegment("about") view=About/>
                         <Route path=StaticSegment("projects") view=Projects/>
                         <Route path=StaticSegment("contact") view=Contact/>

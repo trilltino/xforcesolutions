@@ -4,7 +4,7 @@ use leptos::prelude::*;
 pub fn Contracts() -> impl IntoView {
     view! {
         <div class="max-w-4xl mx-auto py-8">
-            <h1 class="text-4xl font-bold text-center mb-8 font-heading reflective-header">"Contracts"</h1>
+            <h1 class="text-4xl font-bold text-center mb-8 font-heading">"Contracts"</h1>
             <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
                 "Contract information and agreements for XFTerminal."
             </p>

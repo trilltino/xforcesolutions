@@ -5,7 +5,7 @@ pub fn Architecture() -> impl IntoView {
     view! {
         <div class="max-w-7xl mx-auto py-8">
             <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold mb-4 font-heading reflective-header">"Architecture Documentation"</h1>
+                <h1 class="text-4xl font-bold mb-4 font-heading">"Architecture Documentation"</h1>
                 <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
                     "Technical architecture and system design for XFTerminal."
                 </p>

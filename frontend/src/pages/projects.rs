@@ -4,7 +4,7 @@ use leptos::prelude::*;
 pub fn Projects() -> impl IntoView {
     view! {
         <div class="max-w-7xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center font-heading reflective-header">
+            <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center font-heading">
                 "Proof of Work"
             </h1>
             
@@ -55,7 +55,7 @@ pub fn Projects() -> impl IntoView {
             // Call to Action Section
             <div class="mt-16 text-center">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
-                    <h2 class="text-3xl font-bold mb-4 font-heading reflective-header">
+                    <h2 class="text-3xl font-bold mb-4 font-heading">
                         "Have a Project in Mind?"
                     </h2>
                     <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">

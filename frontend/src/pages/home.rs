@@ -15,7 +15,7 @@ pub fn Home() -> impl IntoView {
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="text-center px-4">
-                            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-heading reflective-header">
+                            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-heading">
                                 "Welcome to XFSolutions"
                             </h1>
                             <p class="text-xl md:text-2xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-sans">
@@ -29,7 +29,7 @@ pub fn Home() -> impl IntoView {
             // Call to Action Section
             <div class="grid md:grid-cols-2 gap-6 mb-16">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
-                    <h2 class="text-3xl font-bold mb-4 font-heading reflective-header">
+                    <h2 class="text-3xl font-bold mb-4 font-heading">
                         "Explore Our Projects"
                     </h2>
                     <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
@@ -43,7 +43,7 @@ pub fn Home() -> impl IntoView {
                     </a>
                 </div>
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
-                    <h2 class="text-3xl font-bold mb-4 font-heading reflective-header">
+                    <h2 class="text-3xl font-bold mb-4 font-heading">
                         "Get in Touch"
                     </h2>
                     <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
@@ -68,7 +68,7 @@ pub fn Home() -> impl IntoView {
                 <div class="absolute inset-0 bg-gradient-to-r from-black/90 to-transparent"></div>
                 <div class="absolute inset-0 flex items-center">
                     <div class="max-w-2xl px-8">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white dark:text-white text-gray-900 dark:text-white font-heading reflective-header">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white dark:text-white text-gray-900 dark:text-white font-heading">
                             "Innovation at the Core"
                         </h2>
                         <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 font-sans">

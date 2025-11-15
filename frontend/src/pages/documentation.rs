@@ -4,7 +4,7 @@ use leptos::prelude::*;
 pub fn Documentation() -> impl IntoView {
     view! {
         <div class="max-w-6xl mx-auto py-8">
-            <h1 class="text-4xl font-bold text-center mb-8 font-heading reflective-header">"Documentation"</h1>
+            <h1 class="text-4xl font-bold text-center mb-8 font-heading">"Documentation"</h1>
             <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
                 "Documentation for XFTerminal."
             </p>
