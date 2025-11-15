@@ -5,7 +5,7 @@ pub fn Projects() -> impl IntoView {
     view! {
         <div class="max-w-7xl mx-auto">
             <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center font-heading reflective-header">
-                "Projects"
+                "Proof of Work"
             </h1>
             
             <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
@@ -15,19 +15,34 @@ pub fn Projects() -> impl IntoView {
             // Projects Grid
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ProjectCard
-                    title="Project 1"
-                    description="A cutting-edge solution built with modern technology"
-                    tags=vec!["Rust", "Web", "Innovation"]
+                    title="Fundraisely"
+                    description="A fundraising platform built with modern web technologies"
+                    tags=vec!["Rust", "Web", "Full Stack"]
                 />
                 <ProjectCard
-                    title="Project 2"
-                    description="Scalable architecture for enterprise applications"
-                    tags=vec!["Backend", "API", "Cloud"]
+                    title="XFChess"
+                    description="A chess application built with Rust and web technologies"
+                    tags=vec!["Rust", "Game", "Web"]
                 />
                 <ProjectCard
-                    title="Project 3"
-                    description="User-friendly interface with exceptional performance"
-                    tags=vec!["Frontend", "UI/UX", "React"]
+                    title="Yew Scaffold"
+                    description="A scaffolding tool for Yew framework projects"
+                    tags=vec!["Rust", "Yew", "Tooling"]
+                />
+                <ProjectCard
+                    title="XFTerminal"
+                    description="A terminal application built with Rust"
+                    tags=vec!["Rust", "Terminal", "CLI"]
+                />
+                <ProjectCard
+                    title="Solana Contracts"
+                    description="Smart contracts deployed on the Solana blockchain"
+                    tags=vec!["Rust", "Solana", "Blockchain"]
+                />
+                <ProjectCard
+                    title="Stellar Contracts"
+                    description="Smart contracts and applications on the Stellar network"
+                    tags=vec!["Rust", "Stellar", "Blockchain"]
                 />
             </div>
 
