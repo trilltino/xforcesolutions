@@ -53,7 +53,7 @@ pub fn Navbar() -> impl IntoView {
                                         std::time::Duration::from_millis(200),
                                     );
                                 }
-                                attr:class="relative px-4 py-2 text-gray-300 hover:text-red-400 text-sm font-medium font-nav transition-all duration-200 rounded-lg hover:bg-red-900/30 aria-[current]:text-red-400 aria-[current]:bg-red-900/20 group flex items-center"
+                                class="relative px-4 py-2 text-gray-300 hover:text-red-400 text-sm font-medium font-nav transition-all duration-200 rounded-lg hover:bg-red-900/30 aria-[current]:text-red-400 aria-[current]:bg-red-900/20 group flex items-center"
                             >
                                 "XF Terminal"
                                 <svg class="ml-1 h-4 w-4 transition-transform" class:rotate-180=xf_terminal_dropdown_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@ pub fn Navbar() -> impl IntoView {
                                 <div>
                                     <button
                                         on:click=toggle_mobile_xf_terminal
-                                        attr:class="w-full px-4 py-3 text-left text-gray-300 hover:text-red-400 hover:bg-red-900/30 rounded-lg transition-all duration-200 font-medium font-nav flex items-center justify-between"
+                                        class="w-full px-4 py-3 text-left text-gray-300 hover:text-red-400 hover:bg-red-900/30 rounded-lg transition-all duration-200 font-medium font-nav flex items-center justify-between"
                                     >
                                         "XF Terminal"
                                         <svg class="h-4 w-4 transition-transform" class:rotate-180=mobile_xf_terminal_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
