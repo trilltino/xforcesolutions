@@ -101,6 +101,15 @@ jobs:
           touch target/site/.nojekyll
           echo "Created .nojekyll file for GitHub Pages"
 
+      - name: Copy favicon
+        run: |
+          if [ -f frontend/public/images/favicon.svg ]; then
+            cp frontend/public/images/favicon.svg target/site/favicon.svg
+            echo "✓ Favicon copied"
+          else
+            echo "⚠ Favicon not found (optional)"
+          fi
+
       - name: Create index.html
         run: |
           cat > target/site/index.html << 'EOF'
@@ -110,6 +119,7 @@ jobs:
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
+              <link rel="icon" type="image/svg+xml" href="/favicon.svg">
               <link rel="stylesheet" href="./pkg/xforcesolutions.css">
               <script type="module">
                   import init, { hydrate } from './pkg/frontend.js';
@@ -124,6 +134,32 @@ jobs:
           </body>
           </html>
           EOF
+
+      - name: Create 404.html for SPA routing
+        run: |
+          cat > target/site/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en" class="dark">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>XFSolutions - Professional Solutions</title>
+              <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+              <link rel="stylesheet" href="./pkg/xforcesolutions.css">
+              <script type="module">
+                  import init, { hydrate } from './pkg/frontend.js';
+                  init().then(() => {
+                      hydrate();
+                  }).catch(console.error);
+              </script>
+          </head>
+          <body>
+              <noscript>You need to enable JavaScript to run this app.</noscript>
+              <div id="app-root"></div>
+          </body>
+          </html>
+          EOF
+          echo "✓ Created 404.html for GitHub Pages SPA routing"
 
       - name: Verify build artifacts
         run: |
@@ -169,6 +205,17 @@ jobs:
             echo "✓ hero.webp exists"
           else
             echo "✗ hero.webp missing (optional)"
+          fi
+          if [ -f target/site/favicon.svg ]; then
+            echo "✓ favicon.svg exists"
+          else
+            echo "✗ favicon.svg missing (optional)"
+          fi
+          if [ -f target/site/404.html ]; then
+            echo "✓ 404.html exists"
+          else
+            echo "✗ 404.html missing"
+            MISSING_FILES=$((MISSING_FILES + 1))
           fi
           if [ $MISSING_FILES -gt 0 ]; then
             echo "ERROR: $MISSING_FILES required file(s) are missing!"
