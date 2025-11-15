@@ -11,11 +11,12 @@ pub fn About() -> impl IntoView {
                     // Outer decorative ring (roundel border)
                     <div class="absolute inset-0 rounded-full border-4 border-gray-300 shadow-xl"></div>
 
-                    // Profile image with inner border
+                    // Profile image with inner border - restructured to use working image path structure
                     <img 
                         src="/xforcesolutions/public/images/tino.webp" 
                         alt="Tino" 
                         class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full object-cover border-4 border-white dark:border-white border-gray-100 dark:border-white shadow-2xl"
+                        loading="eager"
                     />
                 </div>
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-heading mb-4">"Tino"</h2>

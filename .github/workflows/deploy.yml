@@ -152,19 +152,46 @@ jobs:
           echo ""
           echo "=== CRITICAL: Copying ALL images to public/images (where they actually get served) ==="
           mkdir -p target/site/public/images
+          mkdir -p target/site/images
           if [ -d frontend/public/images ]; then
-            echo "Copying ALL images from source to target/site/public/images:"
-            cp -v frontend/public/images/* target/site/public/images/ 2>&1 | head -30
+            echo "=== METHOD 1: Copying ALL images using find (more reliable) ==="
+            find frontend/public/images -type f \( -name "*.webp" -o -name "*.svg" -o -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) -exec cp -v {} target/site/public/images/ \;
+            find frontend/public/images -type f \( -name "*.webp" -o -name "*.svg" -o -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) -exec cp -v {} target/site/images/ \;
             echo ""
-            echo "=== VERIFYING tino.webp in public/images ==="
-            if [ -f target/site/public/images/tino.webp ]; then
-              echo "✓✓✓ tino.webp EXISTS in target/site/public/images/ ✓✓✓"
-              ls -lah target/site/public/images/tino.webp
+            echo "=== METHOD 2: Explicitly copying tino.webp with multiple methods ==="
+            if [ -f frontend/public/images/tino.webp ]; then
+              echo "✓✓✓ tino.webp EXISTS IN SOURCE ✓✓✓"
+              # Method 2a: Direct copy
+              cp -vf frontend/public/images/tino.webp target/site/public/images/tino.webp
+              cp -vf frontend/public/images/tino.webp target/site/images/tino.webp
+              # Method 2b: Using install command
+              install -v -m 644 frontend/public/images/tino.webp target/site/public/images/tino.webp 2>/dev/null || cp -vf frontend/public/images/tino.webp target/site/public/images/tino.webp
+              install -v -m 644 frontend/public/images/tino.webp target/site/images/tino.webp 2>/dev/null || cp -vf frontend/public/images/tino.webp target/site/images/tino.webp
+              # Method 2c: Using cat (bypasses any cp issues)
+              cat frontend/public/images/tino.webp > target/site/public/images/tino.webp 2>/dev/null || cp -vf frontend/public/images/tino.webp target/site/public/images/tino.webp
+              cat frontend/public/images/tino.webp > target/site/images/tino.webp 2>/dev/null || cp -vf frontend/public/images/tino.webp target/site/images/tino.webp
+              echo "Verifying all copies:"
+              ls -lah target/site/public/images/tino.webp 2>/dev/null || echo "Missing from public/images"
+              ls -lah target/site/images/tino.webp 2>/dev/null || echo "Missing from images"
+              file target/site/public/images/tino.webp 2>/dev/null || echo "file command not available"
             else
-              echo "✗✗✗ tino.webp MISSING from public/images ✗✗✗"
-              echo "Files in public/images:"
-              ls -lah target/site/public/images/ | head -20
+              echo "✗✗✗ tino.webp NOT IN SOURCE ✗✗✗"
+              echo "Full listing:"
+              ls -la frontend/public/images/ | grep -i tino || echo "No tino files"
             fi
+            echo ""
+            echo "=== VERIFYING tino.webp in ALL locations ==="
+            for loc in "target/site/public/images" "target/site/images"; do
+              if [ -f "$loc/tino.webp" ]; then
+                echo "✓✓✓ tino.webp EXISTS in $loc/ ✓✓✓"
+                ls -lah "$loc/tino.webp"
+              else
+                echo "✗✗✗ tino.webp MISSING from $loc/ ✗✗✗"
+              fi
+            done
+            echo ""
+            echo "=== Complete file listing in public/images ==="
+            ls -lah target/site/public/images/ | head -30
           fi
           echo ""
           echo "=== Copying docs to target/site/docs (ROOT LEVEL) ==="
@@ -362,12 +389,23 @@ jobs:
           find target/site/images -type f 2>/dev/null | head -20 || echo "Images directory not found"
           echo ""
           echo "=== CRITICAL: TINO IMAGE CHECK ==="
-          echo "Looking for tino.webp:"
+          echo "Looking for tino.webp in images/:"
           if [ -f target/site/images/tino.webp ]; then
-            echo "✓✓✓ tino.webp EXISTS ✓✓✓"
+            echo "✓✓✓ tino.webp EXISTS in images/ ✓✓✓"
             ls -lah target/site/images/tino.webp
           else
-            echo "✗✗✗ tino.webp MISSING ✗✗✗"
+            echo "✗✗✗ tino.webp MISSING from images/ ✗✗✗"
+          fi
+          echo ""
+          echo "Looking for tino.webp in public/images/ (CRITICAL - THIS IS WHERE ARTIFACT SERVES FROM):"
+          if [ -f target/site/public/images/tino.webp ]; then
+            echo "✓✓✓ tino.webp EXISTS in public/images/ ✓✓✓"
+            ls -lah target/site/public/images/tino.webp
+          else
+            echo "✗✗✗ tino.webp MISSING from public/images/ ✗✗✗"
+            echo "  This is the location that appears in the artifact!"
+            echo "  Available tino files in public/images:"
+            find target/site/public/images -type f -iname "*tino*" 2>/dev/null || echo "  None found"
           fi
           echo ""
           echo "Looking for tino.jpg:"
@@ -381,8 +419,11 @@ jobs:
             find target/site/images -type f -iname "*tino*" || echo "  None found"
           fi
           echo ""
-          echo "=== ALL IMAGE FILES IN TARGET ==="
+          echo "=== ALL IMAGE FILES IN TARGET/images ==="
           ls -lah target/site/images/ | head -30
+          echo ""
+          echo "=== ALL IMAGE FILES IN TARGET/public/images (ARTIFACT LOCATION) ==="
+          ls -lah target/site/public/images/ | head -30
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
