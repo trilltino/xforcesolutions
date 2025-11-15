@@ -76,6 +76,9 @@ pub fn Navbar() -> impl IntoView {
                                             <A href="/contracts" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Contracts"
                                             </A>
+                                            <A href="/documentation" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Documentation"
+                                            </A>
                                         </div>
                                     </div>
                                 }.into_any()
@@ -143,6 +146,7 @@ pub fn Navbar() -> impl IntoView {
                                                 <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/roadmap" label="Roadmap" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/documentation" label="Documentation" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                             </div>
                                         }.into_any()
                                     } else {

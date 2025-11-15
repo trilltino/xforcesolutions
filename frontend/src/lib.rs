@@ -14,6 +14,7 @@ use pages::{
     architecture::Architecture,
     contact::Contact,
     contracts::Contracts,
+    documentation::Documentation,
     home::Home,
     projects::Projects,
     proposal::Proposal,
@@ -49,6 +50,7 @@ pub fn App() -> impl IntoView {
                         <Route path=StaticSegment("architecture") view=Architecture/>
                         <Route path=StaticSegment("roadmap") view=Roadmap/>
                         <Route path=StaticSegment("contracts") view=Contracts/>
+                        <Route path=StaticSegment("documentation") view=Documentation/>
                     </Routes>
                 </main>
             </div>
