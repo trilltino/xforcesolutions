@@ -13,10 +13,9 @@ pub fn About() -> impl IntoView {
 
                     // Profile image with inner border
                     <img 
-                        src="/images/hero.webp" 
+                        src="/images/tino.jpg" 
                         alt="Tino" 
                         class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full object-cover border-4 border-white dark:border-white border-gray-100 dark:border-white shadow-2xl"
-                        onerror="this.src='/images/favicon.svg'; this.onerror=null;"
                     />
                 </div>
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-heading mb-4">"Tino"</h2>
@@ -63,13 +62,16 @@ pub fn About() -> impl IntoView {
             <div class="mb-8">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg">
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
-                        "Hi, I'm Tino - an Open Source Software Engineer who specializes in using the Rust programming language to create user applications."
+                        "Hi, I'm Tino - an Open Source Software Engineer who specializes in using the Rust programming language to create user applications. I'm Full Stack and enjoy using Rust crates such as Leptos and Axum to build safe and scalable applications."
                     </p>
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
-                        "I'm Full Stack and enjoy using Rust crates such as Leptos and Axum to build safe and scalable applications."
+                        "After graduating in Law from the University of Warwick, I soon learned that Law isn't my path."
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
+                        "I taught myself Rust and Blockchain concepts, rising slowly but surely within the Stellar Ecosystem. After leading the Stellar Development Foundation's European Ambassador Program, I have moved to a more developer-focused mindset - I hope to use my expertise to further the adoption of decentralized technologies worldwide."
                     </p>
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 font-sans">
-                        "After leading the Stellar Development Foundation's European Ambassador Program, I have moved to a more developer-focused mindset - I hope to use my expertise to further the adoption of decentralized technologies worldwide."
+                        "My focus now is to simply make great software that others can learn and build from - Join me!"
                     </p>
                 </div>
             </div>
