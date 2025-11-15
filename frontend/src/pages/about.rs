@@ -13,7 +13,7 @@ pub fn About() -> impl IntoView {
 
                     // Profile image with inner border
                     <img 
-                        src="/images/tino.webp" 
+                        src="/xforcesolutions/images/tino.webp" 
                         alt="Tino" 
                         class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full object-cover border-4 border-white dark:border-white border-gray-100 dark:border-white shadow-2xl"
                     />
@@ -62,13 +62,13 @@ pub fn About() -> impl IntoView {
             <div class="mb-8">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg">
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
-                        "Hi, I'm Tino - an Open Source Software Engineer that Specialises in using The Rust Programming Language to create User-Applications."
+                        "Hi, I'm Tino - an Open Source Software Engineer who specializes in using the Rust programming language to create user applications."
                     </p>
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
-                        "I'm Full Stack and enjoy using Rust crates such as Leptos and Axum to build safe and scalable Applications."
+                        "I'm Full Stack and enjoy using Rust crates such as Leptos and Axum to build safe and scalable applications."
                     </p>
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 font-sans">
-                        "After Leading the Stellar Development Foundations European Ambassador Program I have moved to a more developer focused mindset - I hope to use my expertise to further the adoption of Decentralised technologies world wide."
+                        "After leading the Stellar Development Foundation's European Ambassador Program, I have moved to a more developer-focused mindset - I hope to use my expertise to further the adoption of decentralized technologies worldwide."
                     </p>
                 </div>
             </div>

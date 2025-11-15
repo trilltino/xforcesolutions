@@ -39,7 +39,7 @@ pub fn Navbar() -> impl IntoView {
 
                     // Desktop Navigation Links
                     <div class="hidden md:flex items-center space-x-1">
-                        <NavLink href="/about" label="About"/>
+                        <NavLink href="/about" label="About me"/>
                         <NavLink href="/projects" label="Proof of Work"/>
                         
                         // XF Terminal Dropdown
@@ -125,7 +125,7 @@ pub fn Navbar() -> impl IntoView {
                     view! {
                         <div class="md:hidden pb-4 border-t border-red-900 mt-2 animate-fade-in">
                             <div class="flex flex-col space-y-2 pt-4">
-                                <MobileNavLink href="/about" label="About" on_click=move |_| set_mobile_menu_open.set(false)/>
+                                <MobileNavLink href="/about" label="About me" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 <MobileNavLink href="/projects" label="Proof of Work" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 
                                 // XF Terminal Mobile Dropdown

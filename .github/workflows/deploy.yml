@@ -143,9 +143,12 @@ jobs:
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
-              <base href="/xforcesolutions/">
               <link rel="icon" type="image/svg+xml" href="/xforcesolutions/favicon.svg">
               <link rel="stylesheet" href="./pkg/xforcesolutions.css">
+              <script>
+                  // Set base path for images and assets
+                  window.BASE_PATH = '/xforcesolutions';
+              </script>
               <script type="module">
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
@@ -169,9 +172,12 @@ jobs:
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
-              <base href="/xforcesolutions/">
               <link rel="icon" type="image/svg+xml" href="/xforcesolutions/favicon.svg">
               <link rel="stylesheet" href="./pkg/xforcesolutions.css">
+              <script>
+                  // Set base path for images and assets
+                  window.BASE_PATH = '/xforcesolutions';
+              </script>
               <script type="module">
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
