@@ -50,17 +50,26 @@ jobs:
 
       - name: Build WASM frontend
         run: |
-          cd frontend
-          cargo build --release --target wasm32-unknown-unknown --features hydrate
-        env:
-          CARGO_TARGET_DIR: ../target
+          cargo build --release --target wasm32-unknown-unknown --manifest-path frontend/Cargo.toml --features hydrate
+
+      - name: Verify WASM file exists
+        run: |
+          if [ ! -f target/wasm32-unknown-unknown/release/frontend.wasm ]; then
+            echo "ERROR: WASM file not found at target/wasm32-unknown-unknown/release/frontend.wasm"
+            echo "Listing target directory:"
+            ls -la target/wasm32-unknown-unknown/release/ 2>/dev/null || echo "Directory does not exist"
+            exit 1
+          fi
+          echo "✓ WASM file found"
 
       - name: Generate WASM bindings
         run: |
           wasm-bindgen target/wasm32-unknown-unknown/release/frontend.wasm \
             --out-dir target/site/pkg \
             --target web \
-            --no-typescript
+            --no-typescript \
+            --out-name frontend
+          echo "✓ WASM bindings generated"
 
       - name: Copy static assets
         run: |
@@ -82,11 +91,12 @@ jobs:
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();
-                  });
+                  }).catch(console.error);
               </script>
           </head>
           <body>
               <noscript>You need to enable JavaScript to run this app.</noscript>
+              <div id="app-root"></div>
           </body>
           </html>
           EOF
@@ -97,11 +107,39 @@ jobs:
           ls -la target/site/ || true
           echo "=== Pkg directory ==="
           ls -la target/site/pkg/ || true
+          echo "=== WASM build output ==="
+          ls -la target/wasm32-unknown-unknown/release/*.wasm 2>/dev/null || echo "No WASM files found in expected location"
           echo "=== Checking for required files ==="
-          test -f target/site/index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
-          test -f target/site/pkg/xforcesolutions.css && echo "✓ CSS exists" || echo "✗ CSS missing"
-          test -f target/site/pkg/frontend.js && echo "✓ JS exists" || echo "✗ JS missing"
-          test -f target/site/pkg/frontend_bg.wasm && echo "✓ WASM exists" || echo "✗ WASM missing"
+          MISSING_FILES=0
+          if [ ! -f target/site/index.html ]; then
+            echo "✗ index.html missing"
+            MISSING_FILES=$((MISSING_FILES + 1))
+          else
+            echo "✓ index.html exists"
+          fi
+          if [ ! -f target/site/pkg/xforcesolutions.css ]; then
+            echo "✗ CSS missing"
+            MISSING_FILES=$((MISSING_FILES + 1))
+          else
+            echo "✓ CSS exists"
+          fi
+          if [ ! -f target/site/pkg/frontend.js ]; then
+            echo "✗ JS missing"
+            MISSING_FILES=$((MISSING_FILES + 1))
+          else
+            echo "✓ JS exists"
+          fi
+          if [ ! -f target/site/pkg/frontend_bg.wasm ]; then
+            echo "✗ WASM missing"
+            MISSING_FILES=$((MISSING_FILES + 1))
+          else
+            echo "✓ WASM exists"
+          fi
+          if [ $MISSING_FILES -gt 0 ]; then
+            echo "ERROR: $MISSING_FILES required file(s) are missing!"
+            exit 1
+          fi
+          echo "✓ All required files exist"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
