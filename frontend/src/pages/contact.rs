@@ -1,123 +1,14 @@
 use leptos::prelude::*;
 use leptos::ev;
-use shared::{ContactFormData, ContactFormResponse};
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsValue;
 
-#[server]
-pub async fn submit_contact_server(data: ContactFormData) -> Result<ContactFormResponse, ServerFnError> {
-    use std::fs::OpenOptions;
-    use std::io::Write;
-
-    // Sanitize and validate
-    let mut data = data;
-    data.sanitize();
-
-    if let Err(validation_errors) = data.validate() {
-        return Ok(ContactFormResponse {
-            success: false,
-            message: "Validation failed".to_string(),
-            errors: Some(validation_errors),
-        });
-    }
-
-    // Log submission
-    let log_path = std::env::var("CONTACT_LOG_FILE")
-        .unwrap_or_else(|_| "backend/contact_submissions.log".to_string());
-
-    if let Ok(mut file) = OpenOptions::new().create(true).append(true).open(log_path) {
-        let timestamp = chrono::Utc::now().to_rfc3339();
-        let log_entry = format!(
-            "[{}] Name: {} | Email: {} | Message: {}\n",
-            timestamp, data.name, data.email, data.message
-        );
-        let _ = file.write_all(log_entry.as_bytes());
-    }
-
-    tracing::info!("Contact form submitted - Name: {}, Email: {}", data.name, data.email);
-
-    // Send email notification (non-blocking, doesn't fail request if email fails)
-    #[cfg(feature = "email-ssr")]
-    {
-        if let Err(e) = send_contact_email_internal(&data).await {
-            tracing::error!("Failed to send email notification (non-fatal): {}", e);
-            // Don't fail the request if email sending fails
-        }
-    }
-
-    Ok(ContactFormResponse {
-        success: true,
-        message: "Thank you for contacting us! We'll get back to you soon.".to_string(),
-        errors: None,
-    })
-}
-
-#[cfg(feature = "email-ssr")]
-async fn send_contact_email_internal(data: &ContactFormData) -> Result<(), Box<dyn std::error::Error>> {
-    use lettre::{
-        message::{header::{HeaderName, HeaderValue}, Mailbox, Message, SinglePart},
-        transport::smtp::authentication::Credentials,
-        AsyncSmtpTransport, AsyncTransport, Tokio1Executor,
-    };
-    use std::env;
-
-    // Get email configuration from environment variables
-    let contact_email = env::var("CONTACT_EMAIL")
-        .unwrap_or_else(|_| "isicheivalentine@gmail.com".to_string());
-    let smtp_host = env::var("SMTP_HOST")
-        .unwrap_or_else(|_| "smtp.gmail.com".to_string());
-    let smtp_port: u16 = env::var("SMTP_PORT")
-        .unwrap_or_else(|_| "587".to_string())
-        .parse()
-        .unwrap_or(587);
-    let smtp_user = env::var("SMTP_USER").ok();
-    let smtp_pass = env::var("SMTP_PASS").ok();
-    let smtp_from = env::var("SMTP_FROM")
-        .unwrap_or_else(|_| "noreply@xforcesolutions.com".to_string());
-
-    // Parse email addresses
-    let from_address: Mailbox = smtp_from.parse()?;
-    let to_address: Mailbox = contact_email.parse()?;
-
-    // Build email body
-    let email_body = format!(
-        "New Contact Form Submission\n\n\
-        Name: {}\n\
-        Email: {}\n\n\
-        Message:\n{}\n\n\
-        ---\n\
-        This email was sent from the XForcesolutions contact form.",
-        data.name, data.email, data.message
-    );
-
-    // Build email message
-    let mut message = Message::builder()
-        .from(from_address)
-        .to(to_address)
-        .subject("New Contact Form Submission - XForcesolutions")
-        .singlepart(SinglePart::plain(email_body))?;
-
-    // Add custom header X-Forcesolutions using headers_mut()
-    let header_name = HeaderName::new_from_ascii_str("X-Forcesolutions");
-    let header_value = HeaderValue::new(header_name, "XForcesolutions Contact Form".to_string());
-    message.headers_mut().insert_raw(header_value);
-
-    // Build SMTP transport
-    let mut mailer_builder = AsyncSmtpTransport::<Tokio1Executor>::relay(&smtp_host)?
-        .port(smtp_port);
-
-    // Add authentication if credentials are provided
-    if let (Some(user), Some(pass)) = (smtp_user, smtp_pass) {
-        mailer_builder = mailer_builder.credentials(Credentials::new(user, pass));
-        tracing::info!("Using authenticated SMTP");
-    } else {
-        tracing::warn!("SMTP credentials not provided, using unauthenticated SMTP");
-    }
-
-    let mailer = mailer_builder.build();
-
-    // Send email
-    mailer.send(message).await?;
-    tracing::info!("Contact form email sent successfully to {}", contact_email);
-    Ok(())
+// Contact form data structure
+#[derive(Clone)]
+struct ContactFormData {
+    name: String,
+    email: String,
+    message: String,
 }
 
 #[component]
@@ -187,6 +78,80 @@ pub fn Contact() -> impl IntoView {
         }
     };
 
+    // Send email via EmailJS
+    // Note: User needs to configure EmailJS credentials
+    // Get these from https://www.emailjs.com/ after creating an account
+    let send_email_via_emailjs = move |form_data: ContactFormData| {
+        let window = web_sys::window().expect("no global `window` exists");
+        
+        // EmailJS configuration - user needs to set these
+        // TODO: Make these configurable via environment or config file
+        let service_id = "YOUR_SERVICE_ID"; // Replace with your EmailJS service ID
+        let template_id = "YOUR_TEMPLATE_ID"; // Replace with your EmailJS template ID
+        let public_key = "YOUR_PUBLIC_KEY"; // Replace with your EmailJS public key
+
+        // EmailJS REST API endpoint
+        let url = "https://api.emailjs.com/api/v1.0/email/send";
+
+        let mut opts = web_sys::RequestInit::new();
+        opts.set_method("POST");
+        opts.set_mode(web_sys::RequestMode::Cors);
+        
+        let headers = web_sys::Headers::new().unwrap();
+        headers.set("Content-Type", "application/json").unwrap();
+        opts.set_headers(Some(&headers));
+
+        // EmailJS expects form data, but we'll send as JSON
+        let body = serde_json::json!({
+            "service_id": service_id,
+            "template_id": template_id,
+            "user_id": public_key,
+            "template_params": {
+                "from_name": form_data.name,
+                "from_email": form_data.email,
+                "message": form_data.message,
+                "to_email": "isicheivalentine@gmail.com"
+            }
+        });
+
+        opts.set_body(Some(&JsValue::from_str(&serde_json::to_string(&body).unwrap())));
+
+        let request = web_sys::Request::new_with_str_and_init(&url, &opts).unwrap();
+        
+        let future = wasm_bindgen_futures::JsFuture::from(window.fetch_with_request(&request));
+        
+        leptos::task::spawn_local(async move {
+            match future.await {
+                Ok(response) => {
+                    let resp: web_sys::Response = response.dyn_into().unwrap();
+                    let status = resp.status();
+                    if (200..300).contains(&status) {
+                        set_is_submitting.set(false);
+                        set_submit_status.set(Some((true, "Thank you for contacting us! We'll get back to you soon.".to_string())));
+                        // Reset form after success
+                        set_timeout(
+                            move || {
+                                set_name.set(String::new());
+                                set_email.set(String::new());
+                                set_message.set(String::new());
+                                set_submit_status.set(None);
+                            },
+                            std::time::Duration::from_secs(3),
+                        );
+                    } else {
+                        set_is_submitting.set(false);
+                        set_submit_status.set(Some((false, format!("Failed to send message (status: {}). Please check your EmailJS configuration.", status))));
+                    }
+                }
+                Err(_e) => {
+                    set_is_submitting.set(false);
+                    let error_msg = "Failed to send message. Please check your EmailJS configuration and try again.".to_string();
+                    set_submit_status.set(Some((false, error_msg)));
+                }
+            }
+        });
+    };
+
     // Form submission handler
     let on_submit = move |ev: ev::SubmitEvent| {
         ev.prevent_default();
@@ -202,45 +167,17 @@ pub fn Contact() -> impl IntoView {
 
         // Prepare form data
         let form_data = ContactFormData {
-            name: name.get(),
-            email: email.get(),
-            message: message.get(),
+            name: name.get().trim().to_string(),
+            email: email.get().trim().to_lowercase(),
+            message: message.get().trim().to_string(),
         };
 
         // Set submitting state
         set_is_submitting.set(true);
         set_submit_status.set(None);
 
-        // Use Leptos server function - much cleaner!
-        leptos::task::spawn_local(async move {
-            match submit_contact_server(form_data).await {
-                Ok(response) => {
-                    set_is_submitting.set(false);
-                    if response.success {
-                        set_submit_status.set(Some((true, response.message)));
-                        // Reset form after success
-                        set_timeout(
-                            move || {
-                                set_name.set(String::new());
-                                set_email.set(String::new());
-                                set_message.set(String::new());
-                                set_submit_status.set(None);
-                            },
-                            std::time::Duration::from_secs(3),
-                        );
-                    } else {
-                        set_submit_status.set(Some((false, response.message)));
-                    }
-                }
-                Err(e) => {
-                    set_is_submitting.set(false);
-                    set_submit_status.set(Some((
-                        false,
-                        format!("Failed to send message: {}", e),
-                    )));
-                }
-            }
-        });
+        // Send email via EmailJS
+        send_email_via_emailjs(form_data);
     };
 
     view! {
@@ -344,7 +281,7 @@ pub fn Contact() -> impl IntoView {
                 <div class="space-y-6">
                     <ContactInfo
                         title="Email"
-                        content="info@xfsolutions.com"
+                        content="isicheivalentine@gmail.com"
                         icon="[EMAIL]"
                     />
                     <ContactInfo

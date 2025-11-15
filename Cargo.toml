@@ -1,25 +1,14 @@
 [workspace]
 members = [
     "frontend",
-    "backend",
-    "shared",
 ]
 resolver = "2"
 
 [workspace.dependencies]
-# Leptos ecosystem
-leptos = { version = "0.8.12", features = ["ssr"] }
-leptos_axum = "0.8.5"
-leptos_meta = { version = "0.8.5", features = ["ssr"] }
-leptos_router = { version = "0.8.6", features = ["ssr"] }
-
-# Axum ecosystem
-axum = "0.8.6"
-tower = "0.5.2"
-tower-http = { version = "0.6.6", features = ["fs", "cors", "trace"] }
-
-# Async runtime
-tokio = { version = "1.48.0", features = ["full"] }
+# Leptos ecosystem (client-side only, no SSR)
+leptos = { version = "0.8.12", default-features = false }
+leptos_meta = { version = "0.8.5", default-features = false }
+leptos_router = { version = "0.8.6", default-features = false }
 
 # Serialization
 serde = { version = "1", features = ["derive"] }
@@ -38,21 +27,12 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
 chrono = { version = "0.4", features = ["serde"] }
 uuid = { version = "1", features = ["v4", "serde"] }
 
-# Validation
-validator = "0.19"
-
 # WASM
 wasm-bindgen = "0.2"
 web-sys = "0.3"
 js-sys = "0.3"
 console_error_panic_hook = "0.1"
 tracing-wasm = "0.2"
-
-# Configuration
-dotenvy = "0.15"
-
-# HTTP client
-reqwest = { version = "0.12", features = ["json"] }
 
 [profile.release]
 opt-level = 'z'
@@ -65,33 +45,21 @@ opt-level = 'z'
 lto = true
 codegen-units = 1
 
-# Leptos workspace configuration
+# Leptos workspace configuration (static site only)
 [[workspace.metadata.leptos]]
 # Project name
 name = "xforcesolutions"
-# The package that contains the binary (server)
-bin-package = "backend"
-# The binary target to use (required when multiple binaries exist)
-bin-target = "backend"
 # The package that contains the library (WASM frontend)
 lib-package = "frontend"
 # The site root folder is where cargo-leptos generates all output
 site-root = "target/site"
 # The site package directory is where the app's static assets are located
 site-pkg-dir = "pkg"
-# The IP and port where this server should listen
-site-addr = "127.0.0.1:3000"
-# The port to use for automatic reload monitoring
-reload-port = 3001
 # The browserlist query used for optimizing the CSS
 browserquery = "defaults"
-# Set by cargo-leptos watch when building with that tool. Controls whether autoreload JS will be included in the head
-watch = false
-# The environment Leptos will run in, usually "DEV" or "PROD"
-env = "DEV"
-# The features to use when compiling the bin target
-bin-features = ["ssr"]
-# The features to use when compiling the lib target
+# The environment Leptos will run in (static site)
+env = "PROD"
+# The features to use when compiling the lib target (client-side only)
 lib-features = ["hydrate"]
 # The profile to use for the lib target when compiling for release
 lib-profile-release = "wasm-release"
@@ -99,8 +67,6 @@ lib-profile-release = "wasm-release"
 assets-dir = "frontend"
 # The output name used by cargo-leptos for the client-side bundle
 output-name = "xforcesolutions"
-# The command used by cargo-leptos to build the client-side bundle
-lib-cargo-args = []
 # The tailwind input file
 tailwind-input-file = "frontend/style/tailwind.css"
 # The tailwind config file

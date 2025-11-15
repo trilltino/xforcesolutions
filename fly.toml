@@ -1,6 +1,0 @@
-app = "xforcesolutions"
-primary_region = "iad"
-
-[build]
-  dockerfile = "Dockerfile"
-
