@@ -8,7 +8,7 @@ pub fn Home() -> impl IntoView {
             <div class="relative mb-16">
                 <div class="relative h-[500px] md:h-[600px] rounded-lg overflow-hidden">
                     <img 
-                        src="/xforcesolutions/images/hero.webp" 
+                        src="/images/hero.webp" 
                         alt="Technology Solutions" 
                         class="w-full h-full object-cover"
                     />
@@ -61,7 +61,7 @@ pub fn Home() -> impl IntoView {
             // Technology Section
             <div class="relative rounded-lg overflow-hidden mb-16">
                 <img 
-                    src="/xforcesolutions/images/technology.webp" 
+                    src="/images/technology.webp" 
                     alt="Technology Innovation" 
                     class="w-full h-[400px] object-cover"
                 />
