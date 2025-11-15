@@ -73,12 +73,27 @@ jobs:
 
       - name: Copy static assets
         run: |
+          echo "=== Copying static assets ==="
           if [ -d frontend/public/images ]; then
+            echo "Found frontend/public/images directory"
             mkdir -p target/site/images
-            cp -r frontend/public/images/* target/site/images/ 2>/dev/null || true
+            cp -r frontend/public/images/* target/site/images/
+            echo "Copied images to target/site/images/"
+            ls -la target/site/images/ | head -10
+          else
+            echo "WARNING: frontend/public/images directory not found"
           fi
           if [ -d frontend/public ]; then
+            echo "Found frontend/public directory"
+            mkdir -p target/site/public
             cp -r frontend/public/* target/site/public/ 2>/dev/null || true
+            echo "Copied public assets to target/site/public/"
+          fi
+          echo "=== Verifying image files ==="
+          if [ -f target/site/images/tino.webp ]; then
+            echo "✓ tino.webp exists"
+          else
+            echo "✗ tino.webp NOT FOUND"
           fi
 
       - name: Create index.html
@@ -138,6 +153,17 @@ jobs:
             MISSING_FILES=$((MISSING_FILES + 1))
           else
             echo "✓ WASM exists"
+          fi
+          echo "=== Checking image files ==="
+          if [ -f target/site/images/tino.webp ]; then
+            echo "✓ tino.webp exists"
+          else
+            echo "✗ tino.webp missing (optional)"
+          fi
+          if [ -f target/site/images/hero.webp ]; then
+            echo "✓ hero.webp exists"
+          else
+            echo "✗ hero.webp missing (optional)"
           fi
           if [ $MISSING_FILES -gt 0 ]; then
             echo "ERROR: $MISSING_FILES required file(s) are missing!"
