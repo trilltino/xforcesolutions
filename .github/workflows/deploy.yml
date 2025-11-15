@@ -28,7 +28,7 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Install wasm-bindgen-cli
-        run: cargo install wasm-bindgen-cli --version 0.2.87
+        run: cargo install wasm-bindgen-cli --version 0.2.88
 
       - name: Install Node.js
         uses: actions/setup-node@v4
