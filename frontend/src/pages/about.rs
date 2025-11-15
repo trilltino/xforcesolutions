@@ -13,9 +13,10 @@ pub fn About() -> impl IntoView {
 
                     // Profile image with inner border
                     <img 
-                        src="/images/tino.webp" 
+                        src="/images/hero.webp" 
                         alt="Tino" 
                         class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full object-cover border-4 border-white dark:border-white border-gray-100 dark:border-white shadow-2xl"
+                        onerror="this.src='/images/favicon.svg'; this.onerror=null;"
                     />
                 </div>
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-heading mb-4">"Tino"</h2>
