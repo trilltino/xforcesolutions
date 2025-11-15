@@ -189,7 +189,7 @@ pub fn Contact() -> impl IntoView {
                 "Get in touch with us to discuss your project"
             </p>
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="max-w-2xl mx-auto">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
                     <h2 class="text-2xl font-bold mb-6 font-heading reflective-header">"Send us a message"</h2>
 
@@ -277,50 +277,6 @@ pub fn Contact() -> impl IntoView {
                             }}
                         </button>
                     </form>
-                </div>
-
-                <div class="space-y-6">
-                    <ContactInfo
-                        title="Email"
-                        content="isicheivalentine@gmail.com"
-                        icon="[EMAIL]"
-                    />
-                    <ContactInfo
-                        title="Phone"
-                        content="+1 (555) 123-4567"
-                        icon="[PHONE]"
-                    />
-                    <ContactInfo
-                        title="Location"
-                        content="123 Tech Street, Innovation City, IC 12345"
-                        icon="[LOCATION]"
-                    />
-                    <ContactInfo
-                        title="Business Hours"
-                        content="Monday - Friday: 9:00 AM - 6:00 PM"
-                        icon="[HOURS]"
-                    />
-
-                    <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg">
-                        <h3 class="text-lg font-bold mb-4 font-heading">"Connect With Us"</h3>
-                        <div class="flex gap-4">
-                            <SocialLink
-                                href="https://calendly.com/isicheivalentine/30min"
-                                alt="Schedule a meeting"
-                                image_url="/xforcesolutions/public/images/calendly.svg"
-                            />
-                            <SocialLink
-                                href="https://www.linkedin.com/in/valentine-i-b0619b2b6/"
-                                alt="LinkedIn"
-                                image_url="/xforcesolutions/public/images/linkedin.svg"
-                            />
-                            <SocialLink
-                                href="https://x.com/StellarEuropa"
-                                alt="X (Twitter)"
-                                image_url="/xforcesolutions/public/images/x.svg"
-                            />
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
