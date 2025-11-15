@@ -11,9 +11,12 @@ mod pages;
 use components::navbar::Navbar;
 use pages::{
     about::About,
+    architecture::Architecture,
     contact::Contact,
     home::Home,
     projects::Projects,
+    proposal::Proposal,
+    roadmap::Roadmap,
 };
 
 #[component]
@@ -41,6 +44,9 @@ pub fn App() -> impl IntoView {
                         <Route path=StaticSegment("about") view=About/>
                         <Route path=StaticSegment("projects") view=Projects/>
                         <Route path=StaticSegment("contact") view=Contact/>
+                        <Route path=StaticSegment("proposal") view=Proposal/>
+                        <Route path=StaticSegment("architecture") view=Architecture/>
+                        <Route path=StaticSegment("roadmap") view=Roadmap/>
                     </Routes>
                 </main>
             </div>

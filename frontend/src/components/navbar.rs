@@ -6,9 +6,19 @@ use super::theme_toggle::ThemeToggle;
 #[component]
 pub fn Navbar() -> impl IntoView {
     let (mobile_menu_open, set_mobile_menu_open) = signal(false);
+    let (xf_terminal_dropdown_open, set_xf_terminal_dropdown_open) = signal(false);
+    let (mobile_xf_terminal_open, set_mobile_xf_terminal_open) = signal(false);
 
     let toggle_mobile_menu = move |_| {
         set_mobile_menu_open.update(|open| *open = !*open);
+    };
+
+    let toggle_xf_terminal_dropdown = move |_| {
+        set_xf_terminal_dropdown_open.update(|open| *open = !*open);
+    };
+
+    let toggle_mobile_xf_terminal = move |_| {
+        set_mobile_xf_terminal_open.update(|open| *open = !*open);
     };
 
     view! {
@@ -31,6 +41,46 @@ pub fn Navbar() -> impl IntoView {
                     <div class="hidden md:flex items-center space-x-1">
                         <NavLink href="/about" label="About"/>
                         <NavLink href="/projects" label="Projects"/>
+                        
+                        // XF Terminal Dropdown
+                        <div class="relative">
+                            <button
+                                on:click=toggle_xf_terminal_dropdown
+                                on:blur=move |_| {
+                                    // Close dropdown after a short delay to allow link clicks
+                                    set_timeout(
+                                        move || set_xf_terminal_dropdown_open.set(false),
+                                        std::time::Duration::from_millis(200),
+                                    );
+                                }
+                                attr:class="relative px-4 py-2 text-gray-300 hover:text-red-400 text-sm font-medium font-nav transition-all duration-200 rounded-lg hover:bg-red-900/30 aria-[current]:text-red-400 aria-[current]:bg-red-900/20 group flex items-center"
+                            >
+                                "XF Terminal"
+                                <svg class="ml-1 h-4 w-4 transition-transform" class:rotate-180=xf_terminal_dropdown_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            {move || if xf_terminal_dropdown_open.get() {
+                                view! {
+                                    <div class="absolute top-full left-0 mt-1 w-48 bg-black border border-red-900 rounded-lg shadow-lg z-50">
+                                        <div class="py-1">
+                                            <A href="/proposal" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Proposal"
+                                            </A>
+                                            <A href="/architecture" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Architecture"
+                                            </A>
+                                            <A href="/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Roadmap"
+                                            </A>
+                                        </div>
+                                    </div>
+                                }.into_any()
+                            } else {
+                                view! { <div></div> }.into_any()
+                            }}
+                        </div>
+                        
                         <NavLink href="/contact" label="Contact"/>
                         
                         // Theme Toggle
@@ -71,6 +121,31 @@ pub fn Navbar() -> impl IntoView {
                             <div class="flex flex-col space-y-2 pt-4">
                                 <MobileNavLink href="/about" label="About" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 <MobileNavLink href="/projects" label="Projects" on_click=move |_| set_mobile_menu_open.set(false)/>
+                                
+                                // XF Terminal Mobile Dropdown
+                                <div>
+                                    <button
+                                        on:click=toggle_mobile_xf_terminal
+                                        attr:class="w-full px-4 py-3 text-left text-gray-300 hover:text-red-400 hover:bg-red-900/30 rounded-lg transition-all duration-200 font-medium font-nav flex items-center justify-between"
+                                    >
+                                        "XF Terminal"
+                                        <svg class="h-4 w-4 transition-transform" class:rotate-180=mobile_xf_terminal_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </button>
+                                    {move || if mobile_xf_terminal_open.get() {
+                                        view! {
+                                            <div class="pl-4 mt-1 space-y-1">
+                                                <MobileNavLink href="/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/roadmap" label="Roadmap" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                            </div>
+                                        }.into_any()
+                                    } else {
+                                        view! { <div></div> }.into_any()
+                                    }}
+                                </div>
+                                
                                 <MobileNavLink href="/contact" label="Contact" on_click=move |_| set_mobile_menu_open.set(false)/>
                             </div>
                         </div>
