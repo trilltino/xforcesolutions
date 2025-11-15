@@ -4,6 +4,14 @@
 # Stage 1: Build Frontend WASM
 FROM rust:1.83-slim as wasm-builder
 
+# Install build dependencies for wasm-bindgen-cli (requires OpenSSL)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        pkg-config \
+        libssl-dev \
+        && \
+    rm -rf /var/lib/apt/lists/*
+
 # Install wasm32 target and wasm-bindgen-cli
 RUN rustup target add wasm32-unknown-unknown && \
     cargo install wasm-bindgen-cli --version 0.2.87
