@@ -61,10 +61,14 @@ pub fn About() -> impl IntoView {
             // About Text Boxes
             <div class="mb-8">
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">"Hello, I'm Tino - Principal Engineer at XFSolutions, I specialize in building scalable and efficient applications using Rust"</h3>
-                    <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">"Hello, I'm Tino - Principal Engineer at XFSolutions, I specialize in building scalable and efficient applications using Rust"</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
+                        "Hi, I'm Tino - an Open Source Software Engineer that Specialises in using The Rust Programming Language to create User-Applications."
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans">
+                        "I'm Full Stack and enjoy using Rust crates such as Leptos and Axum to build safe and scalable Applications."
+                    </p>
                     <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 font-sans">
-                        "Placeholder text about yourself - your background, experience, and what you do"
+                        "After Leading the Stellar Development Foundations European Ambassador Program I have moved to a more developer focused mindset - I hope to use my expertise to further the adoption of Decentralised technologies world wide."
                     </p>
                 </div>
             </div>
