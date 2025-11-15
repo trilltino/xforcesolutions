@@ -1,27 +1,6 @@
-# fly.toml app configuration file generated for xforcesolutions on 2024-01-01T00:00:00Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = "xforcesolutions"
 primary_region = "iad"
 
 [build]
   dockerfile = "Dockerfile"
-
-[env]
-  PORT = "3000"
-
-[[services]]
-  internal_port = 3000
-  protocol = "tcp"
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["http", "tls"]
 
