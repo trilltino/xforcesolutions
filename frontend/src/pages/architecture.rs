@@ -10,7 +10,7 @@ pub fn Architecture() -> impl IntoView {
                     "Technical architecture and system design for XFTerminal."
                 </p>
                 <a
-                    href="/docs/index.html"
+                    href="/xforcesolutions/docs/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-block px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200 text-lg"
@@ -23,7 +23,7 @@ pub fn Architecture() -> impl IntoView {
                 <h2 class="text-2xl font-bold mb-4 font-heading text-gray-900 dark:text-white">"Documentation Sections"</h2>
                 <div class="grid md:grid-cols-2 gap-4">
                     <a
-                        href="/docs/index.html"
+                        href="/xforcesolutions/docs/index.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -32,7 +32,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"Main documentation index"</p>
                     </a>
                     <a
-                        href="/docs/tech-stack.html"
+                        href="/xforcesolutions/docs/tech-stack.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -41,7 +41,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"Technology stack details"</p>
                     </a>
                     <a
-                        href="/docs/terminal.html"
+                        href="/xforcesolutions/docs/terminal.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -50,7 +50,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"Terminal architecture"</p>
                     </a>
                     <a
-                        href="/docs/data-flows.html"
+                        href="/xforcesolutions/docs/data-flows.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -59,7 +59,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"Data flow diagrams"</p>
                     </a>
                     <a
-                        href="/docs/integrations.html"
+                        href="/xforcesolutions/docs/integrations.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -68,7 +68,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"Integration architecture"</p>
                     </a>
                     <a
-                        href="/docs/news-service.html"
+                        href="/xforcesolutions/docs/news-service.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
@@ -77,7 +77,7 @@ pub fn Architecture() -> impl IntoView {
                         <p class="text-gray-400 text-sm">"News service architecture"</p>
                     </a>
                     <a
-                        href="/docs/contracts.html"
+                        href="/xforcesolutions/docs/contracts.html"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="block p-4 bg-gray-800 dark:bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"

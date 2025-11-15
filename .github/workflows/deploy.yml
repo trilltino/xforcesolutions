@@ -141,34 +141,38 @@ jobs:
             ls -la frontend/ | head -20
           fi
           echo ""
-          if [ -d frontend/public ]; then
-            echo "Found frontend/public directory"
-            mkdir -p target/site/public
-            cp -r frontend/public/* target/site/public/ 2>/dev/null || true
-            echo "Copied public assets to target/site/public/"
-            echo "=== Verifying tino.webp in public/images ==="
-            if [ -f target/site/public/images/tino.webp ]; then
-              echo "✓ tino.webp exists in target/site/public/images/"
-            else
-              echo "✗ tino.webp missing from target/site/public/images/"
-            fi
-            echo "=== Verifying docs directory ==="
-            if [ -d target/site/public/docs ]; then
-              echo "✓ docs directory exists"
-              ls -lah target/site/public/docs/ | head -10
-            else
-              echo "⚠ docs directory not found (optional)"
+          echo ""
+          echo "=== CRITICAL: Ensuring tino.webp is in BOTH locations ==="
+          if [ -f target/site/images/tino.webp ]; then
+            echo "✓ tino.webp exists in target/site/images/"
+            # Also copy to public/images for redundancy
+            mkdir -p target/site/public/images
+            cp -v target/site/images/tino.webp target/site/public/images/tino.webp || true
+          else
+            echo "✗✗✗ tino.webp STILL MISSING from target/site/images/ ✗✗✗"
+            echo "Attempting direct copy from source:"
+            if [ -f frontend/public/images/tino.webp ]; then
+              cp -v frontend/public/images/tino.webp target/site/images/tino.webp
+              cp -v frontend/public/images/tino.webp target/site/public/images/tino.webp 2>/dev/null || true
             fi
           fi
           echo ""
-          echo "=== Copying docs to target/site/docs ==="
+          echo "=== Copying docs to target/site/docs (ROOT LEVEL) ==="
           if [ -d frontend/public/docs ]; then
             mkdir -p target/site/docs
             cp -r frontend/public/docs/* target/site/docs/ 2>/dev/null || true
             echo "✓ Copied docs to target/site/docs/"
+            echo "Verifying docs files:"
             ls -lah target/site/docs/ | head -10
+            if [ -f target/site/docs/index.html ]; then
+              echo "✓✓✓ docs/index.html EXISTS ✓✓✓"
+            else
+              echo "✗✗✗ docs/index.html MISSING ✗✗✗"
+            fi
           else
-            echo "⚠ frontend/public/docs directory not found"
+            echo "✗✗✗ frontend/public/docs directory NOT FOUND ✗✗✗"
+            echo "Listing frontend/public:"
+            ls -la frontend/public/ 2>/dev/null | head -20
           fi
 
       - name: Create .nojekyll file
