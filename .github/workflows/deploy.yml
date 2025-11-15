@@ -39,29 +39,36 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build Tailwind CSS
+      - name: Create site directory
         run: |
           mkdir -p target/site/pkg
+          mkdir -p target/site/public
+
+      - name: Build Tailwind CSS
+        run: |
           cd frontend && npx tailwindcss -i ./style/tailwind.css -o ../target/site/pkg/xforcesolutions.css --minify
 
-      - name: Build Leptos static site
+      - name: Build WASM frontend
         run: |
-          cargo install cargo-leptos --locked
-          cargo leptos build --release
+          cd frontend
+          cargo build --release --target wasm32-unknown-unknown --features hydrate
         env:
-          LEPTOS_OUTPUT_NAME: xforcesolutions
-          LEPTOS_SITE_ROOT: target/site
-          LEPTOS_SITE_PKG_DIR: pkg
-          LEPTOS_ENV: PROD
+          CARGO_TARGET_DIR: ../target
 
-      - name: List build artifacts
+      - name: Generate WASM bindings
         run: |
-          echo "Contents of target/site:"
-          ls -la target/site/ || true
-          echo "Contents of target/site/pkg:"
-          ls -la target/site/pkg/ || true
+          wasm-bindgen target/wasm32-unknown-unknown/release/frontend.wasm \
+            --out-dir target/site/pkg \
+            --target web \
+            --no-typescript
 
-      - name: Create index.html with correct paths
+      - name: Copy static assets
+        run: |
+          if [ -d frontend/public ]; then
+            cp -r frontend/public/* target/site/public/ 2>/dev/null || true
+          fi
+
+      - name: Create index.html
         run: |
           cat > target/site/index.html << 'EOF'
           <!DOCTYPE html>
@@ -72,7 +79,7 @@ jobs:
               <title>XFSolutions - Professional Solutions</title>
               <link rel="stylesheet" href="./pkg/xforcesolutions.css">
               <script type="module">
-                  import init, { hydrate } from './pkg/xforcesolutions.js';
+                  import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();
                   });
@@ -83,6 +90,18 @@ jobs:
           </body>
           </html>
           EOF
+
+      - name: Verify build artifacts
+        run: |
+          echo "=== Site directory ==="
+          ls -la target/site/ || true
+          echo "=== Pkg directory ==="
+          ls -la target/site/pkg/ || true
+          echo "=== Checking for required files ==="
+          test -f target/site/index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
+          test -f target/site/pkg/xforcesolutions.css && echo "✓ CSS exists" || echo "✗ CSS missing"
+          test -f target/site/pkg/frontend.js && echo "✓ JS exists" || echo "✗ JS missing"
+          test -f target/site/pkg/frontend_bg.wasm && echo "✓ WASM exists" || echo "✗ WASM missing"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
