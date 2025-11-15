@@ -54,17 +54,23 @@ jobs:
           LEPTOS_SITE_PKG_DIR: pkg
           LEPTOS_ENV: PROD
 
-      - name: Create index.html if missing
+      - name: List build artifacts
         run: |
-          if [ ! -f target/site/index.html ]; then
-            cat > target/site/index.html << 'EOF'
+          echo "Contents of target/site:"
+          ls -la target/site/ || true
+          echo "Contents of target/site/pkg:"
+          ls -la target/site/pkg/ || true
+
+      - name: Create index.html with correct paths
+        run: |
+          cat > target/site/index.html << 'EOF'
           <!DOCTYPE html>
           <html lang="en" class="dark">
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
-              <link rel="stylesheet" href="/pkg/xforcesolutions.css">
+              <link rel="stylesheet" href="./pkg/xforcesolutions.css">
               <script type="module">
                   import init, { hydrate } from './pkg/xforcesolutions.js';
                   init().then(() => {
@@ -77,7 +83,6 @@ jobs:
           </body>
           </html>
           EOF
-          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
