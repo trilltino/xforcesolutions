@@ -96,6 +96,11 @@ jobs:
             echo "✗ tino.webp NOT FOUND"
           fi
 
+      - name: Create .nojekyll file
+        run: |
+          touch target/site/.nojekyll
+          echo "Created .nojekyll file for GitHub Pages"
+
       - name: Create index.html
         run: |
           cat > target/site/index.html << 'EOF'
