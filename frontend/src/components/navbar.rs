@@ -55,7 +55,7 @@ pub fn Navbar() -> impl IntoView {
                                 }
                                 class="relative px-4 py-2 text-gray-300 hover:text-red-400 text-sm font-medium font-nav transition-all duration-200 rounded-lg hover:bg-red-900/30 aria-[current]:text-red-400 aria-[current]:bg-red-900/20 group flex items-center"
                             >
-                                "XF Terminal"
+                                "XFTerminal"
                                 <svg class="ml-1 h-4 w-4 transition-transform" class:rotate-180=xf_terminal_dropdown_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
@@ -72,6 +72,9 @@ pub fn Navbar() -> impl IntoView {
                                             </A>
                                             <A href="/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Roadmap"
+                                            </A>
+                                            <A href="/contracts" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Contracts"
                                             </A>
                                         </div>
                                     </div>
@@ -128,7 +131,7 @@ pub fn Navbar() -> impl IntoView {
                                         on:click=toggle_mobile_xf_terminal
                                         class="w-full px-4 py-3 text-left text-gray-300 hover:text-red-400 hover:bg-red-900/30 rounded-lg transition-all duration-200 font-medium font-nav flex items-center justify-between"
                                     >
-                                        "XF Terminal"
+                                        "XFTerminal"
                                         <svg class="h-4 w-4 transition-transform" class:rotate-180=mobile_xf_terminal_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                         </svg>
@@ -139,6 +142,7 @@ pub fn Navbar() -> impl IntoView {
                                                 <MobileNavLink href="/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/roadmap" label="Roadmap" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                             </div>
                                         }.into_any()
                                     } else {
