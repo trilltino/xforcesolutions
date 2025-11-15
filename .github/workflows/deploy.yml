@@ -96,15 +96,32 @@ jobs:
             ls -lah target/site/images/ | head -20
             echo ""
             echo "=== File size check ==="
+            echo "Checking for tino.webp:"
             if [ -f target/site/images/tino.webp ]; then
               echo "✓ tino.webp exists"
               echo "  Size: $(stat -f%z target/site/images/tino.webp 2>/dev/null || stat -c%s target/site/images/tino.webp 2>/dev/null || echo 'unknown') bytes"
               echo "  Path: $(realpath target/site/images/tino.webp 2>/dev/null || echo target/site/images/tino.webp)"
             else
               echo "✗✗✗ tino.webp NOT FOUND ✗✗✗"
-              echo "Listing target/site/images contents:"
-              ls -la target/site/images/ || echo "Directory is empty or doesn't exist"
             fi
+            echo ""
+            echo "Checking for tino.jpg:"
+            if [ -f target/site/images/tino.jpg ]; then
+              echo "✓ tino.jpg exists"
+              echo "  Size: $(stat -f%z target/site/images/tino.jpg 2>/dev/null || stat -c%s target/site/images/tino.jpg 2>/dev/null || echo 'unknown') bytes"
+            else
+              echo "✗✗✗ tino.jpg NOT FOUND ✗✗✗"
+            fi
+            echo ""
+            echo "=== ALL FILES IN IMAGES DIRECTORY ==="
+            echo "Source (frontend/public/images):"
+            ls -lah frontend/public/images/ | grep -i tino || echo "No tino files found in source"
+            echo ""
+            echo "Target (target/site/images):"
+            ls -lah target/site/images/ | grep -i tino || echo "No tino files found in target"
+            echo ""
+            echo "=== COMPLETE FILE LIST IN TARGET ==="
+            find target/site/images -type f -name "*tino*" || echo "No tino files found"
           else
             echo "✗✗✗ frontend/public/images directory NOT FOUND ✗✗✗"
             echo "Listing frontend/public:"
@@ -296,15 +313,28 @@ jobs:
           echo "=== Images directory tree ==="
           find target/site/images -type f 2>/dev/null | head -20 || echo "Images directory not found"
           echo ""
-          echo "=== Testing file accessibility ==="
+          echo "=== CRITICAL: TINO IMAGE CHECK ==="
+          echo "Looking for tino.webp:"
           if [ -f target/site/images/tino.webp ]; then
-            echo "✓ tino.webp is accessible"
-            echo "  Absolute path: $(cd target/site && pwd)/images/tino.webp"
+            echo "✓✓✓ tino.webp EXISTS ✓✓✓"
+            ls -lah target/site/images/tino.webp
           else
-            echo "✗ tino.webp is NOT accessible"
-            echo "  Expected at: target/site/images/tino.webp"
-            echo "  Current working directory: $(pwd)"
+            echo "✗✗✗ tino.webp MISSING ✗✗✗"
           fi
+          echo ""
+          echo "Looking for tino.jpg:"
+          if [ -f target/site/images/tino.jpg ]; then
+            echo "✓✓✓ tino.jpg EXISTS ✓✓✓"
+            ls -lah target/site/images/tino.jpg
+          else
+            echo "✗✗✗ tino.jpg MISSING ✗✗✗"
+            echo "  Code references /images/tino.jpg but file doesn't exist!"
+            echo "  Available tino files:"
+            find target/site/images -type f -iname "*tino*" || echo "  None found"
+          fi
+          echo ""
+          echo "=== ALL IMAGE FILES IN TARGET ==="
+          ls -lah target/site/images/ | head -30
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
