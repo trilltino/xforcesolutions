@@ -73,27 +73,51 @@ jobs:
 
       - name: Copy static assets
         run: |
-          echo "=== Copying static assets ==="
+          echo "=== EXTENSIVE DEBUG: Copying static assets ==="
+          echo "Current directory: $(pwd)"
+          echo "Repository name: xforcesolutions"
+          echo "GitHub Pages base path: /xforcesolutions/"
+          echo ""
+          echo "=== Checking source directory ==="
           if [ -d frontend/public/images ]; then
-            echo "Found frontend/public/images directory"
+            echo "✓ Found frontend/public/images directory"
+            echo "Contents of frontend/public/images:"
+            ls -lah frontend/public/images/ | head -20
+            echo ""
+            echo "=== Creating target directory ==="
             mkdir -p target/site/images
-            cp -r frontend/public/images/* target/site/images/
-            echo "Copied images to target/site/images/"
-            ls -la target/site/images/ | head -10
+            echo "✓ Created target/site/images"
+            echo ""
+            echo "=== Copying images ==="
+            cp -v frontend/public/images/* target/site/images/ 2>&1 | head -20
+            echo ""
+            echo "=== Verifying copied files ==="
+            echo "Contents of target/site/images:"
+            ls -lah target/site/images/ | head -20
+            echo ""
+            echo "=== File size check ==="
+            if [ -f target/site/images/tino.webp ]; then
+              echo "✓ tino.webp exists"
+              echo "  Size: $(stat -f%z target/site/images/tino.webp 2>/dev/null || stat -c%s target/site/images/tino.webp 2>/dev/null || echo 'unknown') bytes"
+              echo "  Path: $(realpath target/site/images/tino.webp 2>/dev/null || echo target/site/images/tino.webp)"
+            else
+              echo "✗✗✗ tino.webp NOT FOUND ✗✗✗"
+              echo "Listing target/site/images contents:"
+              ls -la target/site/images/ || echo "Directory is empty or doesn't exist"
+            fi
           else
-            echo "WARNING: frontend/public/images directory not found"
+            echo "✗✗✗ frontend/public/images directory NOT FOUND ✗✗✗"
+            echo "Listing frontend/public:"
+            ls -la frontend/public/ || echo "frontend/public doesn't exist"
+            echo "Listing frontend:"
+            ls -la frontend/ | head -20
           fi
+          echo ""
           if [ -d frontend/public ]; then
             echo "Found frontend/public directory"
             mkdir -p target/site/public
             cp -r frontend/public/* target/site/public/ 2>/dev/null || true
             echo "Copied public assets to target/site/public/"
-          fi
-          echo "=== Verifying image files ==="
-          if [ -f target/site/images/tino.webp ]; then
-            echo "✓ tino.webp exists"
-          else
-            echo "✗ tino.webp NOT FOUND"
           fi
 
       - name: Create .nojekyll file
@@ -163,10 +187,32 @@ jobs:
 
       - name: Verify build artifacts
         run: |
-          echo "=== Site directory ==="
-          ls -la target/site/ || true
+          echo "=== EXTENSIVE DEBUG: Final site structure ==="
+          echo "=== Site root directory ==="
+          ls -lah target/site/ || true
+          echo ""
+          echo "=== Images directory (CRITICAL) ==="
+          if [ -d target/site/images ]; then
+            echo "✓ Images directory exists"
+            echo "Full contents:"
+            ls -lah target/site/images/ || true
+            echo ""
+            echo "=== Testing tino.webp specifically ==="
+            if [ -f target/site/images/tino.webp ]; then
+              echo "✓✓✓ tino.webp EXISTS ✓✓✓"
+              file target/site/images/tino.webp || echo "file command not available"
+              du -h target/site/images/tino.webp || echo "du command not available"
+            else
+              echo "✗✗✗ tino.webp MISSING ✗✗✗"
+              echo "Files in images directory:"
+              find target/site/images -type f || echo "No files found"
+            fi
+          else
+            echo "✗✗✗ Images directory MISSING ✗✗✗"
+          fi
+          echo ""
           echo "=== Pkg directory ==="
-          ls -la target/site/pkg/ || true
+          ls -lah target/site/pkg/ || true
           echo "=== WASM build output ==="
           ls -la target/wasm32-unknown-unknown/release/*.wasm 2>/dev/null || echo "No WASM files found in expected location"
           echo "=== Checking for required files ==="
@@ -225,6 +271,32 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Final artifact verification
+        run: |
+          echo "=== FINAL ARTIFACT VERIFICATION BEFORE UPLOAD ==="
+          echo "Complete directory tree of target/site:"
+          find target/site -type f | sort
+          echo ""
+          echo "=== Critical files check ==="
+          echo "index.html: $([ -f target/site/index.html ] && echo 'EXISTS' || echo 'MISSING')"
+          echo "404.html: $([ -f target/site/404.html ] && echo 'EXISTS' || echo 'MISSING')"
+          echo ".nojekyll: $([ -f target/site/.nojekyll ] && echo 'EXISTS' || echo 'MISSING')"
+          echo "favicon.svg: $([ -f target/site/favicon.svg ] && echo 'EXISTS' || echo 'MISSING')"
+          echo "tino.webp: $([ -f target/site/images/tino.webp ] && echo 'EXISTS' || echo 'MISSING')"
+          echo ""
+          echo "=== Images directory tree ==="
+          find target/site/images -type f 2>/dev/null | head -20 || echo "Images directory not found"
+          echo ""
+          echo "=== Testing file accessibility ==="
+          if [ -f target/site/images/tino.webp ]; then
+            echo "✓ tino.webp is accessible"
+            echo "  Absolute path: $(cd target/site && pwd)/images/tino.webp"
+          else
+            echo "✗ tino.webp is NOT accessible"
+            echo "  Expected at: target/site/images/tino.webp"
+            echo "  Current working directory: $(pwd)"
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
