@@ -1,0 +1,55 @@
+[package]
+name = "xforcesolutions"
+version = "0.1.0"
+
+[leptos]
+# The site root folder is where cargo-leptos generates all output
+site-root = "target/site"
+
+# The site package directory is where the app's static assets are located
+site-pkg-dir = "pkg"
+
+# The IP and port where this server should listen
+site-addr = "127.0.0.1:3000"
+
+# The port to use for automatic reload monitoring
+reload-port = 3001
+
+# The browserlist query used for optimizing the CSS
+browserquery = "defaults"
+
+# Set by cargo-leptos watch when building with that tool. Controls whether autoreload JS will be included in the head
+watch = false
+
+# The environment Leptos will run in, usually "DEV" or "PROD"
+env = "DEV"
+
+# The features to use when compiling the bin target
+bin-features = ["ssr"]
+
+# The features to use when compiling the lib target
+lib-features = ["hydrate"]
+
+# The profile to use for the lib target when compiling for release
+lib-profile-release = "wasm-release"
+
+# Assets source directory
+assets-dir = "frontend"
+
+# The output name used by cargo-leptos for the client-side bundle
+output-name = "xforcesolutions"
+
+# The command used by cargo-leptos to build the client-side bundle
+lib-cargo-args = []
+
+# The tailwind input file
+tailwind-input-file = "frontend/style/tailwind.css"
+
+# The tailwind config file
+tailwind-config-file = "frontend/tailwind.config.js"
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1

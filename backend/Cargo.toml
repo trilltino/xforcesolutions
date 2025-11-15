@@ -1,0 +1,54 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "test_email"
+path = "src/bin/test_email.rs"
+
+[dependencies]
+
+# Leptos SSR
+leptos = { workspace = true }
+leptos_axum = { workspace = true }
+leptos_meta = { workspace = true }
+leptos_router = { workspace = true }
+leptos_config = "0.8"
+
+# Axum web framework
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { version = "0.6", features = ["fs", "cors", "trace"] }
+
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Error handling
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+
+# Validation
+regex = "1.10"
+
+# Logging
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Date/Time
+chrono = "0.4"
+
+# Email
+lettre = { version = "0.11", features = ["tokio1-native-tls", "builder"] }
+
+# Internal dependencies
+frontend = { path = "../frontend", features = ["ssr"] }
+shared = { path = "../shared" }
+
+[features]
+default = []
+ssr = ["leptos/ssr", "leptos_meta/ssr", "leptos_router/ssr"]

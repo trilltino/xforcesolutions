@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Default: light mode */
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+  
+  /* Dark mode (when .dark class is present) */
+  .dark body {
+    @apply bg-black text-white;
+  }
+}
+
+@layer utilities {
+  /* Glossy white text effect for dark mode */
+  .glossy-white {
+    color: #ffffff;
+    text-shadow: 
+      0 1px 2px rgba(255, 255, 255, 0.3),
+      0 2px 4px rgba(255, 255, 255, 0.2),
+      0 0 8px rgba(255, 255, 255, 0.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  /* Dark glossy text effect for light mode */
+  .glossy-dark {
+    color: #1a1a1a;
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.15),
+      0 0 8px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.5));
+  }
+  
+  /* Reflective header effect - adapts to theme */
+  .reflective-header {
+    position: relative;
+  }
+  
+  /* Dark mode reflective header */
+  .dark .reflective-header {
+    background: linear-gradient(180deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.85) 30%,
+      rgba(255, 255, 255, 0.75) 50%, 
+      rgba(255, 255, 255, 0.65) 70%,
+      rgba(255, 255, 255, 0.55) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+      0 1px 3px rgba(255, 255, 255, 0.6),
+      0 2px 6px rgba(255, 255, 255, 0.4),
+      0 0 12px rgba(255, 255, 255, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.4);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  }
+  
+  /* Light mode reflective header (default) */
+  .reflective-header {
+    background: linear-gradient(180deg, 
+      rgba(26, 26, 26, 0.95) 0%, 
+      rgba(26, 26, 26, 0.85) 30%,
+      rgba(26, 26, 26, 0.75) 50%, 
+      rgba(26, 26, 26, 0.65) 70%,
+      rgba(26, 26, 26, 0.55) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.3),
+      0 0 12px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(255, 255, 255, 0.6);
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.7));
+  }
+  
+  /* Add a shine/reflection overlay effect for light mode */
+  .reflective-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.5) 50%, 
+      transparent 100%);
+    animation: shine 3s infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    50%, 100% {
+      left: 100%;
+    }
+  }
+}

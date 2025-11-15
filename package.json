@@ -1,0 +1,12 @@
+{
+  "name": "xforcesolutions",
+  "version": "0.1.0",
+  "description": "XFSolutions - Professional Technology Solutions",
+  "scripts": {
+    "tailwind:build": "tailwindcss -i ./frontend/style/tailwind.css -o ./frontend/style/main.css",
+    "tailwind:watch": "tailwindcss -i ./frontend/style/tailwind.css -o ./frontend/style/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

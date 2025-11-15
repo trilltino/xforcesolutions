@@ -1,0 +1,67 @@
+# Rust build artifacts
+/target
+**/target
+
+# Node modules (can be regenerated)
+node_modules/
+**/node_modules/
+
+# Reference repositories (cloned for reference only)
+/reference
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+NUL
+desktop.ini
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.env
+**/.env
+**/secrets/
+**/*secret*
+**/*key*
+**/*password*
+**/*token*
+**/*credential*
+
+# Leptos artifacts
+/pkg
+/dist
+.leptos
+
+# Logs and data files
+**/contact_submissions.log
+*.log
+**/data/
+data/
+backend/data/
+**/*.log
+
+# Build scripts (Windows specific)
+build.bat
+start.bat
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Executable files (should not be in repository)
+*.exe
+*.dll
+*.so
+*.dylib
