@@ -2,7 +2,7 @@
 # Builds Rust WASM frontend, compiles Tailwind CSS, and creates production backend
 
 # Stage 1: Build Frontend WASM
-FROM rust:1.75-slim as wasm-builder
+FROM rust:1.83-slim as wasm-builder
 
 # Install wasm32 target and wasm-bindgen-cli
 RUN rustup target add wasm32-unknown-unknown && \
@@ -58,7 +58,7 @@ RUN mkdir -p target/site/pkg && \
     npx tailwindcss -i ./style/tailwind.css -o ../target/site/pkg/xforcesolutions.css --minify
 
 # Stage 3: Build Backend
-FROM rust:1.75-slim as backend-builder
+FROM rust:1.83-slim as backend-builder
 
 WORKDIR /app
 
@@ -107,18 +107,18 @@ COPY frontend/public /app/frontend/public
 RUN mkdir -p /app/data
 
 # Set environment variables
-# Note: Railway sets PORT automatically, backend will use it if available
+# Fly.io sets PORT automatically, backend will use it if available
 # SERVER_ADDR is used as fallback if PORT is not set
 ENV SERVER_ADDR=0.0.0.0:3000
 ENV RATE_LIMIT_REQUESTS=60
 ENV RATE_LIMIT_WINDOW=60
 ENV CONTACT_LOG_FILE=/app/data/contact_submissions.log
 
-# Expose port (Railway will map this automatically)
+# Expose port (Fly.io will map this automatically)
 # The backend reads PORT env var and binds to 0.0.0.0:PORT
 EXPOSE 3000
 
 # Run the backend
-# The backend automatically uses PORT env var if set (Railway provides this)
+# The backend automatically uses PORT env var if set (Fly.io provides this)
 CMD ["./backend"]
 
