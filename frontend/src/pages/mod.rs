@@ -7,3 +7,4 @@ pub mod architecture;
 pub mod roadmap;
 pub mod contracts;
 pub mod documentation;
+pub mod status;
