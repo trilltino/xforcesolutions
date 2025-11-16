@@ -236,13 +236,13 @@ jobs:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
               <link rel="icon" type="image/svg+xml" href="/xforcesolutions/favicon.svg">
-              <link rel="stylesheet" href="./pkg/xforcesolutions.css">
+              <link rel="stylesheet" href="/xforcesolutions/pkg/xforcesolutions.css">
               <script>
                   // Set base path for images and assets
                   window.BASE_PATH = '/xforcesolutions';
               </script>
               <script type="module">
-                  import init, { hydrate } from './pkg/frontend.js';
+                  import init, { hydrate } from '/xforcesolutions/pkg/frontend.js';
                   init().then(() => {
                       hydrate();
                   }).catch(console.error);
@@ -265,13 +265,13 @@ jobs:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>XFSolutions - Professional Solutions</title>
               <link rel="icon" type="image/svg+xml" href="/xforcesolutions/favicon.svg">
-              <link rel="stylesheet" href="./pkg/xforcesolutions.css">
+              <link rel="stylesheet" href="/xforcesolutions/pkg/xforcesolutions.css">
               <script>
                   // Set base path for images and assets
                   window.BASE_PATH = '/xforcesolutions';
               </script>
               <script type="module">
-                  import init, { hydrate } from './pkg/frontend.js';
+                  import init, { hydrate } from '/xforcesolutions/pkg/frontend.js';
                   init().then(() => {
                       hydrate();
                   }).catch(console.error);
