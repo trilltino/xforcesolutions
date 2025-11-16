@@ -41,9 +41,6 @@ pub fn Navbar() -> impl IntoView {
                             <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <span class="text-white font-black text-lg font-nav">"XF"</span>
                             </div>
-                            <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent font-nav">
-                                "XF"
-                            </span>
                         </A>
                     </div>
 
