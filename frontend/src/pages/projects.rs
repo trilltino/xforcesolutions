@@ -18,7 +18,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Fundraisely"
-                        tags=vec!["Rust", "Web", "Full Stack"]
+                        tags=vec!["Rust", "Leptos", "Axum", "Full Stack"]
                         image="/xforcesolutions/public/images/fundraisely.png"
                     />
                     <ProjectTextBox
@@ -31,7 +31,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Yew Scaffold"
-                        tags=vec!["Rust", "Yew", "Tooling"]
+                        tags=vec!["Rust", "Yew", "Tooling", "CLI"]
                         image="/xforcesolutions/public/images/yew-scaffold.png"
                     />
                     <ProjectTextBox
@@ -44,7 +44,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="XFTerminal"
-                        tags=vec!["Rust", "Terminal", "CLI"]
+                        tags=vec!["Rust", "DeFi", "Solana", "Systems"]
                         image="/xforcesolutions/public/images/xfterminal.png"
                     />
                     <ProjectTextBox
@@ -57,7 +57,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="XFChess"
-                        tags=vec!["Rust", "Game", "Web"]
+                        tags=vec!["Rust", "Game", "Web", "Tokio"]
                         image="/xforcesolutions/public/images/xfchess.png"
                     />
                     <ProjectTextBox
@@ -70,7 +70,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Solana Contracts"
-                        tags=vec!["Rust", "Solana", "Blockchain"]
+                        tags=vec!["Rust", "Anchor", "Solana", "Smart Contracts"]
                         image="/xforcesolutions/public/images/solana-contracts.png"
                     />
                     <ProjectTextBox
@@ -83,7 +83,7 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Stellar Contracts"
-                        tags=vec!["Rust", "Stellar", "Blockchain"]
+                        tags=vec!["Rust", "Stellar", "Blockchain", "DeFi"]
                         image="/xforcesolutions/public/images/stellar-contracts.png"
                     />
                     <ProjectTextBox
