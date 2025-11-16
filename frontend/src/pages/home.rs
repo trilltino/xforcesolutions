@@ -1,4 +1,5 @@
 use leptos::prelude::*;
+use leptos_router::components::A;
 
 #[component]
 pub fn Home() -> impl IntoView {
@@ -35,12 +36,12 @@ pub fn Home() -> impl IntoView {
                     <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
                         "Discover our portfolio of innovative technology solutions"
                     </p>
-                    <a
+                    <A
                         href="/projects"
-                        class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
+                        attr:class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "View Projects"
-                    </a>
+                    </A>
                 </div>
                 <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
                     <h2 class="text-3xl font-bold mb-4 font-heading">
@@ -49,12 +50,12 @@ pub fn Home() -> impl IntoView {
                     <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
                         "Have a project in mind? Let's discuss how we can help"
                     </p>
-                    <a
+                    <A
                         href="/contact"
-                        class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
+                        attr:class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "Contact Us"
-                    </a>
+                    </A>
                 </div>
             </div>
 
