@@ -8,6 +8,8 @@ pub fn Navbar() -> impl IntoView {
     let (mobile_menu_open, set_mobile_menu_open) = signal(false);
     let (xf_terminal_dropdown_open, set_xf_terminal_dropdown_open) = signal(false);
     let (mobile_xf_terminal_open, set_mobile_xf_terminal_open) = signal(false);
+    let (roadmap_dropdown_open, set_roadmap_dropdown_open) = signal(false);
+    let (mobile_roadmap_open, set_mobile_roadmap_open) = signal(false);
 
     let toggle_mobile_menu = move |_| {
         set_mobile_menu_open.update(|open| *open = !*open);
@@ -19,6 +21,14 @@ pub fn Navbar() -> impl IntoView {
 
     let toggle_mobile_xf_terminal = move |_| {
         set_mobile_xf_terminal_open.update(|open| *open = !*open);
+    };
+
+    let toggle_roadmap_dropdown = move |_| {
+        set_roadmap_dropdown_open.update(|open| *open = !*open);
+    };
+
+    let toggle_mobile_roadmap = move |_| {
+        set_mobile_roadmap_open.update(|open| *open = !*open);
     };
 
     view! {
@@ -42,12 +52,55 @@ pub fn Navbar() -> impl IntoView {
                         <NavLink href="/about" label="About me"/>
                         <NavLink href="/projects" label="Proof of Work"/>
                         
+                        // Roadmap Dropdown
+                        <div class="relative">
+                            <button
+                                on:click=toggle_roadmap_dropdown
+                                on:blur=move |_| {
+                                    set_timeout(
+                                        move || set_roadmap_dropdown_open.set(false),
+                                        std::time::Duration::from_millis(200),
+                                    );
+                                }
+                                class="relative px-4 py-2 text-gray-300 hover:text-red-400 text-sm font-medium font-nav transition-all duration-200 rounded-lg hover:bg-red-900/30 aria-[current]:text-red-400 aria-[current]:bg-red-900/20 group flex items-center"
+                            >
+                                "Roadmap"
+                                <svg class="ml-1 h-4 w-4 transition-transform" class:rotate-180=roadmap_dropdown_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            {move || if roadmap_dropdown_open.get() {
+                                view! {
+                                    <div class="absolute top-full left-0 mt-1 w-48 bg-black border border-red-900 rounded-lg shadow-lg z-50">
+                                        <div class="py-1">
+                                            <A href="/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Overview"
+                                            </A>
+                                            <A href="/roadmap/month1" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Month 1"
+                                            </A>
+                                            <A href="/roadmap/month2" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Month 2"
+                                            </A>
+                                            <A href="/roadmap/month3" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Month 3"
+                                            </A>
+                                            <A href="/roadmap/month4" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Month 4"
+                                            </A>
+                                        </div>
+                                    </div>
+                                }.into_any()
+                            } else {
+                                view! { <div></div> }.into_any()
+                            }}
+                        </div>
+                        
                         // XF Terminal Dropdown
                         <div class="relative">
                             <button
                                 on:click=toggle_xf_terminal_dropdown
                                 on:blur=move |_| {
-                                    // Close dropdown after a short delay to allow link clicks
                                     set_timeout(
                                         move || set_xf_terminal_dropdown_open.set(false),
                                         std::time::Duration::from_millis(200),
@@ -69,9 +122,6 @@ pub fn Navbar() -> impl IntoView {
                                             </A>
                                             <A href="/architecture" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Architecture"
-                                            </A>
-                                            <A href="/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
-                                                "Roadmap"
                                             </A>
                                             <A href="/contracts" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Contracts"
@@ -128,6 +178,32 @@ pub fn Navbar() -> impl IntoView {
                                 <MobileNavLink href="/about" label="About me" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 <MobileNavLink href="/projects" label="Proof of Work" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 
+                                // Roadmap Mobile Dropdown
+                                <div>
+                                    <button
+                                        on:click=toggle_mobile_roadmap
+                                        class="w-full px-4 py-3 text-left text-gray-300 hover:text-red-400 hover:bg-red-900/30 rounded-lg transition-all duration-200 font-medium font-nav flex items-center justify-between"
+                                    >
+                                        "Roadmap"
+                                        <svg class="h-4 w-4 transition-transform" class:rotate-180=mobile_roadmap_open.get() fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </button>
+                                    {move || if mobile_roadmap_open.get() {
+                                        view! {
+                                            <div class="pl-4 mt-1 space-y-1">
+                                                <MobileNavLink href="/roadmap" label="Overview" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/roadmap/month1" label="Month 1" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/roadmap/month2" label="Month 2" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/roadmap/month3" label="Month 3" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/roadmap/month4" label="Month 4" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                            </div>
+                                        }.into_any()
+                                    } else {
+                                        view! { <div></div> }.into_any()
+                                    }}
+                                </div>
+                                
                                 // XF Terminal Mobile Dropdown
                                 <div>
                                     <button
@@ -144,7 +220,6 @@ pub fn Navbar() -> impl IntoView {
                                             <div class="pl-4 mt-1 space-y-1">
                                                 <MobileNavLink href="/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
-                                                <MobileNavLink href="/roadmap" label="Roadmap" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/documentation" label="Documentation" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                             </div>
