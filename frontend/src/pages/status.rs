@@ -48,47 +48,47 @@ pub fn Status() -> impl IntoView {
                 </h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <FeatureCard
-                        icon="🖥️"
+                        icon=""
                         title="Bloomberg-Style Desktop Interface"
                         description="Native desktop application with professional trading terminal UI built using egui/eframe for optimal performance and user experience."
                     />
                     <FeatureCard
-                        icon="📊"
+                        icon=""
                         title="Real-Time Price Feeds"
                         description="Live market data and price updates directly from Solana blockchain, keeping you informed of market movements in real-time."
                     />
                     <FeatureCard
-                        icon="📈"
+                        icon=""
                         title="Candlestick Charts"
                         description="Advanced charting capabilities with candlestick visualization for technical analysis and trading decisions."
                     />
                     <FeatureCard
-                        icon="🔄"
+                        icon=""
                         title="Batch Swap Router Contracts"
                         description="Atomic batch token swaps on Solana, enabling multiple swaps in a single transaction with significant fee savings."
                     />
                     <FeatureCard
-                        icon="🤖"
+                        icon=""
                         title="AI-Powered Trading Assistant"
                         description="Integrated AI assistance using rust-genai with multi-provider support (DeepSeek, OpenAI, Anthropic, Gemini) for market analysis and strategy guidance."
                     />
                     <FeatureCard
-                        icon="💬"
+                        icon=""
                         title="Social Messaging System"
                         description="Decentralized messaging using Braid Protocol (CRDT-based) for copy-trading, signal sharing, and trader communication without centralized intermediaries."
                     />
                     <FeatureCard
-                        icon="🔌"
+                        icon=""
                         title="REST API for Trading Bots"
                         description="Comprehensive REST API enabling developers to build automated trading strategies, copy-trading systems, and algorithmic trading bots in any language."
                     />
                     <FeatureCard
-                        icon="🔐"
+                        icon=""
                         title="Non-Custodial Security"
                         description="Your keys, your funds. Full control over your assets with secure wallet integration and transaction signing."
                     />
                     <FeatureCard
-                        icon="🌐"
+                        icon=""
                         title="Web Wallet Interface"
                         description="Browser-based wallet helper built with Leptos/WASM for seamless web integration and accessibility."
                     />
@@ -162,7 +162,7 @@ pub fn Status() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🔧 Modular Library Architecture"
+                            "Modular Library Architecture"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Reusable libraries designed for crates.io publication: lib-solana (blockchain integration), lib-core (data models), lib-web (server code), lib-auth (authentication), and lib-utils (shared utilities)."
@@ -170,7 +170,7 @@ pub fn Status() -> impl IntoView {
                     </div>
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🔄 Unified Type Safety"
+                            "Unified Type Safety"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Shared types across Solana programs, desktop app, backend API, and web components ensure consistency and eliminate type-related bugs across the entire stack."
@@ -178,7 +178,7 @@ pub fn Status() -> impl IntoView {
                     </div>
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🚀 Production-Ready Patterns"
+                            "Production-Ready Patterns"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Idiomatic Rust code with comprehensive error handling, logging, documentation, and modular architecture suitable for production deployment and open-source contribution."
@@ -186,7 +186,7 @@ pub fn Status() -> impl IntoView {
                     </div>
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🌍 Public Infrastructure"
+                            "Public Infrastructure"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Fully open-source platform serving as public infrastructure for the Solana DeFi ecosystem, providing reusable patterns and best practices for the community."
@@ -204,7 +204,7 @@ pub fn Status() -> impl IntoView {
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                                "⚡ Atomic Execution"
+                                "Atomic Execution"
                             </h3>
                             <p class="text-gray-700 dark:text-gray-300 font-sans">
                                 "All swaps in a batch either succeed together or fail together. No partial executions - your funds are always safe."
@@ -212,7 +212,7 @@ pub fn Status() -> impl IntoView {
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                                "💰 Fee Reduction"
+                                "Fee Reduction"
                             </h3>
                             <p class="text-gray-700 dark:text-gray-300 font-sans">
                                 "Pay transaction fees once instead of multiple times. Execute up to 10 swaps in a single transaction, saving 60-90% on fees."
@@ -220,7 +220,7 @@ pub fn Status() -> impl IntoView {
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                                "🛡️ Slippage Protection"
+                                "Slippage Protection"
                             </h3>
                             <p class="text-gray-700 dark:text-gray-300 font-sans">
                                 "Built-in validation ensures you receive the minimum expected output. Maximum slippage tolerance: 5%."
@@ -228,7 +228,7 @@ pub fn Status() -> impl IntoView {
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                                "🔗 Jupiter Integration"
+                                "Jupiter Integration"
                             </h3>
                             <p class="text-gray-700 dark:text-gray-300 font-sans">
                                 "Integrates with Jupiter aggregator for best-price routing across all DEXes on Solana."
@@ -246,7 +246,7 @@ pub fn Status() -> impl IntoView {
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "📚 Extensible Contract Plugin Architecture"
+                            "Extensible Contract Plugin Architecture"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Easy integration of new Solana programs and DeFi protocols without modifying core code. Plugin-based architecture for maximum flexibility."
@@ -254,7 +254,7 @@ pub fn Status() -> impl IntoView {
                     </div>
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🔌 REST API"
+                            "REST API"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Comprehensive REST API enabling developers to build automated trading strategies, copy-trading systems, and algorithmic trading bots in any programming language."
@@ -262,7 +262,7 @@ pub fn Status() -> impl IntoView {
                     </div>
                     <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "📖 Open Source & Documented"
+                            "Open Source & Documented"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Fully open-source with comprehensive documentation, serving as reference implementation for Rust DeFi development patterns and best practices."

@@ -56,7 +56,7 @@ pub fn Contracts() -> impl IntoView {
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                        "⚡ Atomic Execution"
+                        "Atomic Execution"
                     </h3>
                     <p class="text-gray-700 dark:text-gray-300 font-sans">
                         "All swaps in a batch either succeed together or fail together. No partial executions - your funds are always safe."
@@ -64,7 +64,7 @@ pub fn Contracts() -> impl IntoView {
                 </div>
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                        "💰 Fee Reduction"
+                        "Fee Reduction"
                     </h3>
                     <p class="text-gray-700 dark:text-gray-300 font-sans">
                         "Pay transaction fees once instead of multiple times. Execute up to 10 swaps in a single transaction."
@@ -72,7 +72,7 @@ pub fn Contracts() -> impl IntoView {
                 </div>
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                        "🛡️ Slippage Protection"
+                        "Slippage Protection"
                     </h3>
                     <p class="text-gray-700 dark:text-gray-300 font-sans">
                         "Built-in validation ensures you receive the minimum expected output. Maximum slippage tolerance: 5%."
@@ -80,7 +80,7 @@ pub fn Contracts() -> impl IntoView {
                 </div>
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                        "🔗 Jupiter Integration"
+                        "Jupiter Integration"
                     </h3>
                     <p class="text-gray-700 dark:text-gray-300 font-sans">
                         "Integrates with Jupiter aggregator for best-price routing across all DEXes on Solana."
@@ -304,7 +304,7 @@ pub struct BatchSwapEvent {
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "⚡ High Throughput"
+                            "High Throughput"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Solana processes thousands of transactions per second, enabling batch swaps to execute quickly and efficiently."
@@ -312,7 +312,7 @@ pub struct BatchSwapEvent {
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "💸 Low Fees"
+                            "Low Fees"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Transaction fees are typically $0.00025 or less, making batch swaps economically viable even for small amounts."
@@ -320,7 +320,7 @@ pub struct BatchSwapEvent {
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🔒 Atomic Transactions"
+                            "Atomic Transactions"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Solana's transaction model ensures all instructions in a transaction execute atomically - perfect for batch swaps."
@@ -328,7 +328,7 @@ pub struct BatchSwapEvent {
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                            "🌐 Program Composability"
+                            "Program Composability"
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 font-sans">
                             "Cross-program invocations (CPI) allow seamless integration with Jupiter and other DeFi protocols."

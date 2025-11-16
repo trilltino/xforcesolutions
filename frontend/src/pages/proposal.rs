@@ -25,7 +25,7 @@ pub fn Proposal() -> impl IntoView {
                 REST APIs will enable developers to build automated trading strategies, copy-trading systems, and algorithmic 
                 trading bots in any programming language.
             "#,
-            icon: "🚀",
+            icon: "",
         },
         ProposalCard {
             title: "Public Goods Contribution & DeFi Innovation",
@@ -66,7 +66,7 @@ pub fn Proposal() -> impl IntoView {
                 than locked behind proprietary platforms. Every component is designed to be reusable, extensible, and educational, 
                 establishing patterns and best practices that benefit the entire Solana developer community.
             "#,
-            icon: "🌐",
+            icon: "",
         },
         ProposalCard {
             title: "Competitive Analysis",
@@ -89,7 +89,7 @@ pub fn Proposal() -> impl IntoView {
                 democratizes access to institutional-quality infrastructure while strengthening the decentralized finance ecosystem 
                 through community collaboration and transparency.
             "#,
-            icon: "⚡",
+            icon: "",
         },
     ];
     
