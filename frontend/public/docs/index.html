@@ -43,114 +43,26 @@
                 </p>
             </div>
 
-            <div class="diagram-container">
-                <svg class="diagram" viewBox="0 0 1800 1200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arrowhead" markerWidth="18" markerHeight="18" refX="15" refY="6" orient="auto">
-                            <polygon points="0 0, 18 6, 0 12" fill="#dc2626" />
-                        </marker>
-                    </defs>
+            <h3>System Architecture Overview</h3>
+            <p>
+                XForce Terminal consists of three main projects that work together, along with external services that provide 
+                essential functionality. Here's how they all connect:
+            </p>
 
-                    <!-- XForce Terminal - Larger with more space -->
-                    <rect x="80" y="80" width="500" height="380" class="component-box terminal-color" />
-                    <text x="330" y="140" class="component-text" font-size="40" font-weight="bold">XForce Terminal</text>
-                    <text x="330" y="190" class="component-text" font-size="24">The Main App</text>
-                    <text x="330" y="240" class="component-text" font-size="22">Desktop Trading Interface</text>
-                    <text x="330" y="290" class="component-text" font-size="22">Backend Server (Port 3001)</text>
-                    <text x="330" y="340" class="component-text" font-size="22">Web Wallet Helper</text>
-                    <text x="330" y="390" class="component-text" font-size="22">Stores Your Data Locally</text>
-                    <text x="330" y="440" class="component-text" font-size="22">All in One Package</text>
-
-                    <!-- XForce Terminal Contracts -->
-                    <rect x="700" y="80" width="500" height="380" class="component-box contracts-color" />
-                    <text x="950" y="140" class="component-text" font-size="40" font-weight="bold">Smart Contracts</text>
-                    <text x="950" y="190" class="component-text" font-size="24">Batch Swap Router</text>
-                    <text x="950" y="240" class="component-text" font-size="22">Lives on Solana Blockchain</text>
-                    <text x="950" y="290" class="component-text" font-size="22">Saves Money on Fees</text>
-                    <text x="950" y="340" class="component-text" font-size="22">Executes Multiple Swaps</text>
-                    <text x="950" y="390" class="component-text" font-size="22">All at Once</text>
-                    <text x="950" y="440" class="component-text" font-size="22">Atomic Execution</text>
-
-                    <!-- XForce Crypto Info -->
-                    <rect x="1320" y="80" width="450" height="380" class="component-box crypto-info-color" />
-                    <text x="1545" y="140" class="component-text" font-size="38" font-weight="bold">News Service</text>
-                    <text x="1545" y="190" class="component-text" font-size="24">Crypto Info Feed</text>
-                    <text x="1545" y="240" class="component-text" font-size="22">Collects News Articles</text>
-                    <text x="1545" y="290" class="component-text" font-size="22">Analyzes Sentiment</text>
-                    <text x="1545" y="340" class="component-text" font-size="22">Serves to Terminal</text>
-                    <text x="1545" y="390" class="component-text" font-size="22">Port 3003</text>
-                    <text x="1545" y="440" class="component-text" font-size="22">Real-Time Updates</text>
-
-                    <!-- Solana Blockchain - More prominent -->
-                    <rect x="550" y="600" width="800" height="320" class="component-box solana-color" />
-                    <text x="950" y="680" class="component-text" font-size="42" fill="#ffffff" font-weight="bold">Solana Blockchain</text>
-                    <text x="950" y="730" class="component-text" font-size="24" fill="#ffffff">Where Your Trades Happen</text>
-                    <text x="950" y="775" class="component-text" font-size="24" fill="#ffffff">Smart Contracts Live Here</text>
-                    <text x="950" y="820" class="component-text" font-size="24" fill="#ffffff">Transactions Get Processed</text>
-                    <text x="950" y="865" class="component-text" font-size="24" fill="#ffffff">Super Fast & Low Cost</text>
-                    <text x="950" y="910" class="component-text" font-size="24" fill="#ffffff">Immutable & Secure</text>
-
-                    <!-- Jupiter Aggregator -->
-                    <rect x="80" y="600" width="400" height="240" class="component-box jupiter-color" />
-                    <text x="280" y="670" class="component-text" font-size="32" font-weight="bold">Jupiter</text>
-                    <text x="280" y="720" class="component-text" font-size="24">Finds Best Prices</text>
-                    <text x="280" y="770" class="component-text" font-size="24">Routes Your Swaps</text>
-                    <text x="280" y="820" class="component-text" font-size="24">DEX Aggregator</text>
-
-                    <!-- Connections with better labels and more spacing -->
-                    <!-- Terminal to Contracts - horizontal arrow above boxes -->
-                    <line x1="580" y1="250" x2="700" y2="250" class="arrow" />
-                    <rect x="620" y="210" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="670" y="240" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Uses</text>
-                    <text x="670" y="265" class="arrow-label" font-size="18" fill="#dc2626">Library</text>
-
-                    <!-- Contracts to News Service - horizontal arrow above boxes -->
-                    <line x1="1200" y1="250" x2="1320" y2="250" class="arrow" />
-                    <rect x="1230" y="210" width="90" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="1275" y="240" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Gets</text>
-                    <text x="1275" y="265" class="arrow-label" font-size="18" fill="#dc2626">News</text>
-
-                    <!-- Contracts to Solana - vertical arrow with gap -->
-                    <line x1="950" y1="460" x2="950" y2="540" class="arrow" />
-                    <line x1="950" y1="540" x2="950" y2="600" class="arrow" />
-                    <rect x="920" y="480" width="90" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="965" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Runs</text>
-
-                    <!-- Terminal to Jupiter - diagonal arrow with gap -->
-                    <line x1="330" y1="460" x2="330" y2="540" class="arrow" />
-                    <line x1="330" y1="540" x2="280" y2="600" class="arrow" />
-                    <rect x="250" y="480" width="90" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="295" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Asks</text>
-
-                    <!-- Terminal to Solana - diagonal arrow with gap, avoiding Contracts box -->
-                    <line x1="330" y1="460" x2="330" y2="540" class="arrow" />
-                    <line x1="330" y1="540" x2="850" y2="600" class="arrow" />
-                    <rect x="500" y="480" width="100" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="550" y="508" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Sends</text>
-                </svg>
-            </div>
-
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color terminal-color"></div>
-                    <span><strong>Trading Terminal</strong> - The main application you use</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color contracts-color"></div>
-                    <span><strong>Smart Contracts</strong> - Programs on Solana that save you money</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color crypto-info-color"></div>
-                    <span><strong>News Service</strong> - Collects and serves crypto news</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color solana-color"></div>
-                    <span><strong>Solana Blockchain</strong> - Where everything happens</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color jupiter-color"></div>
-                    <span><strong>Jupiter</strong> - Finds the best swap prices</span>
-                </div>
+            <div class="plain-english" style="margin: 30px 0;">
+                <h4>🔗 How Everything Connects</h4>
+                <ul style="margin: 20px 0; padding-left: 30px; line-height: 2;">
+                    <li><strong>Trading Terminal</strong> uses the <strong>Client Library</strong> from Smart Contracts to interact with blockchain programs</li>
+                    <li><strong>Trading Terminal</strong> requests news from the <strong>News Service</strong> via HTTP API (port 3003)</li>
+                    <li><strong>Smart Contracts</strong> are deployed to the <strong>Solana Blockchain</strong> where they execute batch swaps</li>
+                    <li><strong>Trading Terminal</strong> asks <strong>Jupiter</strong> for the best swap prices across all DEXs</li>
+                    <li><strong>Trading Terminal</strong> sends transactions directly to <strong>Solana Blockchain</strong> via RPC</li>
+                </ul>
+                <p>
+                    All three projects are independent but designed to work together seamlessly. The terminal uses contracts via a library 
+                    (compiled into the app), connects to the news service over HTTP, and communicates with Solana blockchain and Jupiter 
+                    aggregator directly.
+                </p>
             </div>
 
             <h3>What Each Part Does</h3>

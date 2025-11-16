@@ -42,62 +42,22 @@
                     in your trading terminal.
                 </p>
             </div>
-            
-            <div class="diagram-container">
-                <svg class="diagram" viewBox="0 0 1700 1000" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Python Scraper - Left -->
-                    <rect x="80" y="80" width="480" height="300" class="component-box crypto-info-color" />
-                    <text x="320" y="150" class="component-text" font-size="36" font-weight="bold">Python Scraper</text>
-                    <text x="320" y="200" class="component-text" font-size="24">Runs Every 15 Minutes</text>
-                    <text x="320" y="245" class="component-text" font-size="22">Reads News Websites</text>
-                    <text x="320" y="290" class="component-text" font-size="22">RSS Feeds & APIs</text>
-                    <text x="320" y="335" class="component-text" font-size="22">Cleans Up Data</text>
-                    <text x="320" y="380" class="component-text" font-size="22">Polars Processing</text>
 
-                    <!-- PostgreSQL - Center -->
-                    <rect x="600" y="80" width="480" height="300" class="component-box crypto-info-color" />
-                    <text x="840" y="150" class="component-text" font-size="36" font-weight="bold">PostgreSQL Database</text>
-                    <text x="840" y="200" class="component-text" font-size="24">Stores Everything</text>
-                    <text x="840" y="245" class="component-text" font-size="22">Articles, Sources</text>
-                    <text x="840" y="290" class="component-text" font-size="22">Sentiment Scores</text>
-                    <text x="840" y="335" class="component-text" font-size="22">Analytics Data</text>
-                    <text x="840" y="380" class="component-text" font-size="22">Fast Queries</text>
+            <h3>System Architecture Overview</h3>
+            <p>
+                The news service consists of three main components that work together to collect, process, and serve crypto news:
+            </p>
 
-                    <!-- Rust API Server - Right -->
-                    <rect x="1120" y="80" width="480" height="300" class="component-box crypto-info-color" />
-                    <text x="1360" y="150" class="component-text" font-size="36" font-weight="bold">Rust API Server</text>
-                    <text x="1360" y="200" class="component-text" font-size="24">Serves News to Terminal</text>
-                    <text x="1360" y="245" class="component-text" font-size="22">Port 3003</text>
-                    <text x="1360" y="290" class="component-text" font-size="22">REST API</text>
-                    <text x="1360" y="335" class="component-text" font-size="22">Fast & Reliable</text>
-                    <text x="1360" y="380" class="component-text" font-size="22">Axum Framework</text>
-
-                    <!-- Terminal Connection - Bottom -->
-                    <rect x="600" y="500" width="600" height="220" class="component-box terminal-color" />
-                    <text x="900" y="570" class="component-text" font-size="36" font-weight="bold">XForce Terminal</text>
-                    <text x="900" y="620" class="component-text" font-size="24">Gets News Feed</text>
-                    <text x="900" y="665" class="component-text" font-size="22">Displays in Interface</text>
-                    <text x="900" y="710" class="component-text" font-size="22">Helps You Trade Smarter</text>
-
-                    <!-- Connections -->
-                    <!-- Python Scraper to PostgreSQL - horizontal arrow between boxes -->
-                    <line x1="560" y1="230" x2="600" y2="230" class="arrow" />
-                    <rect x="570" y="200" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="620" y="225" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Saves</text>
-                    <text x="620" y="250" class="arrow-label" font-size="18" fill="#dc2626">Articles</text>
-
-                    <!-- PostgreSQL to Rust API - horizontal arrow between boxes -->
-                    <line x1="1080" y1="230" x2="1120" y2="230" class="arrow" />
-                    <rect x="1090" y="200" width="100" height="60" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="1140" y="225" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Reads</text>
-                    <text x="1140" y="250" class="arrow-label" font-size="18" fill="#dc2626">From DB</text>
-
-                    <!-- Rust API to Terminal - diagonal arrow with gap -->
-                    <line x1="1360" y1="380" x2="1360" y2="440" class="arrow" />
-                    <line x1="1360" y1="440" x2="900" y2="500" class="arrow" />
-                    <rect x="1100" y="400" width="100" height="50" fill="white" stroke="#dc2626" stroke-width="4" rx="8" />
-                    <text x="1150" y="428" class="arrow-label" font-size="20" fill="#dc2626" font-weight="bold">Serves</text>
-                </svg>
+            <div class="plain-english" style="margin: 30px 0;">
+                <h4>🔄 Data Flow Overview</h4>
+                <p>
+                    The <strong>Python Scraper</strong> runs every 15 minutes and collects articles from news websites, RSS feeds, and APIs. 
+                    It processes and cleans the data using Polars, then saves everything to the <strong>PostgreSQL Database</strong> which 
+                    stores articles, sources, sentiment scores, and analytics. The <strong>Rust API Server</strong> (running on port 3003) 
+                    reads from the database and serves news to the <strong>XForce Terminal</strong> via REST API. When you open your terminal, 
+                    it requests the latest news from the API server, which quickly retrieves articles from the database and sends them 
+                    back to be displayed in your trading interface.
+                </p>
             </div>
 
             <h3>How News Gets to You</h3>

@@ -92,24 +92,6 @@ pub fn Projects() -> impl IntoView {
                     />
                 </div>
             </div>
-
-            // Call to Action Section
-            <div class="mt-16 text-center">
-                <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg">
-                    <h2 class="text-3xl font-bold mb-4 font-heading">
-                        "Have a Project in Mind?"
-                    </h2>
-                    <p class="text-lg text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
-                        "Let's work together to bring your vision to life"
-                    </p>
-                    <a
-                        href="/contact"
-                        class="inline-block px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
-                    >
-                        "Get in Touch"
-                    </a>
-                </div>
-            </div>
         </div>
     }
 }
