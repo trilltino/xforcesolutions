@@ -12,61 +12,83 @@ pub fn Projects() -> impl IntoView {
                 "Explore our portfolio of innovative technology solutions"
             </p>
 
-            // Two column layout: Projects on left, Placeholder boxes on right
-            <div class="grid md:grid-cols-2 gap-8">
-                // Left column: Projects stacked vertically
-                <div class="space-y-6">
-                    <ProjectCard
+            // Six symmetrical rows: Photo on left, Text box on right
+            <div class="space-y-8">
+                // Row 1: Fundraisely
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
                         title="Fundraisely"
-                        description="A fundraising platform built with modern web technologies"
                         tags=vec!["Rust", "Web", "Full Stack"]
                         image="/xforcesolutions/public/images/fundraisely.png"
                     />
-                    <ProjectCard
-                        title="XFChess"
-                        description="A chess application built with Rust and web technologies"
-                        tags=vec!["Rust", "Game", "Web"]
-                        image="/xforcesolutions/public/images/xfchess.png"
-                    />
-                    <ProjectCard
-                        title="Yew Scaffold"
-                        description="A scaffolding tool for Yew framework projects"
-                        tags=vec!["Rust", "Yew", "Tooling"]
-                        image="/xforcesolutions/public/images/yew-scaffold.png"
-                    />
-                    <ProjectCard
-                        title="XFTerminal"
-                        description="A terminal application built with Rust"
-                        tags=vec!["Rust", "Terminal", "CLI"]
-                        image="/xforcesolutions/public/images/xfterminal.png"
-                    />
-                    <ProjectCard
-                        title="Solana Contracts"
-                        description="Smart contracts deployed on the Solana blockchain"
-                        tags=vec!["Rust", "Solana", "Blockchain"]
-                        image="/xforcesolutions/public/images/solana-contracts.png"
-                    />
-                    <ProjectCard
-                        title="Stellar Contracts"
-                        description="Smart contracts and applications on the Stellar network"
-                        tags=vec!["Rust", "Stellar", "Blockchain"]
-                        image="/xforcesolutions/public/images/stellar-contracts.png"
+                    <ProjectTextBox
+                        title="Fundraisely"
+                        content="A comprehensive fundraising platform built with modern web technologies. Features include campaign management, donation processing, real-time analytics, and social media integration. Built end-to-end in Rust for maximum performance and security."
                     />
                 </div>
 
-                // Right column: Placeholder text boxes
-                <div class="space-y-6">
-                    <PlaceholderBox
-                        title="Project Details"
-                        content="Additional information about projects will be displayed here."
+                // Row 2: Yew Scaffold
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
+                        title="Yew Scaffold"
+                        tags=vec!["Rust", "Yew", "Tooling"]
+                        image="/xforcesolutions/public/images/yew-scaffold.png"
                     />
-                    <PlaceholderBox
-                        title="Technologies"
-                        content="Details about the technologies and tools used in these projects."
+                    <ProjectTextBox
+                        title="Yew Scaffold"
+                        content="A scaffolding tool for Yew framework projects that generates boilerplate code and project structure. Streamlines the setup process for new Yew applications with best practices, routing, and component templates built-in."
                     />
-                    <PlaceholderBox
-                        title="Achievements"
-                        content="Key achievements and milestones from the development process."
+                </div>
+
+                // Row 3: XFTerminal
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
+                        title="XFTerminal"
+                        tags=vec!["Rust", "Terminal", "CLI"]
+                        image="/xforcesolutions/public/images/xfterminal.png"
+                    />
+                    <ProjectTextBox
+                        title="XFTerminal"
+                        content="A professional-grade DeFi trading terminal for Solana blockchain. Features Bloomberg-style native desktop interface, real-time price feeds, candlestick charts, and batch swap router contracts. Built entirely in Rust with non-custodial security."
+                    />
+                </div>
+
+                // Row 4: XFChess
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
+                        title="XFChess"
+                        tags=vec!["Rust", "Game", "Web"]
+                        image="/xforcesolutions/public/images/xfchess.png"
+                    />
+                    <ProjectTextBox
+                        title="XFChess"
+                        content="A full-featured chess application built with Rust and web technologies. Includes multiplayer support, game analysis, move validation, and tournament modes. Demonstrates advanced state management and real-time communication patterns."
+                    />
+                </div>
+
+                // Row 5: Solana Contracts
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
+                        title="Solana Contracts"
+                        tags=vec!["Rust", "Solana", "Blockchain"]
+                        image="/xforcesolutions/public/images/solana-contracts.png"
+                    />
+                    <ProjectTextBox
+                        title="Solana Contracts"
+                        content="Production-grade Solana smart contracts for batch token swaps. Features atomic execution, slippage protection, Jupiter integration, and comprehensive security validations. Deployed on Solana devnet with full open-source documentation."
+                    />
+                </div>
+
+                // Row 6: Stellar Contracts
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ProjectImage
+                        title="Stellar Contracts"
+                        tags=vec!["Rust", "Stellar", "Blockchain"]
+                        image="/xforcesolutions/public/images/stellar-contracts.png"
+                    />
+                    <ProjectTextBox
+                        title="Stellar Contracts"
+                        content="Smart contracts and applications deployed on the Stellar network. Includes token issuance, multi-signature accounts, and payment processing. Demonstrates cross-chain capabilities and Stellar's efficient consensus mechanism integration."
                     />
                 </div>
             </div>
@@ -93,43 +115,41 @@ pub fn Projects() -> impl IntoView {
 }
 
 #[component]
-fn ProjectCard(
+fn ProjectImage(
     title: &'static str,
-    description: &'static str,
     tags: Vec<&'static str>,
     image: &'static str,
 ) -> impl IntoView {
     view! {
-        <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg border border-gray-800 dark:border-gray-800 border-gray-200 dark:border-gray-800 hover:border-primary-500 transition-all duration-200 flex flex-col">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-200 flex flex-col h-full">
             <img
                 src=image
                 alt=title
-                class="w-full h-48 object-cover rounded-lg mb-4 border border-gray-700 dark:border-gray-700 border-gray-300 dark:border-gray-700"
+                class="w-full h-full min-h-[300px] object-cover rounded-lg mb-4 border border-gray-300 dark:border-gray-700"
             />
-            <h3 class="text-2xl font-bold mb-3 font-heading">{title}</h3>
-            <p class="text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-4 font-sans flex-grow">
-                {description}
-            </p>
-            <div class="flex flex-wrap gap-2">
-                {tags.into_iter().map(|tag| view! {
-                    <span class="px-3 py-1 bg-primary-900/30 text-primary-400 rounded-full text-sm font-sans">
-                        {tag}
-                    </span>
-                }).collect_view()}
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold font-heading text-gray-900 dark:text-white">{title}</h3>
+                <div class="flex flex-wrap gap-2">
+                    {tags.into_iter().map(|tag| view! {
+                        <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 rounded-full text-sm font-sans">
+                            {tag}
+                        </span>
+                    }).collect_view()}
+                </div>
             </div>
         </div>
     }
 }
 
 #[component]
-fn PlaceholderBox(
+fn ProjectTextBox(
     title: &'static str,
     content: &'static str,
 ) -> impl IntoView {
     view! {
-        <div class="bg-black dark:bg-black bg-white dark:bg-black p-6 rounded-lg border border-gray-800 dark:border-gray-800 border-gray-200 dark:border-gray-800">
-            <h3 class="text-xl font-bold mb-3 font-heading">{title}</h3>
-            <p class="text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 font-sans">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-200 flex flex-col h-full justify-center">
+            <h3 class="text-2xl font-bold mb-4 font-heading text-gray-900 dark:text-white">{title}</h3>
+            <p class="text-gray-700 dark:text-gray-300 font-sans leading-relaxed">
                 {content}
             </p>
         </div>
