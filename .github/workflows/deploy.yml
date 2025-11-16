@@ -241,6 +241,15 @@ jobs:
               <script>
                   // Set base path for images and assets
                   window.BASE_PATH = '/xforcesolutions';
+                  
+                  // Strip base path from pathname for Leptos Router
+                  const basePath = '/xforcesolutions';
+                  if (window.location.pathname.startsWith(basePath)) {
+                      const pathWithoutBase = window.location.pathname.slice(basePath.length) || '/';
+                      if (pathWithoutBase !== window.location.pathname) {
+                          window.history.replaceState({}, '', pathWithoutBase);
+                      }
+                  }
               </script>
               <script type="module">
                   import init, { hydrate } from './pkg/frontend.js';
@@ -273,12 +282,24 @@ jobs:
                   window.BASE_PATH = '/xforcesolutions';
                   
                   // Handle GitHub Pages SPA routing
-                  // If accessing a path without the base path, redirect to correct base path
+                  const basePath = '/xforcesolutions';
                   var path = window.location.pathname;
-                  if (!path.startsWith('/xforcesolutions/')) {
+                  
+                  // If accessing a path without the base path, redirect to correct base path
+                  if (!path.startsWith(basePath + '/') && path !== basePath) {
                       // Preserve the original path and redirect to base path
-                      var newPath = '/xforcesolutions' + (path === '/' ? '' : path);
+                      var newPath = basePath + (path === '/' ? '' : path);
                       window.location.replace(newPath);
+                      // Exit early, don't proceed with hydration
+                      throw new Error('Redirecting...');
+                  }
+                  
+                  // Strip base path from pathname for Leptos Router (after redirect check)
+                  if (path.startsWith(basePath)) {
+                      const pathWithoutBase = path.slice(basePath.length) || '/';
+                      if (pathWithoutBase !== path) {
+                          window.history.replaceState({}, '', pathWithoutBase);
+                      }
                   }
               </script>
               <script type="module">
