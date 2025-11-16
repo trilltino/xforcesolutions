@@ -241,8 +241,9 @@ jobs:
               <script>
                   // Set base path for images and assets
                   window.BASE_PATH = '/xforcesolutions';
-                  
-                  // Strip base path from pathname for Leptos Router
+              </script>
+              <script type="module">
+                  // Strip base path from pathname for Leptos Router AFTER module loads
                   const basePath = '/xforcesolutions';
                   if (window.location.pathname.startsWith(basePath)) {
                       const pathWithoutBase = window.location.pathname.slice(basePath.length) || '/';
@@ -250,8 +251,7 @@ jobs:
                           window.history.replaceState({}, '', pathWithoutBase);
                       }
                   }
-              </script>
-              <script type="module">
+                  
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();
@@ -293,16 +293,19 @@ jobs:
                       // Exit early, don't proceed with hydration
                       throw new Error('Redirecting...');
                   }
+              </script>
+              <script type="module">
+                  // Strip base path from pathname for Leptos Router AFTER module loads
+                  const basePath = '/xforcesolutions';
+                  const path = window.location.pathname;
                   
-                  // Strip base path from pathname for Leptos Router (after redirect check)
                   if (path.startsWith(basePath)) {
                       const pathWithoutBase = path.slice(basePath.length) || '/';
                       if (pathWithoutBase !== path) {
                           window.history.replaceState({}, '', pathWithoutBase);
                       }
                   }
-              </script>
-              <script type="module">
+                  
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();
