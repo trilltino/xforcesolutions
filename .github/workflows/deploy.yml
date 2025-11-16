@@ -269,6 +269,15 @@ jobs:
               <script>
                   // Set base path for images and assets
                   window.BASE_PATH = '/xforcesolutions';
+                  
+                  // Handle GitHub Pages SPA routing
+                  // If accessing a path without the base path, redirect to correct base path
+                  var path = window.location.pathname;
+                  if (!path.startsWith('/xforcesolutions/')) {
+                      // Preserve the original path and redirect to base path
+                      var newPath = '/xforcesolutions' + (path === '/' ? '' : path);
+                      window.location.replace(newPath);
+                  }
               </script>
               <script type="module">
                   import init, { hydrate } from '/xforcesolutions/pkg/frontend.js';
