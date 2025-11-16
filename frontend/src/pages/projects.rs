@@ -121,11 +121,11 @@ fn ProjectImage(
     image: &'static str,
 ) -> impl IntoView {
     view! {
-        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-200 flex flex-col h-full">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-200 flex flex-col">
             <img
                 src=image
                 alt=title
-                class="w-full h-full min-h-[300px] object-cover rounded-lg mb-4 border border-gray-300 dark:border-gray-700"
+                class="w-full object-contain rounded-lg mb-4 border border-gray-300 dark:border-gray-700 max-h-[500px]"
             />
             <div class="flex items-center justify-between">
                 <h3 class="text-2xl font-bold font-heading text-gray-900 dark:text-white">{title}</h3>
