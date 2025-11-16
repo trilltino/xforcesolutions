@@ -243,15 +243,6 @@ jobs:
                   window.BASE_PATH = '/xforcesolutions';
               </script>
               <script type="module">
-                  // Strip base path from pathname for Leptos Router AFTER module loads
-                  const basePath = '/xforcesolutions';
-                  if (window.location.pathname.startsWith(basePath)) {
-                      const pathWithoutBase = window.location.pathname.slice(basePath.length) || '/';
-                      if (pathWithoutBase !== window.location.pathname) {
-                          window.history.replaceState({}, '', pathWithoutBase);
-                      }
-                  }
-                  
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();
@@ -295,17 +286,6 @@ jobs:
                   }
               </script>
               <script type="module">
-                  // Strip base path from pathname for Leptos Router AFTER module loads
-                  const basePath = '/xforcesolutions';
-                  const path = window.location.pathname;
-                  
-                  if (path.startsWith(basePath)) {
-                      const pathWithoutBase = path.slice(basePath.length) || '/';
-                      if (pathWithoutBase !== path) {
-                          window.history.replaceState({}, '', pathWithoutBase);
-                      }
-                  }
-                  
                   import init, { hydrate } from './pkg/frontend.js';
                   init().then(() => {
                       hydrate();

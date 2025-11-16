@@ -43,6 +43,22 @@ pub fn App() -> impl IntoView {
                 <Navbar/>
                 <main class="container mx-auto px-4 py-8">
                     <Routes fallback=|| "Page not found.">
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("")) view=About/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("about")) view=About/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("home")) view=Home/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("projects")) view=Projects/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("contact")) view=Contact/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("proposal")) view=Proposal/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("architecture")) view=Architecture/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("roadmap")) view=Roadmap/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("roadmap"), StaticSegment("month1")) view=Month1/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("roadmap"), StaticSegment("month2")) view=Month2/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("roadmap"), StaticSegment("month3")) view=Month3/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("roadmap"), StaticSegment("month4")) view=Month4/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("contracts")) view=Contracts/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("documentation")) view=Documentation/>
+                        <Route path=(StaticSegment("xforcesolutions"), StaticSegment("status")) view=Status/>
+                        // Fallback routes for when path is already stripped (shouldn't happen but for safety)
                         <Route path=StaticSegment("") view=About/>
                         <Route path=StaticSegment("about") view=About/>
                         <Route path=StaticSegment("home") view=Home/>
