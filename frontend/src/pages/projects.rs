@@ -7,10 +7,6 @@ pub fn Projects() -> impl IntoView {
             <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center font-heading">
                 "Proof of Work"
             </h1>
-            
-            <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
-                "Explore our portfolio of innovative technology solutions"
-            </p>
 
             // Six symmetrical rows: Photo on left, Text box on right
             <div class="space-y-8">
@@ -18,18 +14,19 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Fundraisely"
-                        tags=vec!["Rust", "Leptos", "Axum", "Full Stack"]
+                        tags=vec!["React", "TypeScript", "Node.js", "Blockchain"]
                         image="/xforcesolutions/public/images/fundraisely.png"
                     />
                     <ProjectTextBox
                         title="Fundraisely"
                         bullets=vec![
-                            "Comprehensive fundraising platform built end-to-end in Rust for maximum performance and security",
-                            "Full-stack web application with Leptos for reactive UI and Axum for high-performance backend API",
-                            "Campaign management system with real-time analytics and donation processing capabilities",
-                            "Social media integration for campaign promotion and donor engagement",
-                            "Production-ready Rust web development patterns with idiomatic code architecture",
-                            "Type-safe frontend and backend with shared types across the entire application stack"
+                            "Real-time multiplayer quiz fundraising platform built with React, TypeScript, and Socket.io for engaging charity events",
+                            "Multi-chain blockchain integration supporting Solana, EVM-compatible chains (Base, Polygon), and Stellar for transparent, trustless fundraising",
+                            "Smart contract-based prize distribution with automated payment processing ensuring immutable rules and transparent accounting",
+                            "Charity-first economic model guaranteeing minimum 40% of all funds automatically go to charity with configurable host fees (0-5%)",
+                            "Real-time multiplayer gameplay with Socket.io-powered WebSocket connections for synchronized quiz experiences across devices",
+                            "Interactive fundraising extras (Freeze, Clue, Robin Hood, Restore) that maximize donations with 100% of extras going to charity",
+                            "Production-ready full-stack architecture with Express backend, MySQL database, JWT authentication, and comprehensive REST API"
                         ]
                     />
                 </div>

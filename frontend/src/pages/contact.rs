@@ -183,7 +183,7 @@ pub fn Contact() -> impl IntoView {
 
     view! {
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold mb-8 text-center font-heading">"Contact Us"</h1>
+            <h1 class="text-4xl font-bold mb-8 text-center font-heading">"Contact Me"</h1>
 
             <p class="text-xl text-gray-300 dark:text-gray-300 text-gray-700 dark:text-gray-300 text-center mb-12 font-sans">
                 "Get in touch with us to discuss your project"

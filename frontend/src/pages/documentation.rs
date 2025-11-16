@@ -23,19 +23,23 @@ pub fn Documentation() -> impl IntoView {
                         class="w-full h-auto rounded-lg shadow-lg border border-gray-800 dark:border-gray-800 border-gray-200 dark:border-gray-800"
                     />
                 </a>
-                <img
-                    src="/xforcesolutions/public/images/bloomberg-cover.png"
-                    alt="Bloomberg Cover"
-                    class="w-full h-auto rounded-lg shadow-lg border border-gray-800 dark:border-gray-800 border-gray-200 dark:border-gray-800"
-                />
-            </div>
-
-            // Placeholder text box below
-            <div class="bg-black dark:bg-black bg-white dark:bg-black p-8 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-bold mb-4 font-heading text-gray-900 dark:text-white">"Documentation Overview"</h2>
-                <p class="text-gray-600 dark:text-gray-300 text-gray-700 dark:text-gray-300 mb-6 font-sans">
-                    "This section will contain documentation for the XFTerminal project."
-                </p>
+                <a
+                    href="https://docs.google.com/document/d/1X1Tfeagb8pR02tN1AD_JAo2ut1I_Q6G2Z_yDgRidqBo/edit?tab=t.0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block hover:opacity-90 transition-opacity"
+                >
+                    <div class="relative">
+                        <img
+                            src="/xforcesolutions/public/images/bloomberg-cover.png"
+                            alt="Bloomberg Cover"
+                            class="w-full h-auto rounded-lg shadow-lg border border-gray-800 dark:border-gray-800 border-gray-200 dark:border-gray-800"
+                        />
+                        <div class="absolute bottom-4 left-4 right-4 bg-black/80 dark:bg-black/80 text-white p-3 rounded-lg">
+                            <p class="text-sm font-semibold font-sans">"WIP XFTerminal 'Getting Started'"</p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     }

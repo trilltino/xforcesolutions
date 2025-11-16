@@ -54,7 +54,7 @@ pub fn Home() -> impl IntoView {
                         href="/xforcesolutions/contact"
                         attr:class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
-                        "Contact Us"
+                        "Contact Me"
                     </A>
                 </div>
             </div>
