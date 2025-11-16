@@ -38,19 +38,19 @@ pub fn Projects() -> impl IntoView {
                 <div class="grid md:grid-cols-2 gap-8">
                     <ProjectImage
                         title="Yew Scaffold"
-                        tags=vec!["Rust", "Yew", "Tooling", "CLI"]
+                        tags=vec!["Rust", "Yew", "Stellar", "WASM"]
                         image="/xforcesolutions/public/images/yew-scaffold.png"
                     />
                     <ProjectTextBox
                         title="Yew Scaffold"
                         bullets=vec![
-                            "Production-ready scaffolding tool for Yew framework projects that generates boilerplate code",
-                            "Streamlines the setup process for new Rust web applications with best practices built-in",
-                            "Includes routing templates and component structure for rapid development",
-                            "wasm-bindgen integration for transaction signing with multi-wallet support (Phantom, Solflare, Backpack, Sollet, Ledger)",
-                            "JavaScript interop via wasm-bindgen inline functions enabling secure wallet adapter bindings for signing Solana transactions",
-                            "Transaction serialization/deserialization with base64 encoding for seamless wallet communication",
-                            "Type-safe Rust bindings to wallet provider APIs with error handling and async transaction signing workflows"
+                            "Stellar blockchain dApp scaffolding tool built with Yew framework and WebAssembly for secure browser-based transactions",
+                            "wasm-bindgen integration enables seamless Rust-to-JavaScript interop for signing Stellar transactions directly in the browser",
+                            "JavaScript bindings via wasm-bindgen inline functions allow secure access to Stellar SDK APIs for transaction construction and signing",
+                            "Type-safe Rust bindings to Stellar JavaScript SDKs with comprehensive error handling and async Promise-based workflows",
+                            "Transaction serialization/deserialization with XDR encoding for seamless Stellar network communication",
+                            "Component-based Yew architecture with routing templates and state management for rapid Stellar dApp development",
+                            "Production-ready boilerplate code following Rust best practices for building secure, efficient Stellar blockchain applications"
                         ]
                     />
                 </div>
