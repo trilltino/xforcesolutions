@@ -29,7 +29,7 @@ pub fn Roadmap() -> impl IntoView {
             // Roadmap Cards Grid
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 // Month 1 Card
-                <A href="/roadmap/month1" attr:class="group">
+                <A href="/xforcesolutions/roadmap/month1" attr:class="group">
                     <div class="bg-gradient-to-br from-gray-900 to-black border border-red-900/50 rounded-xl p-8 shadow-2xl hover:border-red-500 transition-all duration-300 hover:scale-105">
                         <div class="flex items-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">
@@ -53,7 +53,7 @@ pub fn Roadmap() -> impl IntoView {
                 </A>
 
                 // Month 2 Card
-                <A href="/roadmap/month2" attr:class="group">
+                <A href="/xforcesolutions/roadmap/month2" attr:class="group">
                     <div class="bg-gradient-to-br from-gray-900 to-black border border-red-900/50 rounded-xl p-8 shadow-2xl hover:border-red-500 transition-all duration-300 hover:scale-105">
                         <div class="flex items-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">
@@ -77,7 +77,7 @@ pub fn Roadmap() -> impl IntoView {
                 </A>
 
                 // Month 3 Card
-                <A href="/roadmap/month3" attr:class="group">
+                <A href="/xforcesolutions/roadmap/month3" attr:class="group">
                     <div class="bg-gradient-to-br from-gray-900 to-black border border-red-900/50 rounded-xl p-8 shadow-2xl hover:border-red-500 transition-all duration-300 hover:scale-105">
                         <div class="flex items-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">
@@ -101,7 +101,7 @@ pub fn Roadmap() -> impl IntoView {
                 </A>
 
                 // Month 4 Card
-                <A href="/roadmap/month4" attr:class="group">
+                <A href="/xforcesolutions/roadmap/month4" attr:class="group">
                     <div class="bg-gradient-to-br from-gray-900 to-black border border-red-900/50 rounded-xl p-8 shadow-2xl hover:border-red-500 transition-all duration-300 hover:scale-105">
                         <div class="flex items-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">

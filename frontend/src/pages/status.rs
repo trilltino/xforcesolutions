@@ -281,19 +281,19 @@ pub fn Status() -> impl IntoView {
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <A
-                        href="/architecture"
+                        href="/xforcesolutions/architecture"
                         attr:class="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "View Architecture"
                     </A>
                     <A
-                        href="/contracts"
+                        href="/xforcesolutions/contracts"
                         attr:class="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "Smart Contracts"
                     </A>
                     <A
-                        href="/documentation"
+                        href="/xforcesolutions/documentation"
                         attr:class="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "Documentation"

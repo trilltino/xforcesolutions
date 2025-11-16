@@ -37,7 +37,7 @@ pub fn Navbar() -> impl IntoView {
                 <div class="flex items-center justify-between h-16">
                     // Logo/Brand with icon
                     <div class="flex-shrink-0">
-                        <A href="/" attr:class="flex items-center space-x-2 text-2xl font-bold text-white hover:text-primary-400 transition-all duration-200 group">
+                        <A href="/xforcesolutions/" attr:class="flex items-center space-x-2 text-2xl font-bold text-white hover:text-primary-400 transition-all duration-200 group">
                             <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <span class="text-white font-black text-lg font-nav">"XF"</span>
                             </div>
@@ -46,8 +46,8 @@ pub fn Navbar() -> impl IntoView {
 
                     // Desktop Navigation Links
                     <div class="hidden md:flex items-center space-x-1">
-                        <NavLink href="/about" label="About me"/>
-                        <NavLink href="/projects" label="Proof of Work"/>
+                        <NavLink href="/xforcesolutions/about" label="About me"/>
+                        <NavLink href="/xforcesolutions/projects" label="Proof of Work"/>
                         
                         // Roadmap Dropdown
                         <div class="relative">
@@ -70,19 +70,19 @@ pub fn Navbar() -> impl IntoView {
                                 view! {
                                     <div class="absolute top-full left-0 mt-1 w-48 bg-black border border-red-900 rounded-lg shadow-lg z-50">
                                         <div class="py-1">
-                                            <A href="/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/roadmap" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Overview"
                                             </A>
-                                            <A href="/roadmap/month1" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/roadmap/month1" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Month 1"
                                             </A>
-                                            <A href="/roadmap/month2" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/roadmap/month2" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Month 2"
                                             </A>
-                                            <A href="/roadmap/month3" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/roadmap/month3" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Month 3"
                                             </A>
-                                            <A href="/roadmap/month4" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/roadmap/month4" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Month 4"
                                             </A>
                                         </div>
@@ -114,19 +114,19 @@ pub fn Navbar() -> impl IntoView {
                                 view! {
                                     <div class="absolute top-full left-0 mt-1 w-48 bg-black border border-red-900 rounded-lg shadow-lg z-50">
                                         <div class="py-1">
-                                            <A href="/status" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/status" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Status"
                                             </A>
-                                            <A href="/proposal" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/proposal" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Proposal"
                                             </A>
-                                            <A href="/architecture" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/architecture" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Architecture"
                                             </A>
-                                            <A href="/contracts" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/contracts" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Contracts"
                                             </A>
-                                            <A href="/documentation" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                            <A href="/xforcesolutions/documentation" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Documentation"
                                             </A>
                                         </div>
@@ -137,7 +137,7 @@ pub fn Navbar() -> impl IntoView {
                             }}
                         </div>
                         
-                        <NavLink href="/contact" label="Contact"/>
+                        <NavLink href="/xforcesolutions/contact" label="Contact"/>
                         
                         // Theme Toggle
                         <div class="ml-2">
@@ -175,8 +175,8 @@ pub fn Navbar() -> impl IntoView {
                     view! {
                         <div class="md:hidden pb-4 border-t border-red-900 mt-2 animate-fade-in">
                             <div class="flex flex-col space-y-2 pt-4">
-                                <MobileNavLink href="/about" label="About me" on_click=move |_| set_mobile_menu_open.set(false)/>
-                                <MobileNavLink href="/projects" label="Proof of Work" on_click=move |_| set_mobile_menu_open.set(false)/>
+                                <MobileNavLink href="/xforcesolutions/about" label="About me" on_click=move |_| set_mobile_menu_open.set(false)/>
+                                <MobileNavLink href="/xforcesolutions/projects" label="Proof of Work" on_click=move |_| set_mobile_menu_open.set(false)/>
                                 
                                 // Roadmap Mobile Dropdown
                                 <div>
@@ -192,11 +192,11 @@ pub fn Navbar() -> impl IntoView {
                                     {move || if mobile_roadmap_open.get() {
                                         view! {
                                             <div class="pl-4 mt-1 space-y-1">
-                                                <MobileNavLink href="/roadmap" label="Overview" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
-                                                <MobileNavLink href="/roadmap/month1" label="Month 1" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
-                                                <MobileNavLink href="/roadmap/month2" label="Month 2" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
-                                                <MobileNavLink href="/roadmap/month3" label="Month 3" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
-                                                <MobileNavLink href="/roadmap/month4" label="Month 4" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/roadmap" label="Overview" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/roadmap/month1" label="Month 1" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/roadmap/month2" label="Month 2" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/roadmap/month3" label="Month 3" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/roadmap/month4" label="Month 4" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_roadmap_open.set(false); }/>
                                             </div>
                                         }.into_any()
                                     } else {
@@ -218,11 +218,11 @@ pub fn Navbar() -> impl IntoView {
                                     {move || if mobile_xf_terminal_open.get() {
                                         view! {
                                             <div class="pl-4 mt-1 space-y-1">
-                                                <MobileNavLink href="/status" label="Status" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
-                                                <MobileNavLink href="/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
-                                                <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
-                                                <MobileNavLink href="/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
-                                                <MobileNavLink href="/documentation" label="Documentation" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/status" label="Status" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
+                                                <MobileNavLink href="/xforcesolutions/documentation" label="Documentation" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                             </div>
                                         }.into_any()
                                     } else {
@@ -230,7 +230,7 @@ pub fn Navbar() -> impl IntoView {
                                     }}
                                 </div>
                                 
-                                <MobileNavLink href="/contact" label="Contact" on_click=move |_| set_mobile_menu_open.set(false)/>
+                                <MobileNavLink href="/xforcesolutions/contact" label="Contact" on_click=move |_| set_mobile_menu_open.set(false)/>
                             </div>
                         </div>
                     }.into_any()

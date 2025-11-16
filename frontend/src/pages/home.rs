@@ -37,7 +37,7 @@ pub fn Home() -> impl IntoView {
                         "Discover our portfolio of innovative technology solutions"
                     </p>
                     <A
-                        href="/projects"
+                        href="/xforcesolutions/projects"
                         attr:class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "View Projects"
@@ -51,7 +51,7 @@ pub fn Home() -> impl IntoView {
                         "Have a project in mind? Let's discuss how we can help"
                     </p>
                     <A
-                        href="/contact"
+                        href="/xforcesolutions/contact"
                         attr:class="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
                     >
                         "Contact Us"
