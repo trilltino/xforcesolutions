@@ -106,55 +106,56 @@ pub fn Contracts() -> impl IntoView {
                         "The core instruction that executes multiple swaps atomically in a single Solana transaction:"
                     </p>
                     <pre class="bg-gray-900 dark:bg-black p-6 rounded-lg overflow-x-auto text-sm text-gray-100">
-<code>//! Execute multiple token swaps in a single transaction
+                        <code>{r#"//! Execute multiple token swaps in a single transaction
 //! This leverages Solana's transaction model where multiple
 //! instructions execute atomically
 
 pub fn batch_swap(
-    ctx: Context&lt;BatchSwap&gt;,
-    swaps: Vec&lt;SwapParams&gt;
-) -&gt; Result&lt;()&gt; {{
+    ctx: Context<BatchSwap>,
+    swaps: Vec<SwapParams>
+) -> Result<()> {
     // Validate batch size (max 10 swaps per transaction)
     require!(!swaps.is_empty(), ErrorCode::EmptySwaps);
     require!(
-        swaps.len() &lt;= MAX_BATCH_SIZE,
+        swaps.len() <= MAX_BATCH_SIZE,
         ErrorCode::TooManySwaps
     );
 
     // Validate each swap parameter
-    for swap in &amp;swaps {{
+    for swap in &swaps {
         require!(
-            swap.amount &gt;= MIN_SWAP_AMOUNT,
+            swap.amount >= MIN_SWAP_AMOUNT,
             ErrorCode::InvalidAmount
         );
         // Input and output mints must differ
         assert_different_mints(
-            &amp;swap.input_mint,
-            &amp;swap.output_mint
+            &swap.input_mint,
+            &swap.output_mint
         )?;
-    }}
+    }
 
     // Calculate total fees with safe math
     let mut total_input_amount: u64 = 0;
     let mut total_protocol_fees: u64 = 0;
     
-    for swap in &amp;swaps {{
+    for swap in &swaps {
         let fee = calculate_protocol_fee(swap.amount)?;
         total_input_amount = total_input_amount.safe_add(swap.amount)?;
         total_protocol_fees = total_protocol_fees.safe_add(fee)?;
-    }}
+    }
 
     // Emit event for tracking (stored on-chain)
-    emit!(BatchSwapEvent {{
+    emit!(BatchSwapEvent {
         authority: ctx.accounts.authority.key(),
         swap_count: swaps.len() as u8,
         total_input_amount,
         total_protocol_fees,
         timestamp: Clock::get()?.unix_timestamp,
-    }});
+    });
 
     Ok(())
-}}</code></pre>
+}"#}</code>
+                    </pre>
                 </div>
 
                 // Swap Parameters Structure
@@ -166,9 +167,9 @@ pub fn batch_swap(
                         "Each swap in the batch is defined by this structure, using Solana's native Pubkey type for addresses:"
                     </p>
                     <pre class="bg-gray-900 dark:bg-black p-6 rounded-lg overflow-x-auto text-sm text-gray-100">
-<code>// Swap parameters for a single swap operation
+                        <code>{r#"// Swap parameters for a single swap operation
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, Debug)]
-pub struct SwapParams {{
+pub struct SwapParams {
     /// Input token mint (Solana address)
     pub input_mint: Pubkey,
     
@@ -181,15 +182,16 @@ pub struct SwapParams {{
     
     /// Minimum output for slippage protection
     pub min_output_amount: u64,
-}}
+}
 
 // Example usage:
-// SwapParams {{
+// SwapParams {
 //     input_mint: sol_mint,           // SOL address
 //     output_mint: usdc_mint,         // USDC address
 //     amount: 1_000_000_000,          // 1 SOL (in lamports)
 //     min_output_amount: 90_000_000,  // 90 USDC (10% slippage)
-// }}</code></pre>
+// }"#}</code>
+                    </pre>
                 </div>
 
                 // Account Structure
@@ -201,43 +203,44 @@ pub struct SwapParams {{
                         "The program uses Anchor's account validation to ensure security on Solana:"
                     </p>
                     <pre class="bg-gray-900 dark:bg-black p-6 rounded-lg overflow-x-auto text-sm text-gray-100">
-<code>// Account structure for batch swap instruction
+                        <code>{r#"// Account structure for batch swap instruction
 // Anchor automatically validates these accounts
 #[derive(Accounts)]
-pub struct BatchSwap&lt;'info&gt; {{
+pub struct BatchSwap<'info> {
     /// Authority must sign the transaction
     /// Solana ensures only the signer can execute
     #[account(mut)]
-    pub authority: Signer&lt;'info&gt;,
+    pub authority: Signer<'info>,
     
     /// Fee recipient (optional)
     #[account(mut)]
-    pub fee_recipient: UncheckedAccount&lt;'info&gt;,
+    pub fee_recipient: UncheckedAccount<'info>,
     
     /// SPL Token program (required for token ops)
-    pub token_program: Program&lt;'info, Token&gt;,
+    pub token_program: Program<'info, Token>,
     
     /// System program (Solana's core program)
-    pub system_program: Program&lt;'info, System&gt;,
-}}
+    pub system_program: Program<'info, System>,
+}
 
 // Anchor's #[derive(Accounts)] automatically:
 // - Validates account ownership
 // - Checks account types
 // - Verifies signers
-// - Ensures account mutability</code></pre>
+// - Ensures account mutability"#}</code>
+                    </pre>
                 </div>
 
                 // Security Validations
                 <div class="mb-8">
                     <h3 class="text-xl font-bold mb-3 font-heading text-gray-900 dark:text-white">
-                        "Security &amp; Validation"
+                        "Security & Validation"
                     </h3>
                     <p class="text-gray-700 dark:text-gray-300 mb-3 font-sans text-sm">
                         "Comprehensive security checks protect users on Solana:"
                     </p>
                     <pre class="bg-gray-900 dark:bg-black p-6 rounded-lg overflow-x-auto text-sm text-gray-100">
-<code>// Program constants that define limits
+                        <code>{r#"// Program constants that define limits
 pub const MAX_BATCH_SIZE: usize = 10;      // Max swaps per batch
 pub const MIN_SWAP_AMOUNT: u64 = 1;        // Minimum swap amount
 pub const PROTOCOL_FEE_BPS: u64 = 30;      // 0.3% protocol fee
@@ -245,9 +248,9 @@ pub const MAX_SLIPPAGE_BPS: u64 = 500;     // 5% max slippage
 
 // Security validations
 fn assert_different_mints(
-    input: &amp;Pubkey,
-    output: &amp;Pubkey
-) -&gt; Result&lt;()&gt; {{
+    input: &Pubkey,
+    output: &Pubkey
+) -> Result<()> {
     require!(
         input != output,
         ErrorCode::InvalidSwapPair
@@ -256,12 +259,13 @@ fn assert_different_mints(
 }
 
 // Safe math to prevent overflow/underflow
-impl SafeMath for u64 {{
-    fn safe_add(self, other: u64) -&gt; Result&lt;u64&gt; {{
+impl SafeMath for u64 {
+    fn safe_add(self, other: u64) -> Result<u64> {
         self.checked_add(other)
             .ok_or(ErrorCode::MathOverflow)
-    }}
-}}</code></pre>
+    }
+}"#}</code>
+                    </pre>
                 </div>
 
                 // Event Emission
@@ -273,21 +277,22 @@ impl SafeMath for u64 {{
                         "Events are stored on Solana's blockchain and can be indexed for analytics:"
                     </p>
                     <pre class="bg-gray-900 dark:bg-black p-6 rounded-lg overflow-x-auto text-sm text-gray-100">
-<code>// Event emitted on-chain for tracking
+                        <code>{r#"// Event emitted on-chain for tracking
 #[event]
-pub struct BatchSwapEvent {{
+pub struct BatchSwapEvent {
     pub authority: Pubkey,           // Who executed
     pub swap_count: u8,              // Number of swaps
     pub total_input_amount: u64,     // Total input
     pub total_protocol_fees: u64,    // Fees collected
     pub timestamp: i64,              // Solana clock time
-}}
+}
 
 // Events are:
 // - Stored in transaction logs
 // - Indexable by block explorers
 // - Queryable via RPC
-// - Used for analytics and monitoring</code></pre>
+// - Used for analytics and monitoring"#}</code>
+                    </pre>
                 </div>
             </div>
 
@@ -335,7 +340,7 @@ pub struct BatchSwapEvent {{
             // Repository Link
             <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg text-center">
                 <h2 class="text-2xl font-bold mb-4 font-heading text-gray-900 dark:text-white">
-                    "Open Source &amp; Auditable"
+                    "Open Source & Auditable"
                 </h2>
                 <p class="text-gray-700 dark:text-gray-300 mb-6 font-sans">
                     "View the full source code, contribute, or deploy your own instance."
