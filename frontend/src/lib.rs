@@ -3,7 +3,6 @@ use leptos_meta::*;
 use leptos_router::{
     components::{Route, Router, Routes},
     StaticSegment,
-    RouterOptions,
 };
 
 mod components;
@@ -39,7 +38,7 @@ pub fn App() -> impl IntoView {
         <Title text="XFSolutions - Professional Solutions"/>
         <Meta name="description" content="XFSolutions - Delivering excellence in technology solutions"/>
 
-        <Router options=RouterOptions::default().base_path("/xforcesolutions/")>
+        <Router>
             <div class="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
                 <Navbar/>
                 <main class="container mx-auto px-4 py-8">

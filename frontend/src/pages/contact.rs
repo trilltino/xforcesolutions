@@ -93,7 +93,7 @@ pub fn Contact() -> impl IntoView {
         // EmailJS REST API endpoint
         let url = "https://api.emailjs.com/api/v1.0/email/send";
 
-        let mut opts = web_sys::RequestInit::new();
+        let opts = web_sys::RequestInit::new();
         opts.set_method("POST");
         opts.set_mode(web_sys::RequestMode::Cors);
         
