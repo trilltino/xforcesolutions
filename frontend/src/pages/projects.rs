@@ -47,9 +47,10 @@ pub fn Projects() -> impl IntoView {
                             "Production-ready scaffolding tool for Yew framework projects that generates boilerplate code",
                             "Streamlines the setup process for new Rust web applications with best practices built-in",
                             "Includes routing templates and component structure for rapid development",
-                            "CLI tool that generates project structure following Rust and Yew conventions",
-                            "Enables developers to start building immediately without configuration overhead",
-                            "Open-source tooling that accelerates Rust web development workflow"
+                            "wasm-bindgen integration for transaction signing with multi-wallet support (Phantom, Solflare, Backpack, Sollet, Ledger)",
+                            "JavaScript interop via wasm-bindgen inline functions enabling secure wallet adapter bindings for signing Solana transactions",
+                            "Transaction serialization/deserialization with base64 encoding for seamless wallet communication",
+                            "Type-safe Rust bindings to wallet provider APIs with error handling and async transaction signing workflows"
                         ]
                     />
                 </div>
