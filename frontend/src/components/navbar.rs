@@ -42,7 +42,7 @@ pub fn Navbar() -> impl IntoView {
                                 <span class="text-white font-black text-lg font-nav">"XF"</span>
                             </div>
                             <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent font-nav">
-                                "XFSolutions"
+                                "XF"
                             </span>
                         </A>
                     </div>
@@ -117,6 +117,9 @@ pub fn Navbar() -> impl IntoView {
                                 view! {
                                     <div class="absolute top-full left-0 mt-1 w-48 bg-black border border-red-900 rounded-lg shadow-lg z-50">
                                         <div class="py-1">
+                                            <A href="/status" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
+                                                "Status"
+                                            </A>
                                             <A href="/proposal" attr:class="block px-4 py-2 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/30 transition-colors">
                                                 "Proposal"
                                             </A>
@@ -218,6 +221,7 @@ pub fn Navbar() -> impl IntoView {
                                     {move || if mobile_xf_terminal_open.get() {
                                         view! {
                                             <div class="pl-4 mt-1 space-y-1">
+                                                <MobileNavLink href="/status" label="Status" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/proposal" label="Proposal" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/architecture" label="Architecture" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
                                                 <MobileNavLink href="/contracts" label="Contracts" on_click=move |_| { set_mobile_menu_open.set(false); set_mobile_xf_terminal_open.set(false); }/>
