@@ -43,17 +43,17 @@ pub fn App() -> impl IntoView {
                 <main class="container mx-auto px-4 py-8">
                     <Routes fallback=|| "Page not found.">
                         <Route path=StaticSegment("") view=About/>
-                        <Route path=StaticSegment("home") view=Home/>
                         <Route path=StaticSegment("about") view=About/>
+                        <Route path=StaticSegment("home") view=Home/>
                         <Route path=StaticSegment("projects") view=Projects/>
                         <Route path=StaticSegment("contact") view=Contact/>
                         <Route path=StaticSegment("proposal") view=Proposal/>
                         <Route path=StaticSegment("architecture") view=Architecture/>
                         <Route path=StaticSegment("roadmap") view=Roadmap/>
-                        <Route path=StaticSegment("roadmap/month1") view=Month1/>
-                        <Route path=StaticSegment("roadmap/month2") view=Month2/>
-                        <Route path=StaticSegment("roadmap/month3") view=Month3/>
-                        <Route path=StaticSegment("roadmap/month4") view=Month4/>
+                        <Route path=(StaticSegment("roadmap"), StaticSegment("month1")) view=Month1/>
+                        <Route path=(StaticSegment("roadmap"), StaticSegment("month2")) view=Month2/>
+                        <Route path=(StaticSegment("roadmap"), StaticSegment("month3")) view=Month3/>
+                        <Route path=(StaticSegment("roadmap"), StaticSegment("month4")) view=Month4/>
                         <Route path=StaticSegment("contracts") view=Contracts/>
                         <Route path=StaticSegment("documentation") view=Documentation/>
                     </Routes>
